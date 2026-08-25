@@ -1,0 +1,39 @@
+/* Hide options outside the current TeeInBlue variant combination. */
+.tee-artwork-form .tee-option .tee-radio--unavailable {
+  display: none !important;
+}
+
+/* Keep TeeInBlue's price and hide the theme price when its personalizer is present. */
+body:has(.tee-artwork-form)
+  main[data-template='product']
+  product-info
+  .product__info-container
+  [id^='price-'] {
+  display: none !important;
+}
+
+/* TeeInBlue replaces the theme controls below, but not the delivery and trust content. */
+body:has(.tee-artwork-form) main[data-template='product'] .cuszoo-native-variant-picker,
+body:has(.tee-artwork-form) main[data-template='product'] .product-form__quantity,
+body:has(.tee-artwork-form) main[data-template='product'] .cuszoo-native-buy-buttons,
+body:has(.tee-artwork-form) main[data-template='product'] .cuszoo-product-description {
+  display: none !important;
+}
+
+/* Customall supplies variants, quantity and add-to-cart after it successfully mounts. */
+.customall-active main[data-template='product'] .cuszoo-native-variant-picker,
+.customall-active main[data-template='product'] .product-form__quantity {
+  display: none !important;
+}
+
+/* Hide a variant group when only one available option remains. */
+.tee-artwork-form
+  .tee-option:has(.tee-option-inner > .tee-radio:not(.tee-radio--unavailable)):not(
+    :has(
+      .tee-option-inner
+        > .tee-radio:not(.tee-radio--unavailable)
+        ~ .tee-radio:not(.tee-radio--unavailable)
+    )
+  ) {
+  display: none !important;
+}

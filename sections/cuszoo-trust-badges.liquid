@@ -1,0 +1,95 @@
+{{ 'macorner-home.css' | asset_url | stylesheet_tag }}
+
+<div class="macorner-trust color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width macorner-home-padding">
+    <h2
+      class="macorner-home-heading"
+      style="--trust-heading-size: {{ section.settings.heading_size }}px; --trust-heading-weight: {{ section.settings.heading_weight }};"
+    >
+      {{ section.settings.heading }}
+    </h2>
+    <div class="macorner-trust__grid" role="list">
+      {%- for block in section.blocks -%}
+        <div class="macorner-trust__item" role="listitem" {{ block.shopify_attributes }}>
+          {%- render 'material-icon', icon: block.settings.icon, custom_icon: block.settings.custom_icon, class: 'macorner-trust__icon' -%}
+          <strong>{{ block.settings.heading | escape }}</strong>
+          <p>{{ block.settings.text | escape }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "信任徽章",
+  "tag": "section",
+  "class": "section section--trust-badges",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "标题", "default": "Shop With Confidence" },
+    { "type": "range", "id": "heading_size", "label": "标题字号", "min": 20, "max": 56, "step": 1, "unit": "px", "default": 32 },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "标题字重",
+      "options": [
+        { "value": "400", "label": "常规" },
+        { "value": "500", "label": "中等" },
+        { "value": "600", "label": "半粗" },
+        { "value": "700", "label": "加粗" }
+      ],
+      "default": "600"
+    },
+    { "type": "color_scheme", "id": "color_scheme", "label": "配色方案", "default": "scheme-2" }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "徽章",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "通用图标",
+          "options": [
+            { "value": "check", "label": "勾选" },
+            { "value": "truck", "label": "卡车" },
+            { "value": "lock", "label": "锁" },
+            { "value": "heart", "label": "爱心" },
+            { "value": "verified", "label": "已验证" },
+            { "value": "workspace_premium", "label": "品质奖章" },
+            { "value": "support_agent", "label": "客户支持" },
+            { "value": "schedule", "label": "快速处理" },
+            { "value": "replay", "label": "退货" },
+            { "value": "redeem", "label": "礼物" },
+            { "value": "pets", "label": "宠物" },
+            { "value": "shield", "label": "保障" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "text",
+          "id": "custom_icon",
+          "label": "任意 Google 图标名称",
+          "info": "覆盖通用图标。可在 fonts.google.com/icons 查看名称，例如 savings、language 或 volunteer_activism。"
+        },
+        { "type": "text", "id": "heading", "label": "标题", "default": "Quality guaranteed" },
+        { "type": "textarea", "id": "text", "label": "文字", "default": "Made carefully and checked before shipping." }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "信任徽章",
+      "blocks": [
+        { "type": "badge" },
+        { "type": "badge" },
+        { "type": "badge" },
+        { "type": "badge" }
+      ]
+    }
+  ]
+}
+{% endschema %}

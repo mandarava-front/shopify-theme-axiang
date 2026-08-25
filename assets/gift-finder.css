@@ -1,0 +1,199 @@
+.gift-finder {
+  display: block;
+}
+
+.gift-finder__inner {
+  max-width: 120rem;
+}
+
+.gift-finder__header {
+  max-width: 68rem;
+  margin: 0 auto 4rem;
+  text-align: center;
+}
+
+.gift-finder__icon {
+  display: inline-flex;
+  width: 5.6rem;
+  height: 5.6rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(var(--cuszoo-orange), 0.12);
+  color: rgb(var(--cuszoo-orange));
+  font-size: 3rem;
+}
+
+.gift-finder__header h1 {
+  margin: 1.6rem 0 0.8rem;
+  font-size: 5.2rem;
+  letter-spacing: 0;
+}
+
+.gift-finder__header p {
+  margin: 0;
+  color: rgba(var(--color-foreground), 0.68);
+  font-size: 1.7rem;
+}
+
+.gift-finder__form {
+  display: grid;
+  gap: 3.2rem;
+}
+
+.gift-finder__step {
+  min-width: 0;
+  margin: 0;
+  padding: 2.4rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.14);
+  border-radius: 0.8rem;
+}
+
+.gift-finder__step legend {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.gift-finder__step legend span {
+  display: inline-flex;
+  width: 3.2rem;
+  height: 3.2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgb(var(--cuszoo-orange));
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.gift-finder__options {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.6rem;
+}
+
+.gift-finder__option {
+  min-width: 0;
+  cursor: pointer;
+}
+
+.gift-finder__option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gift-finder__option-card {
+  display: flex;
+  height: 100%;
+  min-height: 7.2rem;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.9rem;
+  border: 0.15rem solid rgba(var(--color-foreground), 0.16);
+  border-radius: 0.8rem;
+  transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.gift-finder__option:hover .gift-finder__option-card,
+.gift-finder__option input:checked + .gift-finder__option-card {
+  border-color: rgb(var(--cuszoo-orange));
+  background: rgba(var(--cuszoo-orange), 0.06);
+}
+
+.gift-finder__option input:focus-visible + .gift-finder__option-card {
+  outline: 0.2rem solid rgb(var(--color-foreground));
+  outline-offset: 0.3rem;
+}
+
+.gift-finder__option-media {
+  display: inline-flex;
+  width: 5.2rem;
+  height: 5.2rem;
+  flex: 0 0 5.2rem;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background: rgba(var(--color-foreground), 0.06);
+  color: rgb(var(--cuszoo-orange));
+}
+
+.gift-finder__option-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gift-finder__option-title {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.gift-finder__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.gift-finder__actions .button {
+  min-width: 20rem;
+  gap: 0.8rem;
+}
+
+.gift-finder__actions .button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.gift-finder__reset {
+  min-height: 4.4rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 749px) {
+  .gift-finder__header {
+    margin-bottom: 3.2rem;
+  }
+
+  .gift-finder__header h1 {
+    font-size: 3.2rem;
+  }
+
+  .gift-finder__step {
+    padding: 1.8rem 1.2rem;
+  }
+
+  .gift-finder__step legend {
+    font-size: 1.7rem;
+  }
+
+  .gift-finder__options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .gift-finder__option-card {
+    flex-direction: column;
+    justify-content: center;
+    min-height: 11.5rem;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gift-finder__option-card {
+    transition: none;
+  }
+}

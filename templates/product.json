@@ -1,0 +1,189 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "sales_proof": {
+          "type": "sales_proof",
+          "settings": {
+            "sales_icon": "celebration",
+            "sales_custom_icon": "",
+            "sales_text": "",
+            "assurance_1_icon": "check_circle",
+            "assurance_1_text": "Free shipping over $69",
+            "assurance_2_icon": "check_circle",
+            "assurance_2_text": "30-day money-back",
+            "assurance_3_icon": "check_circle",
+            "assurance_3_text": "Secure checkout"
+          }
+        },
+        "delivery_estimate": {
+          "type": "delivery_estimate",
+          "settings": {
+            "summary_icon": "local_shipping",
+            "summary_custom_icon": "",
+            "day_mode": "business",
+            "processing_min_days": 3,
+            "processing_max_days": 7,
+            "transit_min_days": 7,
+            "transit_max_days": 15,
+            "summary_prefix": "Arrives by",
+            "summary_suffix": "if you order today.",
+            "order_label": "Order placed",
+            "ship_label": "Order ships",
+            "delivery_label": "Delivered"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "secure_payment": {
+          "type": "secure_payment",
+          "settings": {
+            "heading": "Secure checkout"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "shipping_returns": {
+          "type": "shipping_returns",
+          "settings": {
+            "heading": "Shipping & Returns",
+            "method_label": "Standard Shipping",
+            "day_mode": "business",
+            "processing_min_days": 3,
+            "processing_max_days": 5,
+            "transit_min_days": 7,
+            "transit_max_days": 9,
+            "order_label": "Order Placed:",
+            "ship_label": "Order Ships:",
+            "delivery_label": "Delivered:",
+            "notes": "<p>Orders can be cancelled or modified within 2 hours after being placed.</p><p>Canvas, poster and metal sign packages cannot be delivered to a PO box.</p>",
+            "show_shipping_policy": true,
+            "show_refund_policy": true
+          }
+        },
+        "share_JAmQek": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "sales_proof",
+        "delivery_estimate",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "secure_payment",
+        "description",
+        "shipping_returns",
+        "share_JAmQek"
+      ],
+      "settings": {
+        "show_breadcrumbs": false,
+        "breadcrumb_home_label": "Home",
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 20,
+        "padding_bottom": 24
+      }
+    },
+    "customall": {
+      "type": "customall-personalizer",
+      "settings": {
+        "store_id": "Z6jsdEKCb",
+        "namespace": "app",
+        "gallery_selector": ".product-single__media-group, .product__media-wrapper, media-gallery",
+        "cart_form_selector": "form[action*=\"/cart/add\"]"
+      }
+    },
+    "disclosures": {
+      "type": "disclosures",
+      "settings": {
+        "heading": "Disclosures",
+        "heading_size": "h2",
+        "open_by_default": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "judge_me_reviews": {
+      "type": "judge-me-review-widget",
+      "settings": {}
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "More Items to Consider",
+        "product_source": "shopify",
+        "heading_size": "h2",
+        "products_to_show": 5,
+        "columns_desktop": 5,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 32,
+        "padding_bottom": 64
+      }
+    }
+  },
+  "order": [
+    "main",
+    "customall",
+    "disclosures",
+    "judge_me_reviews",
+    "related-products"
+  ]
+}

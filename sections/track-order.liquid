@@ -1,0 +1,95 @@
+{{ 'track-order.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="track-order color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="track-order__inner page-width">
+    <header class="track-order__header">
+      <h1>{{ section.settings.heading | escape }}</h1>
+      {%- if section.settings.text != blank -%}<div class="rte">{{ section.settings.text }}</div>{%- endif -%}
+    </header>
+
+    <div class="track-order__app" aria-label="{{ section.settings.app_heading | escape }}">
+      {%- if section.settings.app_heading != blank -%}<h2>{{ section.settings.app_heading | escape }}</h2>{%- endif -%}
+      {%- assign has_app_block = false -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == '@app' -%}
+          {%- assign has_app_block = true -%}
+          <div class="track-order__app-block" {{ block.shopify_attributes }}>{% render block %}</div>
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- unless has_app_block -%}
+        <div class="track-order__app-placeholder">
+          <p>{{ section.settings.app_placeholder | escape }}</p>
+          {%- if section.settings.fallback_link != blank and section.settings.fallback_label != blank -%}
+            <a class="button button--secondary" href="{{ section.settings.fallback_link }}">{{ section.settings.fallback_label | escape }}</a>
+          {%- endif -%}
+        </div>
+      {%- endunless -%}
+    </div>
+
+    <div class="track-order__faq">
+      <h2>{{ section.settings.faq_heading | escape }}</h2>
+      <div class="track-order__faq-list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'faq' -%}
+            <details class="track-order__faq-item" {{ block.shopify_attributes }}>
+              <summary>
+                <span>{{ block.settings.question | escape }}</span>
+                <span class="svg-wrapper" aria-hidden="true">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+              </summary>
+              <div class="track-order__faq-answer rte">{{ block.settings.answer }}</div>
+            </details>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "订单查询",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "页面标题", "default": "Track Your Order" },
+    { "type": "richtext", "id": "text", "label": "页面说明", "default": "<p>Enter your order details below to see the latest delivery status.</p>" },
+    { "type": "text", "id": "app_heading", "label": "查询区域标题", "default": "Order status" },
+    { "type": "textarea", "id": "app_placeholder", "label": "尚未添加查询 App 时的提示", "default": "Add your tracking app block here in the theme editor." },
+    { "type": "text", "id": "fallback_label", "label": "备用链接文字", "default": "View your account orders" },
+    { "type": "url", "id": "fallback_link", "label": "备用查询链接" },
+    { "type": "text", "id": "faq_heading", "label": "FAQ 标题", "default": "Tracking FAQs" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "配色方案", "default": "scheme-1" },
+    { "type": "header", "content": "模块间距" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "上边距", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "下边距", "default": 64 }
+  ],
+  "blocks": [
+    { "type": "@app" },
+    {
+      "type": "faq",
+      "name": "查询 FAQ",
+      "settings": [
+        { "type": "text", "id": "question", "label": "问题", "default": "When will I receive my order?" },
+        { "type": "richtext", "id": "answer", "label": "回答", "default": "<p>Add your delivery timeframe and support instructions here.</p>" }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [{ "name": "订单查询" }]
+}
+{% endschema %}

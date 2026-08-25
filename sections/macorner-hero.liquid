@@ -1,0 +1,214 @@
+{{ 'macorner-home.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'macorner-hero.js' | asset_url }}" defer="defer"></script>
+
+{%- assign slide_count = section.blocks | where: 'type', 'slide' | size -%}
+{%- assign shortcut_count = section.blocks | where: 'type', 'shortcut' | size -%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --hero-top-spacing-desktop: {{ section.settings.top_spacing_desktop }}px;
+    --hero-top-spacing-tablet: {{ section.settings.top_spacing_tablet }}px;
+    --hero-top-spacing-mobile: {{ section.settings.top_spacing_mobile }}px;
+  }
+{%- endstyle -%}
+
+<hero-carousel class="macorner-hero" data-autoplay="{{ section.settings.autoplay }}">
+  <div class="macorner-hero__slides" aria-live="polite">
+    {%- assign slide_index = 0 -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'slide' -%}
+        {%- assign desktop_overlay_opacity = block.settings.desktop_overlay_opacity | times: 0.01 -%}
+        {%- assign mobile_overlay_opacity = block.settings.mobile_overlay_opacity | times: 0.01 -%}
+        <article
+          class="macorner-hero__slide{% if slide_index == 0 %} is-active{% endif %}"
+          data-hero-slide
+          aria-hidden="{% if slide_index == 0 %}false{% else %}true{% endif %}"
+          style="--hero-overlay-rgb: {{ block.settings.overlay_color.red }}, {{ block.settings.overlay_color.green }}, {{ block.settings.overlay_color.blue }}; --hero-overlay-desktop-opacity: {{ desktop_overlay_opacity }}; --hero-overlay-mobile-opacity: {{ mobile_overlay_opacity }};"
+          {{ block.shopify_attributes }}
+        >
+          {%- if block.settings.desktop_image != blank -%}
+            <picture>
+              {%- if block.settings.mobile_image != blank -%}
+                <source media="(max-width: 749px)" srcset="{{ block.settings.mobile_image | image_url: width: 900 }}">
+              {%- elsif block.settings.external_mobile_image_url != blank -%}
+                <source media="(max-width: 749px)" srcset="{{ block.settings.external_mobile_image_url }}">
+              {%- endif -%}
+              {{
+                block.settings.desktop_image
+                | image_url: width: 2400
+                | image_tag:
+                  widths: '900, 1200, 1600, 2000, 2400',
+                  sizes: '100vw',
+                  loading: 'lazy',
+                  alt: block.settings.image_alt
+              }}
+            </picture>
+          {%- elsif block.settings.external_desktop_image_url != blank -%}
+            <picture>
+              {%- if block.settings.external_mobile_image_url != blank -%}
+                <source media="(max-width: 749px)" srcset="{{ block.settings.external_mobile_image_url }}">
+              {%- endif -%}
+              <img
+                src="{{ block.settings.external_desktop_image_url }}"
+                alt="{{ block.settings.image_alt | escape }}"
+                width="2400"
+                height="900"
+                {% if slide_index == 0 %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
+              >
+            </picture>
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+
+          {%- if block.settings.eyebrow != blank or block.settings.heading != blank or block.settings.text != blank or block.settings.button_label != blank -%}
+            <div class="page-width macorner-hero__content">
+              {%- if block.settings.eyebrow != blank -%}<p class="macorner-hero__eyebrow">{{ block.settings.eyebrow | escape }}</p>{%- endif -%}
+              {%- if block.settings.heading != blank -%}
+                {%- if slide_index == 0 -%}<h1>{{ block.settings.heading | escape }}</h1>{%- else -%}<h2>{{ block.settings.heading | escape }}</h2>{%- endif -%}
+              {%- endif -%}
+              {%- if block.settings.text != blank -%}<p class="macorner-hero__text">{{ block.settings.text | escape }}</p>{%- endif -%}
+              {%- if block.settings.button_label != blank -%}
+                <a href="{{ block.settings.button_link | default: routes.all_products_collection_url }}" class="button macorner-hero__button">
+                  {{ block.settings.button_label | escape }}
+                </a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </article>
+        {%- assign slide_index = slide_index | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  {%- if slide_count > 1 -%}
+    <button class="macorner-hero__arrow macorner-hero__arrow--previous" type="button" data-hero-previous aria-label="Previous slide">
+      <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+    </button>
+    <button class="macorner-hero__arrow macorner-hero__arrow--next" type="button" data-hero-next aria-label="Next slide">
+      <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+    </button>
+  {%- endif -%}
+
+  {%- if shortcut_count > 0 -%}
+    <div class="page-width macorner-hero__shortcuts" aria-label="Featured categories">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'shortcut' -%}
+          {%- liquid
+            assign shortcut_product = block.settings.product
+            assign shortcut_collection = block.settings.collection
+            assign shortcut_image = block.settings.image
+            assign shortcut_label = block.settings.label
+            assign shortcut_link = block.settings.link
+
+            if shortcut_image == blank and block.settings.external_image_url == blank and shortcut_product != blank
+              assign shortcut_image = shortcut_product.featured_image
+            endif
+            if shortcut_image == blank and block.settings.external_image_url == blank and shortcut_collection != blank
+              assign shortcut_image = shortcut_collection.featured_image
+              if shortcut_image == blank
+                assign shortcut_image = shortcut_collection.products.first.featured_image
+              endif
+            endif
+            if shortcut_label == blank and shortcut_product != blank
+              assign shortcut_label = shortcut_product.title
+            elsif shortcut_label == blank and shortcut_collection != blank
+              assign shortcut_label = shortcut_collection.title
+            endif
+            if shortcut_link == blank and shortcut_product != blank
+              assign shortcut_link = shortcut_product.url
+            elsif shortcut_link == blank and shortcut_collection != blank
+              assign shortcut_link = shortcut_collection.url
+            endif
+            assign shortcut_link = shortcut_link | default: routes.all_products_collection_url
+            assign shortcut_alt = block.settings.image_alt | default: shortcut_label
+          -%}
+          <a href="{{ shortcut_link }}" class="macorner-hero__shortcut" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 360 | image_tag: loading: 'lazy', widths: '120, 180, 240, 360', alt: shortcut_alt }}
+            {%- elsif block.settings.external_image_url != blank -%}
+              <img src="{{ block.settings.external_image_url }}" alt="{{ shortcut_alt | escape }}" width="180" height="180" loading="lazy">
+            {%- elsif shortcut_image != blank -%}
+              {{ shortcut_image | image_url: width: 360 | image_tag: loading: 'lazy', widths: '120, 180, 240, 360', alt: shortcut_alt }}
+            {%- else -%}
+              {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+            {%- if shortcut_label != blank -%}<span>{{ shortcut_label | escape }}</span>{%- endif -%}
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  {%- if slide_count > 1 -%}
+    <div class="macorner-hero__dots" role="group" aria-label="Choose slide">
+      {%- for index in (1..slide_count) -%}
+        <button type="button" data-hero-dot="{{ forloop.index0 }}" aria-label="Show slide {{ index }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}"></button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</hero-carousel>
+
+{% schema %}
+{
+  "name": "大型活动横幅",
+  "tag": "section",
+  "class": "section section--macorner-hero",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "checkbox", "id": "autoplay", "label": "自动轮播幻灯片", "default": true },
+    { "type": "header", "content": "上方间距" },
+    { "type": "range", "id": "top_spacing_desktop", "label": "电脑端上边距", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "top_spacing_tablet", "label": "平板端上边距", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "top_spacing_mobile", "label": "手机端上边距", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 0 }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "幻灯片",
+      "settings": [
+        { "type": "image_picker", "id": "desktop_image", "label": "电脑端图片" },
+        { "type": "image_picker", "id": "mobile_image", "label": "手机端图片" },
+        { "type": "url", "id": "external_desktop_image_url", "label": "外部电脑端图片链接" },
+        { "type": "url", "id": "external_mobile_image_url", "label": "外部手机端图片链接" },
+        { "type": "text", "id": "image_alt", "label": "图片替代文字" },
+        { "type": "header", "content": "图片遮罩" },
+        { "type": "color", "id": "overlay_color", "label": "遮罩颜色", "default": "#003f85" },
+        { "type": "range", "id": "desktop_overlay_opacity", "label": "电脑端遮罩强度", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 40 },
+        { "type": "range", "id": "mobile_overlay_opacity", "label": "手机端遮罩强度", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 95 },
+        { "type": "text", "id": "eyebrow", "label": "上方小标题" },
+        { "type": "text", "id": "heading", "label": "标题", "default": "Personalized gifts" },
+        { "type": "textarea", "id": "text", "label": "文字" },
+        { "type": "text", "id": "button_label", "label": "按钮文字", "default": "Shop now" },
+        { "type": "url", "id": "button_link", "label": "按钮链接" }
+      ]
+    },
+    {
+      "type": "shortcut",
+      "name": "快捷入口",
+      "settings": [
+        { "type": "product", "id": "product", "label": "产品", "info": "默认自动使用产品链接、标题和主图，除非在下方另行设置。" },
+        { "type": "collection", "id": "collection", "label": "产品系列", "info": "未选择产品时使用产品系列图片，或该系列首个产品的图片。" },
+        { "type": "image_picker", "id": "image", "label": "自定义图片" },
+        { "type": "url", "id": "external_image_url", "label": "外部图片链接" },
+        { "type": "text", "id": "image_alt", "label": "图片替代文字" },
+        { "type": "text", "id": "label", "label": "自定义文字", "info": "留空则使用所选产品或产品系列标题。" },
+        { "type": "url", "id": "link", "label": "自定义链接", "info": "留空则使用所选产品或产品系列链接。" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "大型活动横幅",
+      "blocks": [
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "shortcut" },
+        { "type": "shortcut" },
+        { "type": "shortcut" },
+        { "type": "shortcut" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,110 @@
+{%- liquid
+  assign excluded_tag = 'volume-discount-excluded'
+-%}
+
+{%- if context == 'product' -%}
+  {%- unless product.tags contains excluded_tag -%}
+    {%- liquid
+      assign minimum_price = product.price_min
+      assign buy_2_regular = minimum_price | times: 2
+      assign buy_3_regular = minimum_price | times: 3
+      assign buy_4_regular = minimum_price | times: 4
+      assign buy_2_price = buy_2_regular | times: 90 | divided_by: 100
+      assign buy_3_price = buy_3_regular | times: 85 | divided_by: 100
+      assign buy_4_price = buy_4_regular | times: 80 | divided_by: 100
+    -%}
+    <details
+      class="volume-discount-offer"
+      style="--vd-background: {{ settings.vd_background }}; --vd-tier-background: {{ settings.vd_tier_background }}; --vd-border: {{ settings.vd_border }}; --vd-text: {{ settings.vd_text }}; --vd-accent: {{ settings.vd_accent }}; --vd-radius: {{ settings.vd_radius }}px; --vd-title-size: {{ settings.vd_title_size }}px; --vd-body-size: {{ settings.vd_body_size }}px;"
+    >
+      <summary class="volume-discount-offer__summary">
+        <div class="volume-discount-offer__summary-content">
+          <div class="volume-discount-offer__title">
+            <span aria-hidden="true"></span>
+            <strong>{{ settings.vd_title | escape }}</strong>
+            <span aria-hidden="true"></span>
+          </div>
+          <div class="volume-discount-offer__compact-tiers">
+            <span>2 ITEMS <strong>SAVE 10%</strong></span>
+            <span>3 ITEMS <strong>SAVE 15%</strong></span>
+            <span>4+ ITEMS <strong>SAVE 20%</strong></span>
+          </div>
+        </div>
+        <span class="volume-discount-offer__chevron" aria-hidden="true"></span>
+      </summary>
+      <div class="volume-discount-offer__details">
+        <div class="volume-discount-offer__tier">
+          <span class="volume-discount-offer__tier-copy">
+            <span class="volume-discount-offer__marker" aria-hidden="true"></span>
+            <strong>{{ settings.vd_buy_2 | escape }}</strong>
+          </span>
+          <span class="volume-discount-offer__prices">
+            <strong>{% if product.price_varies %}{{ settings.vd_from | escape }} {% endif %}{{ buy_2_price | money }}</strong>
+            <s>{{ buy_2_regular | money }}</s>
+          </span>
+          <span class="volume-discount-offer__save">SAVE 10%!</span>
+        </div>
+        <div class="volume-discount-offer__tier">
+          <span class="volume-discount-offer__tier-copy">
+            <span class="volume-discount-offer__marker" aria-hidden="true"></span>
+            <strong>{{ settings.vd_buy_3 | escape }}</strong>
+          </span>
+          <span class="volume-discount-offer__prices">
+            <strong>{% if product.price_varies %}{{ settings.vd_from | escape }} {% endif %}{{ buy_3_price | money }}</strong>
+            <s>{{ buy_3_regular | money }}</s>
+          </span>
+          <span class="volume-discount-offer__save">SAVE 15%!</span>
+        </div>
+        <div class="volume-discount-offer__tier">
+          <span class="volume-discount-offer__tier-copy">
+            <span class="volume-discount-offer__marker" aria-hidden="true"></span>
+            <strong>{{ settings.vd_buy_4 | escape }}</strong>
+          </span>
+          <span class="volume-discount-offer__prices">
+            <strong>{% if product.price_varies %}{{ settings.vd_from | escape }} {% endif %}{{ buy_4_price | money }}</strong>
+            <s>{{ buy_4_regular | money }}</s>
+          </span>
+          <span class="volume-discount-offer__save">SAVE 20%!</span>
+        </div>
+        <p>{{ settings.vd_footer | escape }}</p>
+      </div>
+    </details>
+  {%- endunless -%}
+{%- elsif context == 'cart' and cart != empty -%}
+  {%- liquid
+    assign eligible_quantity = 0
+    for item in cart.items
+      unless item.product.tags contains excluded_tag
+        assign eligible_quantity = eligible_quantity | plus: item.quantity
+      endunless
+    endfor
+
+    if eligible_quantity == 0
+      assign status_text = 'Buy 2 eligible items to save 10%'
+      assign progress_percent = 0
+    elsif eligible_quantity == 1
+      assign status_text = 'Add 1 more eligible item to save 10%'
+      assign progress_percent = 25
+    elsif eligible_quantity == 2
+      assign status_text = '10% OFF unlocked - add 1 more to save 15%'
+      assign progress_percent = 50
+    elsif eligible_quantity == 3
+      assign status_text = '15% OFF unlocked - add 1 more to save 20%'
+      assign progress_percent = 75
+    else
+      assign status_text = '20% OFF unlocked - highest savings applied'
+      assign progress_percent = 100
+    endif
+  -%}
+  <div class="volume-discount-progress" role="status" style="--vd-border: {{ settings.vd_border }}; --vd-text: {{ settings.vd_text }}; --vd-accent: {{ settings.vd_accent }}; --vd-radius: {{ settings.vd_radius }}px;">
+    <p>{{ status_text }}</p>
+    <div class="volume-discount-progress__track" aria-hidden="true">
+      <span style="width: {{ progress_percent }}%"></span>
+    </div>
+    <div class="volume-discount-progress__milestones" aria-hidden="true">
+      <span>2 · 10%</span>
+      <span>3 · 15%</span>
+      <span>4+ · 20%</span>
+    </div>
+  </div>
+{%- endif -%}

@@ -1,0 +1,12 @@
+{%- liquid
+  assign material_icon = custom_icon | default: icon | default: 'check_circle'
+  case material_icon
+    when 'check'
+      assign material_icon = 'check_circle'
+    when 'truck'
+      assign material_icon = 'local_shipping'
+    when 'heart'
+      assign material_icon = 'favorite'
+  endcase
+-%}
+<span class="material-icons-round{% if class != blank %} {{ class }}{% endif %}" aria-hidden="true">{{ material_icon | escape }}</span>

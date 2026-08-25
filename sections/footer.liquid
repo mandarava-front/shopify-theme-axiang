@@ -1,0 +1,350 @@
+{% comment %}theme-check-disable UndefinedObject{% endcomment %}
+{{ 'macorner-footer.css' | asset_url | stylesheet_tag }}
+{{ 'component-localization-form.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-social.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'macorner-footer.js' | asset_url }}" defer="defer"></script>
+
+<footer class="mc-footer color-{{ section.settings.color_scheme }} gradient">
+  {%- if section.settings.newsletter_enable -%}
+    <div class="mc-footer__newsletter color-{{ section.settings.newsletter_color_scheme }} gradient">
+      <div class="mc-footer__newsletter-inner">
+        {%- if section.settings.newsletter_heading != blank -%}
+          <h2 class="mc-footer__newsletter-title">{{ section.settings.newsletter_heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.newsletter_text != blank -%}
+          <p class="mc-footer__newsletter-text">{{ section.settings.newsletter_text }}</p>
+        {%- endif -%}
+        {%- form 'customer', id: 'ContactFooter', class: 'mc-footer__newsletter-form newsletter-form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <input
+            id="NewsletterForm--{{ section.id }}"
+            type="email"
+            name="contact[email]"
+            class="mc-footer__newsletter-field"
+            value="{{ form.email }}"
+            aria-label="{{ 'newsletter.label' | t }}"
+            aria-required="true"
+            autocorrect="off"
+            autocapitalize="off"
+            autocomplete="email"
+            {% if form.errors %}
+              autofocus
+              aria-invalid="true"
+            {% endif %}
+            placeholder="{{ section.settings.newsletter_placeholder | default: 'Enter your email' }}"
+            required
+          >
+          <button type="submit" class="mc-footer__newsletter-button" name="commit">
+            {{ section.settings.newsletter_button_label | default: 'Subscribe' }}
+          </button>
+          {%- if form.posted_successfully? -%}
+            <p class="mc-footer__newsletter-success" role="status">{{ 'newsletter.success' | t }}</p>
+          {%- elsif form.errors -%}
+            <p class="mc-footer__newsletter-error" role="status">
+              {{- form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email -}}
+            </p>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- assign has_link_blocks = false -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'link_list' or block.type == 'policy_links' -%}
+      {%- assign has_link_blocks = true -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  <div class="mc-footer__main">
+    <div class="mc-footer__brand">
+      {%- assign footer_logo = section.settings.logo | default: settings.logo -%}
+      {%- if footer_logo != blank -%}
+        {%- assign logo_alt = footer_logo.alt | default: shop.name | escape -%}
+        <a href="{{ routes.root_url }}" class="mc-footer__logo" aria-label="{{ shop.name | escape }}">
+          {{
+            footer_logo
+            | image_url: width: 400
+            | image_tag: loading: 'lazy', alt: logo_alt, widths: '100, 200, 300, 400'
+          }}
+        </a>
+      {%- else -%}
+        <a href="{{ routes.root_url }}" class="mc-footer__logo">{{ shop.name }}</a>
+      {%- endif -%}
+
+      <div class="mc-footer__contact">
+        {%- if section.settings.contact_email != blank -%}
+          <p><strong>{{ section.settings.email_label | escape }}:</strong> <a href="mailto:{{ section.settings.contact_email | escape }}">{{ section.settings.contact_email | escape }}</a></p>
+        {%- endif -%}
+        {%- if section.settings.service_hours != blank -%}
+          <p><strong>{{ section.settings.service_hours_label | escape }}:</strong> {{ section.settings.service_hours | escape }}</p>
+        {%- endif -%}
+        {%- liquid
+          assign has_brand_social = true
+          if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
+            assign has_brand_social = false
+          endif
+        -%}
+        {%- if section.settings.show_brand_social and has_brand_social -%}
+          <strong class="mc-footer__follow-label">{{ section.settings.follow_label | escape }}</strong>
+          {%- render 'social-icons', class: 'mc-footer__brand-social' -%}
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.dmca_image != blank -%}
+        <span class="mc-footer__dmca">
+          {%- if section.settings.dmca_url != blank -%}<a href="{{ section.settings.dmca_url }}" target="_blank" rel="noopener">{%- endif -%}
+          {{ section.settings.dmca_image | image_url: width: 300 | image_tag: loading: 'lazy', alt: section.settings.dmca_alt }}
+          {%- if section.settings.dmca_url != blank -%}</a>{%- endif -%}
+        </span>
+      {%- elsif section.settings.show_dmca_badge -%}
+        <span class="mc-footer__dmca">
+          <span class="mc-footer__dmca-fallback"><span>DMCA</span><span>PROTECTED</span></span>
+        </span>
+      {%- endif -%}
+    </div>
+
+    {%- if has_link_blocks -%}
+      <div class="mc-footer__links">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'link_list' and block.settings.menu != blank -%}
+            <details class="mc-footer__col" data-mc-footer-col {{ block.shopify_attributes }}>
+              <summary class="mc-footer__col-summary">
+                <span class="mc-footer__col-title">{{ block.settings.heading | default: block.settings.menu.title }}</span>
+                <span class="svg-wrapper mc-footer__chevron" aria-hidden="true">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+              </summary>
+              <ul class="mc-footer__col-list">
+                {%- for link in block.settings.menu.links -%}
+                  <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+                {%- endfor -%}
+              </ul>
+            </details>
+          {%- elsif block.type == 'policy_links' -%}
+            <details class="mc-footer__col" data-mc-footer-col {{ block.shopify_attributes }}>
+              <summary class="mc-footer__col-summary">
+                <span class="mc-footer__col-title">{{ block.settings.heading | escape }}</span>
+                <span class="svg-wrapper mc-footer__chevron" aria-hidden="true">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+              </summary>
+              <ul class="mc-footer__col-list">
+                {%- for policy in shop.policies -%}
+                  {%- if policy != blank -%}<li><a href="{{ policy.url }}">{{ policy.title | escape }}</a></li>{%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </details>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="mc-footer__bottom">
+    {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+      <div class="mc-footer__localization">
+        <localization-form>
+          {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
+            <div>
+              <h2 class="visually-hidden" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
+              {%- render 'country-localization', localPosition: 'FooterCountry' -%}
+            </div>
+          {%- endform -%}
+        </localization-form>
+      </div>
+    {%- endif -%}
+
+    {%- liquid
+      assign has_social_icons = true
+      if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
+        assign has_social_icons = false
+      endif
+    -%}
+    {%- if section.settings.show_social and has_social_icons and section.settings.show_brand_social == false -%}
+      {%- render 'social-icons', class: 'mc-footer__social' -%}
+    {%- endif -%}
+
+    {%- if shop.enabled_payment_types.size > 0 -%}
+      <div class="mc-footer__payment" aria-label="{{ 'sections.footer.payment' | t }}">
+        <ul class="list list-payment" role="list">
+          {%- for type in shop.enabled_payment_types -%}
+            <li class="list-payment__item">{{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}</li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+
+    <div class="mc-footer__copyright">
+      <span
+        >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url }}. {{ section.settings.copyright_suffix | escape }}</span
+      >
+      {%- if section.settings.show_powered_by -%}<br><span>{{ powered_by_link }}</span>{%- endif -%}
+      {%- if section.settings.show_policy -%}
+        <ul class="mc-footer__policies">
+          {%- for policy in shop.policies -%}
+            {%- if policy != blank -%}
+              <li><a href="{{ policy.url }}">{{ policy.title | escape }}</a></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "t:sections.footer.name",
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "t:sections.footer.blocks.link_list.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Quick links",
+          "label": "t:sections.footer.blocks.link_list.settings.heading.label"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "default": "footer",
+          "label": "t:sections.footer.blocks.link_list.settings.menu.label"
+        }
+      ]
+    },
+    {
+      "type": "policy_links",
+      "name": "商店政策",
+      "limit": 1,
+      "settings": [
+        { "type": "inline_richtext", "id": "heading", "label": "标题", "default": "Policies" }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "页脚配色方案",
+      "default": "scheme-2"
+    },
+    {
+      "type": "header",
+      "content": "邮件订阅"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter_enable",
+      "default": true,
+      "label": "t:sections.footer.settings.newsletter_enable.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "newsletter_color_scheme",
+      "label": "订阅区域配色方案",
+      "default": "scheme-5"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "newsletter_heading",
+      "default": "Unlock Your 10% OFF!",
+      "label": "订阅标题"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_text",
+      "default": "Join us for free gift inspiration, extra savings, and alerts on our latest drops.",
+      "label": "订阅说明文字"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_placeholder",
+      "default": "Enter your email",
+      "label": "邮箱输入提示"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button_label",
+      "default": "Subscribe",
+      "label": "按钮文字"
+    },
+    {
+      "type": "header",
+      "content": "品牌"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo 图片（留空则使用商店名称）"
+    },
+    { "type": "text", "id": "email_label", "label": "邮箱文字", "default": "Email" },
+    { "type": "text", "id": "contact_email", "label": "客服邮箱", "default": "support@example.com" },
+    { "type": "text", "id": "service_hours_label", "label": "服务时间文字", "default": "Customer service" },
+    { "type": "text", "id": "service_hours", "label": "客服时间", "default": "Monday-Friday, 9:00 AM-5:00 PM (CT)" },
+    { "type": "text", "id": "follow_label", "label": "社交媒体标题", "default": "Follow us on" },
+    { "type": "checkbox", "id": "show_brand_social", "label": "在联系信息下显示社交图标", "default": true },
+    {
+      "type": "checkbox",
+      "id": "show_dmca_badge",
+      "default": true,
+      "label": "显示 DMCA 备用徽章"
+    },
+    {
+      "type": "image_picker",
+      "id": "dmca_image",
+      "label": "DMCA 徽章图片（可选）"
+    },
+    {
+      "type": "text",
+      "id": "dmca_alt",
+      "default": "DMCA Protected",
+      "label": "DMCA 图片替代文字"
+    },
+    {
+      "type": "url",
+      "id": "dmca_url",
+      "label": "DMCA 链接"
+    },
+    {
+      "type": "header",
+      "content": "底部栏"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "default": true,
+      "label": "t:sections.footer.settings.show_social.label",
+      "info": "t:sections.footer.settings.show_social.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "default": true,
+      "label": "t:sections.footer.settings.enable_country_selector.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policy",
+      "default": true,
+      "label": "t:sections.footer.settings.show_policy.label"
+    },
+    {
+      "type": "text",
+      "id": "copyright_suffix",
+      "default": "All Rights Reserved.",
+      "label": "版权后缀文字"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_powered_by",
+      "default": false,
+      "label": "显示 Powered by Shopify"
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "link_list" },
+      { "type": "policy_links" }
+    ]
+  }
+}
+{% endschema %}

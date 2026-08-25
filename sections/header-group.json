@@ -1,0 +1,78 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-bar-0": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to our store",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement-bar-0"
+      ],
+      "disabled": true,
+      "settings": {
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "color_scheme": "scheme-4",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_position": "middle-left",
+        "mobile_logo_position": "center",
+        "menu": "cuszoo-catalog-menu",
+        "gift_finder_link": "/pages/gift-finder",
+        "track_order_link": "/pages/track-order",
+        "reviews_link": "/pages/reviews",
+        "wishlist_link": "/pages/wishlist",
+        "help_center_link": "/pages/contact",
+        "mobile_promo_link": "",
+        "mobile_promo_alt": "Featured products",
+        "gift_finder_label": "Gift Finder",
+        "sign_in_label": "Sign In",
+        "track_order_label": "Track Order",
+        "help_center_label": "Help Center",
+        "reviews_label": "Reviews",
+        "wishlist_label": "Favorite",
+        "mega_menu_explore_label": "Explore all",
+        "copyright_suffix": "All Rights Reserved.",
+        "menu_type_desktop": "mega",
+        "sticky_header_type": "always",
+        "show_line_separator": false,
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
+        "enable_country_selector": true,
+        "enable_language_selector": false,
+        "enable_customer_avatar": true,
+        "margin_bottom": 0,
+        "padding_top": 12,
+        "padding_bottom": 4
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}

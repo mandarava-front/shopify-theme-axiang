@@ -1,0 +1,87 @@
+{{ 'macorner-home.css' | asset_url | stylesheet_tag }}
+
+<div class="macorner-gift-finder color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width macorner-home-padding">
+    <div class="macorner-gift-finder__header">
+      <div>
+        <p>{{ section.settings.eyebrow | escape }}</p>
+        <h2 class="macorner-home-heading">{{ section.settings.heading | escape }}</h2>
+      </div>
+      <a href="{{ section.settings.link | default: routes.all_products_collection_url }}" class="link underlined-link">
+        {{ section.settings.link_label | escape }}
+      </a>
+    </div>
+    <div class="macorner-gift-finder__grid">
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.link | default: routes.all_products_collection_url }}" class="macorner-gift-finder__item focus-inset" {{ block.shopify_attributes }}>
+          {%- render 'material-icon', icon: block.settings.icon, custom_icon: block.settings.custom_icon, class: 'macorner-gift-finder__icon' -%}
+          <span class="macorner-gift-finder__copy">
+            <strong>{{ block.settings.heading | escape }}</strong>
+            <small>{{ block.settings.text | escape }}</small>
+          </span>
+          <span class="svg-wrapper" aria-hidden="true">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "快速礼物查找器",
+  "tag": "section",
+  "class": "section section--gift-finder",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "上方小标题", "default": "Need a little help?" },
+    { "type": "text", "id": "heading", "label": "标题", "default": "Quick Gift Finder" },
+    { "type": "text", "id": "link_label", "label": "链接文字", "default": "Shop all gifts" },
+    { "type": "url", "id": "link", "label": "链接" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "配色方案", "default": "scheme-1" }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "礼物链接",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "通用图标",
+          "options": [
+            { "value": "redeem", "label": "礼物" },
+            { "value": "pets", "label": "宠物" },
+            { "value": "favorite", "label": "爱心" },
+            { "value": "celebration", "label": "庆祝" },
+            { "value": "photo_camera", "label": "照片" },
+            { "value": "workspace_premium", "label": "优质" },
+            { "value": "thumb_up", "label": "推荐" },
+            { "value": "inventory_2", "label": "产品" }
+          ],
+          "default": "redeem"
+        },
+        {
+          "type": "text",
+          "id": "custom_icon",
+          "label": "任意 Google 图标名称",
+          "info": "覆盖通用图标。可在 fonts.google.com/icons 查看名称。"
+        },
+        { "type": "text", "id": "heading", "label": "标题", "default": "For pet lovers" },
+        { "type": "text", "id": "text", "label": "文字", "default": "Photo jewelry and keepsakes" },
+        { "type": "url", "id": "link", "label": "链接" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "快速礼物查找器",
+      "blocks": [
+        { "type": "link" },
+        { "type": "link" },
+        { "type": "link" }
+      ]
+    }
+  ]
+}
+{% endschema %}

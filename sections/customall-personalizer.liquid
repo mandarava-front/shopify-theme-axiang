@@ -1,0 +1,146 @@
+{%- comment -%}
+  Customall 定制器挂载点，放在默认商品模板里，全店商品都带。
+
+  SDK 契约（apis-v2 loader 反解得到，勿改 id）：
+    __InitPBApp(shop, productId, "#artwork-preview", "#personalized-form")
+  两个容器必须同时存在，loader 才会初始化；缺一个就静默什么都不做。
+
+  loader 不看商品有没有 campaign，一律再拉 1.79MB 的 sdk.js，所以这里先用一个
+  ~200 字节的探测请求判断，绑了 campaign 才把 SDK 引进来，没绑的商品零额外开销。
+
+  Customall 自带轮播 + 缩略图 + 变体 + 数量 + 加购，是主题那一套的完整替代品，
+  所以渲染成功后隐藏主题原生商品区。
+
+  选择器是逗号分隔的 CSS 选择器组，一份配置通吃本店两族主题
+  （Debutify 4.10.2 / Crave 15.5.0）。换新主题优先在这里加候选，别改代码。
+  全部 miss 只是不初始化，页面保持主题原生态，不会被搞坏。
+{%- endcomment -%}
+
+{%- if product -%}
+  <div id="artwork-preview"></div>
+  <div id="personalized-form"></div>
+
+  <style>
+    /* Customall 渲染成功才让位；原生 form 留在 DOM 里，SDK 要靠它提交。 */
+    /* Debutify 4.10.2 */
+    .customall-active .product-single__media-group,
+    .customall-active .product-single__thumbnails,
+    /* Crave / Dawn 系。只让媒体区，不动 .product__info-wrapper——
+       标题/价格/描述是主题的，SDK 不提供，隐藏了就空了。 */
+    .customall-active .product__media-wrapper,
+    /* 两族通用 */
+    .customall-active form[action*="/cart/add"] {
+      display: none !important;
+    }
+  </style>
+
+  <script>
+    (function () {
+      var NS = {{ section.settings.namespace | json }};
+      var SHOP = {{ shop.permanent_domain | json }};
+      var PID = {{ product.id | json }};
+      var API = 'https://apis-v2.customall.io/' + NS + '/';
+
+      var preview = document.getElementById('artwork-preview');
+      var form = document.getElementById('personalized-form');
+      var gallery = document.querySelector({{ section.settings.gallery_selector | json }});
+      var cartForm = document.querySelector({{ section.settings.cart_form_selector | json }});
+
+      if (!preview || !form || !gallery || !cartForm) {
+        console.warn('[customall] 挂载点缺失，跳过初始化', {
+          gallery: !!gallery,
+          cartForm: !!cartForm
+        });
+        return;
+      }
+
+      // Customall 的路径编码：紧凑 JSON → 逐字节 XOR 0x47 → hex
+      function token(uri) {
+        var s = JSON.stringify({ uri: uri });
+        var out = '';
+        for (var i = 0; i < s.length; i++) {
+          out += ('0' + (s.charCodeAt(i) ^ 0x47).toString(16)).slice(-2);
+        }
+        return out;
+      }
+
+      function mount() {
+        gallery.parentNode.insertBefore(preview, gallery);
+        cartForm.parentNode.insertBefore(form, cartForm);
+
+        window.pbstoreid = {{ section.settings.store_id | json }};
+        window.isLoadCampaign = true;
+        window.money_format = {{ shop.money_format | json }};
+
+        var css = document.createElement('link');
+        css.rel = 'stylesheet';
+        css.href = API + 'style.css';
+        document.head.appendChild(css);
+
+        var loader = document.createElement('script');
+        loader.src = API + SHOP + '/' + PID;
+        document.head.appendChild(loader);
+
+        // 渲染成功才让原生 UI 让位。容器不设超时清理：SDK 首屏可能要十几秒，
+        // 删掉等于掐死自己，留两个空 div 没有代价。
+        var poll = setInterval(function () {
+          if (!form.children.length) return;
+          clearInterval(poll);
+          document.body.classList.add('customall-active');
+        }, 200);
+      }
+
+      // ponytail: 用 data 长度判断有没有 campaign。空响应固定 19 字节、data 8 字符，
+      // 真 campaign 上万字符，中间没有灰区。要更严就得把 LZString+jsonpack 搬进来解，
+      // 不值。
+      fetch(API + token(SHOP + '/' + PID + '/') + '.json')
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (j) {
+          if (j && j.data && j.data.length > 200) mount();
+        })
+        .catch(function (e) {
+          console.warn('[customall] campaign 探测失败，保留主题原生商品页', e);
+        });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Customall 定制器",
+  "settings": [
+    {
+      "type": "text",
+      "id": "store_id",
+      "label": "Customall Store ID",
+      "info": "Customall 后台的店铺 ID，本店为 Z6jsdEKCb",
+      "default": "Z6jsdEKCb"
+    },
+    {
+      "type": "select",
+      "id": "namespace",
+      "label": "API 命名空间",
+      "info": "本店在 /app 下有数据；换店前先用 customall_probe 确认",
+      "options": [
+        { "value": "app", "label": "app" },
+        { "value": "beta", "label": "beta" }
+      ],
+      "default": "app"
+    },
+    {
+      "type": "text",
+      "id": "gallery_selector",
+      "label": "主题图库选择器",
+      "info": "逗号分隔的候选，取页面里最先出现的那个。换新主题在这里加，别改代码",
+      "default": ".product-single__media-group, .product__media-wrapper, media-gallery"
+    },
+    {
+      "type": "text",
+      "id": "cart_form_selector",
+      "label": "加购表单选择器",
+      "default": "form[action*=\"/cart/add\"]"
+    }
+  ],
+  "presets": [{ "name": "Customall 定制器" }]
+}
+{% endschema %}
