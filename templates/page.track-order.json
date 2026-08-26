@@ -6,6 +6,10 @@
 {
   "sections": {
     "main": {
+      "type": "tg-order-tracking",
+      "settings": {}
+    },
+    "faq": {
       "type": "track-order",
       "blocks": {
         "faq_delivery": {
@@ -32,18 +36,12 @@
       },
       "block_order": ["faq_delivery", "faq_number", "faq_stuck"],
       "settings": {
-        "heading": "Track Your Order",
-        "text": "<p>Enter your order details below to see the latest delivery status.</p>",
-        "app_heading": "Order status",
-        "app_placeholder": "Add your tracking app block here in the theme editor.",
-        "fallback_label": "View your account orders",
-        "fallback_link": "/account",
         "faq_heading": "Tracking FAQs",
         "color_scheme": "scheme-1",
-        "padding_top": 48,
+        "padding_top": 0,
         "padding_bottom": 64
       }
     }
   },
-  "order": ["main"]
+  "order": ["main", "faq"]
 }
