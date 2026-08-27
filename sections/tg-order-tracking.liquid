@@ -95,13 +95,6 @@
             </button>
 
             <p class="tg-order-tracking__form-status" data-form-status role="status" aria-live="polite"></p>
-            <div
-              class="tg-order-tracking__message tg-order-tracking__message--error"
-              data-form-error
-              role="alert"
-              tabindex="-1"
-              hidden
-            ></div>
           </form>
         </div>
 
@@ -126,6 +119,20 @@
 
       <div class="tg-order-tracking__results" data-tracking-results tabindex="-1" hidden></div>
 
+      <dialog class="tg-order-tracking__dialog" data-tracking-dialog>
+        <div class="tg-order-tracking__dialog-inner" data-dialog-inner>
+          <button
+            type="button"
+            class="tg-order-tracking__dialog-close"
+            data-dialog-close
+            aria-label="{{ 'accessibility.close' | t }}"
+          >
+            {{- 'icon-close.svg' | inline_asset_content -}}
+          </button>
+          <div class="tg-order-tracking__dialog-body" data-dialog-body></div>
+        </div>
+      </dialog>
+
       <template data-icon-template="copy">
         {{- 'icon-copy.svg' | inline_asset_content -}}
       </template>
@@ -135,13 +142,24 @@
       <template data-icon-template="arrow">
         {{- 'icon-arrow.svg' | inline_asset_content -}}
       </template>
+      <template data-icon-template="info">
+        {{- 'icon-info.svg' | inline_asset_content -}}
+      </template>
 
       <script type="application/json" data-tracking-config>
         {
           "endpoint": {{ tracking_endpoint | json }},
           "locale": {{ request.locale.iso_code | json }},
           "contactUrl": {{ section.settings.contact_page.url | json }},
-          "submitLabel": {{ section.settings.submit_label | json }}
+          "submitLabel": {{ section.settings.submit_label | json }},
+          "messages": {
+            "noShipmentTitle": {{ section.settings.no_shipment_title | json }},
+            "noShipment": {{ section.settings.no_shipment_message | json }},
+            "notFoundTitle": {{ section.settings.not_found_title | json }},
+            "notFound": {{ section.settings.not_found_message | json }},
+            "noActivity": {{ section.settings.no_activity_message | json }},
+            "unavailable": {{ section.settings.unavailable_message | json }}
+          }
         }
       </script>
     </order-tracking>
@@ -210,6 +228,51 @@
       "type": "page",
       "id": "contact_page",
       "label": "联系我们页面"
+    },
+    {
+      "type": "header",
+      "content": "顾客提示文案",
+      "info": "留空则使用组件内置的默认文案"
+    },
+    {
+      "type": "text",
+      "id": "no_shipment_title",
+      "label": "待发货提示标题",
+      "default": "Your order is being prepared"
+    },
+    {
+      "type": "textarea",
+      "id": "no_shipment_message",
+      "label": "待发货提示内容",
+      "info": "已查询到订单但尚未生成运单号时展示，例如商品仍在生产或正在打包",
+      "default": "Good news — we found your order! It has not shipped yet, so there is no tracking information available. Your items are still being produced and packed at our workshop. As soon as the carrier collects your parcel, the tracking number will appear here and we will email it to you."
+    },
+    {
+      "type": "text",
+      "id": "not_found_title",
+      "label": "查询不到订单标题",
+      "default": "We could not find that order"
+    },
+    {
+      "type": "textarea",
+      "id": "not_found_message",
+      "label": "查询不到订单提示内容",
+      "info": "订单号与邮箱都匹配不到订单时展示",
+      "default": "Please check that the order number is complete (for example #TG123456) and that the email address matches the one on your order confirmation. Orders placed in the last few minutes may take a little while to appear."
+    },
+    {
+      "type": "textarea",
+      "id": "no_activity_message",
+      "label": "暂无物流轨迹提示",
+      "info": "已有运单号但承运商尚未上传轨迹时展示",
+      "default": "The carrier has accepted your parcel but has not published any scans yet. Tracking events usually appear within 24-48 hours."
+    },
+    {
+      "type": "textarea",
+      "id": "unavailable_message",
+      "label": "服务不可用提示",
+      "info": "查询服务无法访问时展示",
+      "default": "We cannot retrieve tracking details right now. Please try again in a few minutes."
     },
     {
       "type": "color_scheme",
