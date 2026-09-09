@@ -63,6 +63,13 @@
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
+    <script>
+      window.teeinblue = window.teeinblue || {};
+      window.teeinblue.hideAddonItems = false;
+      // Current SDK runs its cart autofixer unless this option is explicitly false.
+      window.teeinblue.autofixerDisable = false;
+    </script>
+
     {{ content_for_header }}
 
     {%- liquid

@@ -166,7 +166,39 @@ class CartItems extends window.StandardEvents.createViewEventElement(HTMLElement
     ];
   }
 
+  async removeCartGroup(lineKey, sectionsToRender) {
+    // Read fresh line keys; numeric positions can change after removing an item.
+    if (!lineKey) throw new Error('Missing cart line key');
+    const response = await fetch(`${routes.cart_url}.js`, { cache: 'no-store' });
+    if (!response.ok) throw new Error('Unable to read cart');
+    const cart = await response.json();
+    const item = cart.items.find((entry) => entry.key === lineKey);
+    if (!item) throw new Error('Cart item no longer exists; refresh the cart');
+
+    const updates = { [item.key]: 0 };
+    const properties = item.properties || {};
+    const customizationId = properties._customization_id || properties.customization_id;
+    // Removing an extra must not remove its parent or its siblings.
+    if (customizationId && !properties._tib_customization_id && !properties._parent_customization_id) {
+      cart.items.forEach((entry) => {
+        const parentId = entry.properties?._tib_customization_id;
+        if (parentId && String(parentId) === String(customizationId)) updates[entry.key] = 0;
+      });
+    }
+
+    return fetch(routes.cart_update_url, {
+      ...fetchConfig(),
+      body: JSON.stringify({
+        updates,
+        sections: sectionsToRender.map((section) => section.section),
+        sections_url: window.location.pathname,
+      }),
+    });
+  }
+
   updateQuantity(line, quantity, event, name, variantId) {
+    if (this.cartMutationPending) return;
+    this.cartMutationPending = true;
     const eventTarget = event.currentTarget instanceof CartRemoveButton ? 'clear' : 'change';
     const cartPerformanceUpdateMarker = CartPerformance.createStartingMarker(`${eventTarget}:user-action`);
 
@@ -188,8 +220,13 @@ class CartItems extends window.StandardEvents.createViewEventElement(HTMLElement
       sections_url: window.location.pathname,
     });
 
-    fetch(`${routes.cart_change_url}`, { ...fetchConfig(), ...{ body } })
+    const request = quantity === 0
+      ? this.removeCartGroup(lineKey, sectionsToRender)
+      : fetch(`${routes.cart_change_url}`, { ...fetchConfig(), ...{ body } });
+
+    request
       .then((response) => {
+        if (!response.ok) throw new Error('Unable to update cart');
         return response.text();
       })
       .then((state) => {
@@ -263,6 +300,7 @@ class CartItems extends window.StandardEvents.createViewEventElement(HTMLElement
         linesUpdateDeferred?.reject(e);
       })
       .finally(() => {
+        this.cartMutationPending = false;
         this.disableLoading(line);
         CartPerformance.measureFromMarker(`${eventTarget}:user-action`, cartPerformanceUpdateMarker);
       });
