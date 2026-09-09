@@ -398,10 +398,19 @@ button.shopify-payment-button__button--unbranded {
   border-radius: 2.4rem;
 }
 
+/* component-predictive-search.css loads asynchronously, so its `display: none` arrives
+   too late and the server-rendered suggestions panel flashes over the page on first
+   paint. This file is render-blocking, so repeat the open/closed rules here. */
 .predictive-search {
+  display: none;
   border-color: rgba(var(--cuszoo-navy), 0.12);
   border-radius: 1.2rem;
   box-shadow: 0 1.2rem 3rem rgba(var(--cuszoo-navy), 0.12);
+}
+
+predictive-search[open] .predictive-search,
+predictive-search[loading] .predictive-search {
+  display: block;
 }
 
 details[open] > .search-modal {
