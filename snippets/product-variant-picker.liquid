@@ -25,8 +25,13 @@
       {%- liquid
         assign swatch_count = option.values | map: 'swatch' | compact | size
         assign picker_type = block.settings.picker_type
+        assign force_text_buttons = false
 
-        if swatch_count > 0 and block.settings.swatch_shape != 'none'
+        if product.id == 10831604711734 and option.name == 'Color'
+          assign force_text_buttons = true
+        endif
+
+        if swatch_count > 0 and block.settings.swatch_shape != 'none' and force_text_buttons == false
           if block.settings.picker_type == 'dropdown'
             assign picker_type = 'swatch_dropdown'
           else

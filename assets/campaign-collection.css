@@ -125,10 +125,6 @@
   color: #f34028;
 }
 
-.cuszoo-campaign__products .rating-star {
-  --color-rating-star: #f4c430;
-}
-
 @media screen and (max-width: 749px) {
   .cuszoo-campaign__inner {
     padding-top: 1.6rem;

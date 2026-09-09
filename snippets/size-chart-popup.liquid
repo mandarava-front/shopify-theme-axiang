@@ -1,0 +1,201 @@
+{%- comment -%}
+  Size Chart popup: three garment tabs (T-Shirt / Crewneck / Hoodie) with an inch/cm toggle.
+  Data follows the store size chart images. Rendered by the `size_chart` block in main-product
+  for products tagged `Tops`; works alongside Teeinblue / Customily without touching them.
+{%- endcomment -%}
+
+{{ 'size-chart.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'size-chart.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign sc_tshirt = 'S,25,65,17,42,7.09,18;M,27,68,18,45,7.87,20;L,28,71,19,48,8.27,21;XL,29,73,20,51,8.27,21;2XL,30,75,21,54,8.66,22;3XL,31,78,23,58,9.05,23;4XL,32,81,24,61,9.05,23'
+  assign sc_fleece = 'S,25.2,64,17.3,44,22.4,57;M,26.3,67,18.1,46,22.8,58;L,27.5,70,18.9,48,23.2,59;XL,28.7,73,20,51,23.6,60;2XL,29.9,76,21.2,54,24,61;3XL,30.7,78,22.4,57,24.4,62;4XL,31.1,79,23.6,60,24.8,63;5XL,31.9,81,24.8,63,25.2,64'
+  assign sc_tabs = 'tshirt:T-Shirt,crewneck:Crewneck,hoodie:Hoodie' | split: ','
+-%}
+
+<size-chart-popup
+  class="size-chart"
+  style="--size-chart-accent: {{ accent_color | default: '#0A2759' }}; --size-chart-accent-background: {{ accent_background | default: '#EEF3F9' }};"
+>
+  {%- assign size_chart_modal_id = 'SizeChartModal-' | append: section.id | default: product.id -%}
+  <button
+    type="button"
+    class="size-chart__trigger"
+    aria-haspopup="dialog"
+    aria-controls="{{ size_chart_modal_id }}"
+    data-size-chart-trigger
+    data-size-chart-target="{{ size_chart_modal_id }}"
+    onclick="event.preventDefault(); var sizeChartModal = document.getElementById('{{ size_chart_modal_id }}'); if (sizeChartModal) { sizeChartModal.hidden = false; document.body.classList.add('size-chart-open'); sizeChartModal.querySelector('.size-chart__close')?.focus(); }"
+  >
+    {%- render 'material-icon', icon: 'straighten' -%}
+    <span>{{ label | default: 'Size Chart' | escape }}</span>
+  </button>
+
+  <div id="{{ size_chart_modal_id }}" class="size-chart__modal" role="dialog" aria-modal="true" aria-label="Size chart" data-unit="in" hidden>
+    <div class="size-chart__backdrop" data-sc-close></div>
+    <div class="size-chart__dialog">
+      <header class="size-chart__header">
+        <h2 class="size-chart__title">Size Chart</h2>
+        <button type="button" class="size-chart__close" data-sc-close aria-label="Close">
+          <span class="svg-wrapper" aria-hidden="true">{{- 'icon-close.svg' | inline_asset_content -}}</span>
+        </button>
+      </header>
+
+      <svg class="size-chart__defs" aria-hidden="true" focusable="false" width="0" height="0">
+        <defs>
+          <marker id="scArrow" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 Z" fill="#00A5E7"></path>
+          </marker>
+        </defs>
+      </svg>
+
+      <div class="size-chart__top">
+        <div class="size-chart__figures" aria-hidden="true">
+          {%- for tab in sc_tabs -%}
+            {%- assign tab_key = tab | split: ':' | first -%}
+            <div class="size-chart__figure" data-figure="{{ tab_key }}" {% unless forloop.first %}hidden{% endunless %}>
+              {%- case tab_key -%}
+                {%- when 'tshirt' -%}
+                  <svg viewBox="0 0 210 252" fill="none">
+                    <circle cx="105" cy="27" r="13" fill="#fff" stroke="#26323D" stroke-width="2"/>
+                    <circle cx="100.5" cy="25.5" r="1.2" fill="#26323D"/>
+                    <circle cx="109.5" cy="25.5" r="1.2" fill="#26323D"/>
+                    <path d="M100.5 31.5 Q105 34.5 109.5 31.5" stroke="#26323D" stroke-width="1.6" stroke-linecap="round"/>
+                    <path d="M93 45 C89 50 83 52 78 54 L64 61 L55 93 L72 101 L78 81 L75 161 L135 161 L132 81 L138 101 L155 93 L146 61 C127 52 121 50 117 45" fill="#fff" stroke="#26323D" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M93 45 Q105 54 117 45" stroke="#26323D" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M63.5 97 L60 130" stroke="#26323D" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="59.5" cy="135" r="4" stroke="#26323D" stroke-width="2"/>
+                    <path d="M146.5 97 L150 130" stroke="#26323D" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="150.5" cy="135" r="4" stroke="#26323D" stroke-width="2"/>
+                    <path d="M75 163 L72.5 193 L101 193 L105 175 L109 193 L137.5 193 L135 163" stroke="#26323D" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M85 193 L85 227 M125 193 L125 227" stroke="#26323D" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M85 228 L73 228 M125 228 L137 228" stroke="#26323D" stroke-width="5" stroke-linecap="round"/>
+                    <line x1="105" y1="55" x2="105" y2="159" stroke="#00A5E7" stroke-width="1.4" marker-start="url(#scArrow)" marker-end="url(#scArrow)"/>
+                    <text transform="rotate(-90 98 107)" x="98" y="107" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1" fill="#056A99">LENGTH</text>
+                    <line x1="77" y1="79" x2="133" y2="79" stroke="#00A5E7" stroke-width="1.7" marker-start="url(#scArrow)" marker-end="url(#scArrow)"/>
+                    <text x="105" y="71" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1" fill="#056A99">WIDTH</text>
+                    <line x1="60.5" y1="58" x2="51.5" y2="90" stroke="#00A5E7" stroke-width="1.7" marker-start="url(#scArrow)" marker-end="url(#scArrow)"/>
+                    <text transform="rotate(-75 45 79)" x="45" y="79" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1" fill="#056A99">SLEEVE</text>
+                  </svg>
+                {%- when 'crewneck' -%}
+                  <svg viewBox="0 0 210 252" fill="none">
+                    <circle cx="105" cy="27" r="13" fill="#fff" stroke="#26323D" stroke-width="2"/>
+                    <circle cx="100.5" cy="25.5" r="1.2" fill="#26323D"/>
+                    <circle cx="109.5" cy="25.5" r="1.2" fill="#26323D"/>
+                    <path d="M100.5 31.5 Q105 34.5 109.5 31.5" stroke="#26323D" stroke-width="1.6" stroke-linecap="round"/>
+                    <path d="M92 44 C87 49 81 51 77 53 L63 60 L53 136 L67 143 L79 87 L76 171 L134 171 L131 87 L143 143 L157 136 L147 60 C129 51 123 49 118 44" fill="#fff" stroke="#26323D" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M92 44 Q105 56 118 44" stroke="#26323D" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M95 45.5 Q105 52.5 115 45.5" stroke="#26323D" stroke-width="1.4" stroke-linecap="round"/>
+                    <path d="M77 163 L133 163" stroke="#26323D" stroke-width="1.4"/>
+                    <path d="M55.5 130.5 L68 137" stroke="#26323D" stroke-width="1.4"/>
+                    <path d="M154.5 130.5 L142 137" stroke="#26323D" stroke-width="1.4"/>
+                    <path d="M76 173 L73.5 201 L101.5 201 L105 184 L108.5 201 L136.5 201 L134 173" stroke="#26323D" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M85 201 L85 234 M125 201 L125 234" stroke="#26323D" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M85 235 L73 235 M125 235 L137 235" stroke="#26323D" stroke-width="5" stroke-linecap="round"/>
+                    <line x1="105" y1="57" x2="105" y2="169" stroke="#00A5E7" stroke-width="1.4" marker-start="url(#scArrow)" marker-end="url(#scArrow)"/>
+                    <text transform="rotate(-90 98 113)" x="98" y="113" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1" fill="#056A99">LENGTH</text>
+                    <line x1="77" y1="95" x2="133" y2="95" stroke="#00A5E7" stroke-width="1.7" marker-start="url(#scArrow)" marker-end="url(#scArrow)"/>
+                    <text x="105" y="87" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1" fill="#056A99">WIDTH</text>
+                    <line x1="58.5" y1="57" x2="48.5" y2="133" stroke="#00A5E7" stroke-width="1.7" marker-start="url(#scArrow)" marker-end="url(#scArrow)"/>
+                    <text transform="rotate(-82 41 100)" x="41" y="100" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1" fill="#056A99">SLEEVE</text>
+                  </svg>
+                {%- when 'hoodie' -%}
+                  <svg viewBox="0 0 210 252" fill="none">
+                    <path d="M89 50 Q84 22 105 15 Q126 22 121 50" stroke="#26323D" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="105" cy="27" r="13" fill="#fff" stroke="#26323D" stroke-width="2"/>
+                    <circle cx="100.5" cy="25.5" r="1.2" fill="#26323D"/>
+                    <circle cx="109.5" cy="25.5" r="1.2" fill="#26323D"/>
+                    <path d="M100.5 31.5 Q105 34.5 109.5 31.5" stroke="#26323D" stroke-width="1.6" stroke-linecap="round"/>
+                    <path d="M90 46 C86 50 80 52 76 54 L62 61 L52 137 L66 144 L78 88 L75 172 L135 172 L132 88 L144 144 L158 137 L148 61 C130 52 124 50 120 46" fill="#fff" stroke="#26323D" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M90 46 Q105 55 120 46" stroke="#26323D" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M100 53 L99 68 M110 53 L111 68" stroke="#26323D" stroke-width="1.6" stroke-linecap="round"/>
+                    <circle cx="99" cy="70.5" r="1.6" fill="#26323D"/>
+                    <circle cx="111" cy="70.5" r="1.6" fill="#26323D"/>
+                    <path d="M87 122 L123 122 L118 153 L92 153 Z" stroke="#26323D" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M76 164 L134 164" stroke="#26323D" stroke-width="1.4"/>
+                    <path d="M54.5 131 L67.5 137.5" stroke="#26323D" stroke-width="1.4"/>
+                    <path d="M155.5 131 L142.5 137.5" stroke="#26323D" stroke-width="1.4"/>
+                    <path d="M76 174 L73.5 201 L101.5 201 L105 185 L108.5 201 L136.5 201 L134 174" stroke="#26323D" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M85 201 L85 234 M125 201 L125 234" stroke="#26323D" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M85 235 L73 235 M125 235 L137 235" stroke="#26323D" stroke-width="5" stroke-linecap="round"/>
+                    <line x1="105" y1="59" x2="105" y2="170" stroke="#00A5E7" stroke-width="1.4" marker-start="url(#scArrow)" marker-end="url(#scArrow)"/>
+                    <text transform="rotate(-90 98 115)" x="98" y="115" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1" fill="#056A99">LENGTH</text>
+                    <line x1="77" y1="95" x2="133" y2="95" stroke="#00A5E7" stroke-width="1.7" marker-start="url(#scArrow)" marker-end="url(#scArrow)"/>
+                    <text x="105" y="87" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1" fill="#056A99">WIDTH</text>
+                    <line x1="57.5" y1="58" x2="47.5" y2="134" stroke="#00A5E7" stroke-width="1.7" marker-start="url(#scArrow)" marker-end="url(#scArrow)"/>
+                    <text transform="rotate(-82 40 101)" x="40" y="101" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1" fill="#056A99">SLEEVE</text>
+                  </svg>
+              {%- endcase -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div class="size-chart__tabs" role="tablist" aria-orientation="vertical" aria-label="Garment type">
+          {%- for tab in sc_tabs -%}
+            {%- assign tab_key = tab | split: ':' | first -%}
+            <button
+              type="button"
+              class="size-chart__tab{% if forloop.first %} is-active{% endif %}"
+              role="tab"
+              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+              data-tab="{{ tab_key }}"
+            >
+              {{- tab | split: ':' | last -}}
+            </button>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      {%- for tab in sc_tabs -%}
+        {%- assign tab_key = tab | split: ':' | first -%}
+        {%- if tab_key == 'tshirt' -%}
+          {%- assign sc_rows = sc_tshirt -%}
+        {%- else -%}
+          {%- assign sc_rows = sc_fleece -%}
+        {%- endif -%}
+        <div
+          class="size-chart__panel"
+          role="tabpanel"
+          data-panel="{{ tab_key }}"
+          {% unless forloop.first %}hidden{% endunless %}
+        >
+          <div class="size-chart__table-head">
+            <h3>Product Measurement</h3>
+            <div class="size-chart__units" role="group" aria-label="Measurement unit">
+              <button type="button" class="size-chart__unit is-active" data-unit="in">inch</button>
+              <button type="button" class="size-chart__unit" data-unit="cm">cm</button>
+            </div>
+          </div>
+
+          <table class="size-chart__table">
+            <thead>
+              <tr>
+                <th scope="col">Size</th>
+                <th scope="col">Length</th>
+                <th scope="col">Width</th>
+                <th scope="col">Sleeve</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%- assign sc_row_list = sc_rows | split: ';' -%}
+              {%- for sc_row in sc_row_list -%}
+                {%- assign sc_cells = sc_row | split: ',' -%}
+                <tr>
+                  <th scope="row">{{ sc_cells[0] }}</th>
+                  <td><span class="sc-in">{{ sc_cells[1] }}</span><span class="sc-cm">{{ sc_cells[2] }}</span></td>
+                  <td><span class="sc-in">{{ sc_cells[3] }}</span><span class="sc-cm">{{ sc_cells[4] }}</span></td>
+                  <td><span class="sc-in">{{ sc_cells[5] }}</span><span class="sc-cm">{{ sc_cells[6] }}</span></td>
+                </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      {%- endfor -%}
+
+      <div class="size-chart__disclaimers">
+        <p>Hand-measured size, there may be a slight error.</p>
+        <p>There might be &plusmn;1.5 inches difference due to manual measurement and production processes.</p>
+      </div>
+    </div>
+  </div>
+</size-chart-popup>

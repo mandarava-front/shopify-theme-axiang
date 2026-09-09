@@ -43,6 +43,8 @@
           {%- case block.type -%}
             {%- when '@app' -%}
               {% render block %}
+            {%- when 'volume_discount' -%}
+              {%- render 'volume-discount', context: 'cart' -%}
             {%- when 'subtotal' -%}
               <div class="js-contents" {{ block.shopify_attributes }}>
                 <div>
@@ -241,6 +243,11 @@
     {
       "type": "subtotal",
       "name": "t:sections.main-cart-footer.blocks.subtotal.name",
+      "limit": 1
+    },
+    {
+      "type": "volume_discount",
+      "name": "买多折扣进度条",
       "limit": 1
     },
     {

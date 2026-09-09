@@ -40,6 +40,7 @@ class HeaderMenu extends DetailsDisclosure {
 
     this.addEventListener('mouseenter', () => {
       if (!window.matchMedia('(min-width: 990px) and (hover: hover)').matches) return;
+      if (document.body.classList.contains('cuszoo-search-open')) return;
       window.clearTimeout(this.closeTimer);
       this.open();
     });

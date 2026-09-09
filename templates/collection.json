@@ -18,6 +18,7 @@
         "show_collection_description": false,
         "show_collection_image": false,
         "title_size": 40,
+        "title_vertical_spacing": 16,
         "color_scheme": "scheme-1"
       }
     },
@@ -36,9 +37,9 @@
         "quick_add": "none",
         "enable_filtering": true,
         "enable_tag_filter": false,
+        "tag_filter_label": "Shop by tag",
         "filters_collapsed_by_default": true,
         "filter_toggle_label": "Filter",
-        "tag_filter_label": "Shop by tag",
         "filter_type": "drawer",
         "enable_sorting": true,
         "padding_top": 0,

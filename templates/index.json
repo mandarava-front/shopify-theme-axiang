@@ -15,8 +15,8 @@
         "slide-1": {
           "type": "slide",
           "settings": {
-            "desktop_image": "shopify://shop_images/CUSZOO_banner_desktop_2550x1000_d80d896f-931a-41c9-9422-b420558c5ed1.png",
-            "mobile_image": "shopify://shop_images/CUSZOO_banner_mobile_900x800_glass.png",
+            "asset_desktop_image": "cuszoo-home-hero-desktop.webp",
+            "asset_mobile_image": "cuszoo-home-hero-mobile.webp",
             "external_desktop_image_url": "",
             "external_mobile_image_url": "",
             "image_alt": "Personalized pet gifts",
@@ -41,126 +41,208 @@
         "top_spacing_mobile": 0
       }
     },
-    "trending_finds": {
+    "shop_by_occasions": {
       "type": "visual-link-grid",
       "blocks": {
-        "find-1": {
+        "occasion-1": {
           "type": "link",
           "settings": {
+            "asset_image": "occasion-birthday-gifts.webp",
             "external_image_url": "",
-            "collection": "facebook-hot-sellers",
-            "title": "Facebook Hot Sales",
+            "collection": "birthday",
+            "title": "Birthday Gifts",
             "link": "",
             "eyebrow": ""
           }
         },
-        "find-2": {
+        "occasion-2": {
           "type": "link",
           "settings": {
+            "asset_image": "occasion-memorial-gifts.webp",
             "external_image_url": "",
-            "collection": "novelty-apparel",
-            "title": "Novelty Apparel",
-            "link": "shopify://collections/all",
-            "eyebrow": ""
-          }
-        },
-        "find-3": {
-          "type": "link",
-          "settings": {
-            "external_image_url": "",
-            "collection": "cartoon-photo-hoodie",
-            "title": "",
-            "link": "shopify://collections/all",
-            "eyebrow": ""
-          }
-        },
-        "find-4": {
-          "type": "link",
-          "settings": {
-            "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/PersonalizedPawprintNecklace-BoxGold.jpg?v=1773373160",
-            "collection": "custom-cap",
-            "title": "",
-            "link": "shopify://collections/all",
-            "eyebrow": ""
-          }
-        },
-        "find-5": {
-          "type": "link",
-          "settings": {
-            "external_image_url": "",
-            "collection": "dont-mess-with-mamasaurus",
-            "title": "",
+            "collection": "memorial-for-loved-ones",
+            "title": "Memorial Gifts",
             "link": "",
             "eyebrow": ""
           }
         },
-        "find-6": {
+        "occasion-3": {
           "type": "link",
           "settings": {
-            "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/3.png?v=1773899936",
-            "collection": "letter-photo-lamp",
-            "title": "",
-            "link": "",
-            "eyebrow": ""
-          }
-        },
-        "find-7": {
-          "type": "link",
-          "settings": {
+            "asset_image": "occasion-gifts-for-mom.webp",
             "external_image_url": "",
-            "collection": "dads-work-shop",
-            "title": "",
+            "collection": "moms",
+            "title": "Gifts for Mom",
             "link": "",
             "eyebrow": ""
           }
         },
-        "find-8": {
+        "occasion-4": {
           "type": "link",
           "settings": {
-            "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/PersonalizedPawprintNecklace-Gold_de2b11da-508d-4cb9-a6fb-59c5d2d679e7.jpg?v=1773373160",
-            "collection": "",
-            "title": "Shop All",
-            "link": "/collections/all",
+            "asset_image": "occasion-gifts-for-dad.webp",
+            "external_image_url": "",
+            "collection": "dads",
+            "title": "Gifts for Dad",
+            "link": "",
+            "eyebrow": ""
+          }
+        },
+        "occasion-5": {
+          "type": "link",
+          "settings": {
+            "asset_image": "occasion-gifts-for-grandparents.webp",
+            "external_image_url": "",
+            "collection": "grandparents",
+            "title": "Gifts for Grandparents",
+            "link": "",
+            "eyebrow": ""
+          }
+        },
+        "occasion-6": {
+          "type": "link",
+          "settings": {
+            "asset_image": "occasion-gifts-for-couples.webp",
+            "external_image_url": "",
+            "collection": "couples",
+            "title": "Gifts for Couples",
+            "link": "",
+            "eyebrow": ""
+          }
+        },
+        "occasion-7": {
+          "type": "link",
+          "settings": {
+            "asset_image": "occasion-pet-lovers.webp",
+            "external_image_url": "",
+            "collection": "pets",
+            "title": "Pet Lovers",
+            "link": "",
+            "eyebrow": ""
+          }
+        },
+        "occasion-8": {
+          "type": "link",
+          "settings": {
+            "asset_image": "occasion-sports-lovers.webp",
+            "external_image_url": "",
+            "collection": "sports",
+            "title": "Sports Lovers",
+            "link": "",
+            "eyebrow": ""
+          }
+        },
+        "occasion-9": {
+          "type": "link",
+          "settings": {
+            "asset_image": "occasion-gardening-lovers.webp",
+            "external_image_url": "",
+            "collection": "gardening",
+            "title": "Gardening Lovers",
+            "link": "",
+            "eyebrow": ""
+          }
+        },
+        "occasion-10": {
+          "type": "link",
+          "settings": {
+            "asset_image": "occasion-book-lovers.webp",
+            "external_image_url": "",
+            "collection": "reading",
+            "title": "Book Lovers",
+            "link": "",
+            "eyebrow": ""
+          }
+        },
+        "occasion-11": {
+          "type": "link",
+          "settings": {
+            "asset_image": "occasion-home-living.webp",
+            "external_image_url": "",
+            "collection": "home-living",
+            "title": "Home & Living",
+            "link": "",
+            "eyebrow": ""
+          }
+        },
+        "occasion-12": {
+          "type": "link",
+          "settings": {
+            "asset_image": "occasion-gifts-for-her.webp",
+            "external_image_url": "",
+            "collection": "her",
+            "title": "Gifts for Her",
+            "link": "",
+            "eyebrow": ""
+          }
+        },
+        "occasion-13": {
+          "type": "link",
+          "settings": {
+            "asset_image": "occasion-gifts-for-him.webp",
+            "external_image_url": "",
+            "collection": "him",
+            "title": "Gifts for Him",
+            "link": "",
+            "eyebrow": ""
+          }
+        },
+        "occasion-14": {
+          "type": "link",
+          "settings": {
+            "asset_image": "occasion-apparel-accessories.webp",
+            "external_image_url": "",
+            "collection": "apparel",
+            "title": "Apparel & Accessories",
+            "link": "",
             "eyebrow": ""
           }
         }
       },
       "block_order": [
-        "find-1",
-        "find-2",
-        "find-3",
-        "find-4",
-        "find-5",
-        "find-6",
-        "find-7",
-        "find-8"
+        "occasion-1",
+        "occasion-2",
+        "occasion-3",
+        "occasion-4",
+        "occasion-5",
+        "occasion-6",
+        "occasion-7",
+        "occasion-8",
+        "occasion-9",
+        "occasion-10",
+        "occasion-11",
+        "occasion-12",
+        "occasion-13",
+        "occasion-14"
       ],
-      "disabled": true,
       "settings": {
-        "title": "Trending Finds",
-        "subheading": "See what everyone is creating today. Personalized favorites updated regularly.",
-        "heading_size": "h2",
-        "columns_desktop": 6,
-        "scroll_mode": "buttons",
+        "title": "Shop By Lifestyle",
+        "subheading": "Discover thoughtful picks for the hobbies, moments and people you love.",
+        "heading_size": "h1",
+        "columns_desktop": 5,
+        "scroll_mode": "continuous",
         "show_slider_buttons": true,
-        "continuous_speed": 30,
-        "display_style": "cards",
+        "continuous_speed": 40,
+        "display_style": "circles",
         "button_width_mode": "auto",
         "button_width": 220,
         "image_ratio": "square",
-        "background": "#fbf6ef",
+        "background": "#faf8f5",
         "color_scheme": "scheme-1",
         "padding_top": 20,
         "padding_bottom": 12
       }
     },
-    "trending_now": {
+    "featured_collection_Q4KNq7": {
       "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "collection": "facebook-hot-sellers",
         "products_to_show": 10,
-        "title": "<strong>Trending Now</strong>",
-        "heading_size": "h2",
+        "title": "Trending Now",
+        "heading_size": "h1",
+        "heading_font": "geist_n4",
+        "heading_alignment": "left",
         "description": "",
         "show_description": false,
         "description_style": "body",
@@ -172,314 +254,14 @@
         "color_scheme": "scheme-1",
         "image_ratio": "square",
         "image_shape": "default",
-        "image_corner_radius": 3,
+        "image_corner_radius": 5,
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": true,
         "quick_add": "none",
         "mobile_layout": "grid_2",
-        "padding_top": 12,
-        "padding_bottom": 20
-      }
-    },
-    "campaign_memorial": {
-      "type": "campaign-collection",
-      "blocks": {
-        "chip-1": {
-          "type": "chip",
-          "settings": {
-            "label": "Pet memorials",
-            "link": "/collections/all"
-          }
-        },
-        "chip-2": {
-          "type": "chip",
-          "settings": {
-            "label": "Photo keepsakes",
-            "link": "/collections/all"
-          }
-        },
-        "chip-3": {
-          "type": "chip",
-          "settings": {
-            "label": "For pet parents",
-            "link": "/collections/all"
-          }
-        }
-      },
-      "block_order": [
-        "chip-1",
-        "chip-2",
-        "chip-3"
-      ],
-      "disabled": true,
-      "settings": {
-        "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/Edited13_e6d9616b-644b-4b2f-bd29-de41f068b003.jpg?v=1773373159",
-        "heading": "Pet Memorial Gifts",
-        "text": "Keep their memory close with a gift made from your favorite photo.",
-        "collection": "all",
-        "products_to_show": 6,
-        "background": "#e8eef3",
-        "link_label": "See all",
-        "link": "shopify://collections/all"
-      }
-    },
-    "campaign_jewelry": {
-      "type": "campaign-collection",
-      "blocks": {
-        "chip-1": {
-          "type": "chip",
-          "settings": {
-            "label": "Necklaces",
-            "link": "/collections/all"
-          }
-        },
-        "chip-2": {
-          "type": "chip",
-          "settings": {
-            "label": "Bracelets",
-            "link": "/collections/all"
-          }
-        },
-        "chip-3": {
-          "type": "chip",
-          "settings": {
-            "label": "Rings",
-            "link": "/collections/all"
-          }
-        }
-      },
-      "block_order": [
-        "chip-1",
-        "chip-2",
-        "chip-3"
-      ],
-      "disabled": true,
-      "settings": {
-        "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/2_a81b8ba2-3c20-400b-af6d-fd7536eab53c.jpg?v=1773373153",
-        "heading": "Personalized Jewelry",
-        "text": "Small details, personal stories, and a piece made just for you.",
-        "collection": "all",
-        "products_to_show": 6,
-        "background": "#f3eadf",
-        "link_label": "See all",
-        "link": "shopify://collections/all"
-      }
-    },
-    "campaign_pet_lovers": {
-      "type": "campaign-collection",
-      "blocks": {
-        "chip-1": {
-          "type": "chip",
-          "settings": {
-            "label": "Dog lovers",
-            "link": "/collections/all"
-          }
-        },
-        "chip-2": {
-          "type": "chip",
-          "settings": {
-            "label": "Cat lovers",
-            "link": "/collections/all"
-          }
-        },
-        "chip-3": {
-          "type": "chip",
-          "settings": {
-            "label": "Best sellers",
-            "link": "/collections/all"
-          }
-        }
-      },
-      "block_order": [
-        "chip-1",
-        "chip-2",
-        "chip-3"
-      ],
-      "disabled": true,
-      "settings": {
-        "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/Pet-Cutout-Necklace_wear_dog.jpg?v=1773373155",
-        "heading": "Gifts for Pet Lovers",
-        "text": "Bright, thoughtful gifts for the people who always have a pet story to share.",
-        "collection": "all",
-        "products_to_show": 6,
-        "background": "#edf0df",
-        "link_label": "See all",
-        "link": "shopify://collections/all"
-      }
-    },
-    "campaign_tabs": {
-      "type": "tabbed-collections",
-      "blocks": {
-        "memorial": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Pet Memorial Gifts",
-            "collection": "novelty-apparel",
-            "products_to_show": 6
-          }
-        },
-        "jewelry": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Personalized Jewelry",
-            "collection": "all",
-            "products_to_show": 6
-          }
-        },
-        "pet_lovers": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Gifts for Pet Lovers",
-            "collection": "all",
-            "products_to_show": 6
-          }
-        }
-      },
-      "block_order": [
-        "memorial",
-        "jewelry",
-        "pet_lovers"
-      ],
-      "settings": {
-        "image": "shopify://shop_images/pet_banner.jpg",
-        "external_image_url": "",
-        "title": "Pet Memories",
-        "subtitle": "Cherish Moments, Love Your Pet",
-        "background": "#f7e7d2",
-        "heading_size": "h2",
-        "see_all_label": "See all",
-        "view_all_label": "View More",
-        "tab_wrap_mode": "inside",
-        "tabs_per_row": 3,
-        "tabs_per_row_mobile": "2",
-        "columns_desktop": 6,
-        "mobile_layout": "slider",
-        "image_ratio": "square",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": true,
-        "quick_add": "none",
-        "show_view_all": true,
-        "color_scheme": "scheme-1",
-        "padding_top": 20,
-        "padding_bottom": 20
-      }
-    },
-    "tabbed_collections_CxNBCq": {
-      "type": "tabbed-collections",
-      "blocks": {
-        "collection_tab_edFPGg": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Letter Lamp",
-            "collection": "letter-photo-lamp",
-            "products_to_show": 6
-          }
-        },
-        "collection_tab_rqghxp": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Personalized Jewelry",
-            "collection": "all",
-            "products_to_show": 6
-          }
-        },
-        "collection_tab_yFXU69": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Gifts for Pet Lovers",
-            "collection": "all",
-            "products_to_show": 6
-          }
-        }
-      },
-      "block_order": [
-        "collection_tab_edFPGg",
-        "collection_tab_rqghxp",
-        "collection_tab_yFXU69"
-      ],
-      "settings": {
-        "image": "shopify://shop_images/valetines_banner.jpg",
-        "external_image_url": "",
-        "title": "Couple Anniversary",
-        "subtitle": "Personalized Gifts for Every Milestone",
-        "background": "#fac6d4",
-        "heading_size": "h2",
-        "see_all_label": "See all",
-        "view_all_label": "View More",
-        "tab_wrap_mode": "inside",
-        "tabs_per_row": 3,
-        "tabs_per_row_mobile": "2",
-        "columns_desktop": 6,
-        "mobile_layout": "slider",
-        "image_ratio": "square",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": true,
-        "quick_add": "none",
-        "show_view_all": true,
-        "color_scheme": "scheme-1",
-        "padding_top": 20,
-        "padding_bottom": 20
-      }
-    },
-    "tabbed_collections_AM3NFT": {
-      "type": "tabbed-collections",
-      "blocks": {
-        "collection_tab_ced4wQ": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Letter Lamp",
-            "collection": "novelty-apparel",
-            "products_to_show": 6
-          }
-        },
-        "collection_tab_KTqUhK": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Personalized Jewelry",
-            "collection": "all",
-            "products_to_show": 6
-          }
-        },
-        "collection_tab_MWrdRx": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Gifts for Pet Lovers",
-            "collection": "all",
-            "products_to_show": 6
-          }
-        }
-      },
-      "block_order": [
-        "collection_tab_ced4wQ",
-        "collection_tab_KTqUhK",
-        "collection_tab_MWrdRx"
-      ],
-      "settings": {
-        "image": "shopify://shop_images/beach_banner.jpg",
-        "external_image_url": "",
-        "title": "Summer Time",
-        "subtitle": "Capture Bright Sunny Summer Moments",
-        "background": "#c6f0fa",
-        "heading_size": "h2",
-        "see_all_label": "See all",
-        "view_all_label": "View More",
-        "tab_wrap_mode": "inside",
-        "tabs_per_row": 3,
-        "tabs_per_row_mobile": "2",
-        "columns_desktop": 6,
-        "mobile_layout": "slider",
-        "image_ratio": "square",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": true,
-        "quick_add": "none",
-        "show_view_all": true,
-        "color_scheme": "scheme-1",
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "shop_by_recipient": {
@@ -488,60 +270,66 @@
         "recipient-1": {
           "type": "link",
           "settings": {
+            "asset_image": "",
             "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/PetFaceBracelet-Gold.jpg?v=1773373153",
-            "collection": "",
+            "collection": "pets",
             "title": "For Pet Lovers",
-            "link": "shopify://collections/all",
+            "link": "",
             "eyebrow": ""
           }
         },
         "recipient-2": {
           "type": "link",
           "settings": {
+            "asset_image": "",
             "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/PCN1Gold.png?v=1773373155",
-            "collection": "",
+            "collection": "dog-lovers",
             "title": "For Dog Moms",
-            "link": "shopify://collections/all",
+            "link": "",
             "eyebrow": ""
           }
         },
         "recipient-3": {
           "type": "link",
           "settings": {
+            "asset_image": "",
             "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/g_f46e95c8-f7fa-4551-83a4-35b2369d2d95.jpg?v=1773373158",
-            "collection": "",
+            "collection": "cat-lovers",
             "title": "For Cat Lovers",
-            "link": "shopify://collections/all",
+            "link": "",
             "eyebrow": ""
           }
         },
         "recipient-4": {
           "type": "link",
           "settings": {
+            "asset_image": "",
             "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/Edited13_e6d9616b-644b-4b2f-bd29-de41f068b003.jpg?v=1773373159",
-            "collection": "",
+            "collection": "memorial-for-loved-ones",
             "title": "Memorial Gifts",
-            "link": "/collections/all",
+            "link": "",
             "eyebrow": ""
           }
         },
         "recipient-5": {
           "type": "link",
           "settings": {
+            "asset_image": "",
             "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/PersonalizedPawprintNecklace-Gold_de2b11da-508d-4cb9-a6fb-59c5d2d679e7.jpg?v=1773373160",
-            "collection": "",
+            "collection": "her",
             "title": "For Her",
-            "link": "shopify://collections/all",
+            "link": "",
             "eyebrow": ""
           }
         },
         "recipient-6": {
           "type": "link",
           "settings": {
+            "asset_image": "",
             "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/StackablePetBandRing-Gold_39019b53-30a8-4f17-b914-061b0b8b0ff6.jpg?v=1773373157",
-            "collection": "",
-            "title": "For You",
-            "link": "shopify://collections/all",
+            "collection": "him",
+            "title": "For Him",
+            "link": "",
             "eyebrow": ""
           }
         }
@@ -557,7 +345,7 @@
       "settings": {
         "title": "Who Are You Shopping For Today?",
         "subheading": "",
-        "heading_size": "h2",
+        "heading_size": "h1",
         "columns_desktop": 6,
         "scroll_mode": "grid",
         "show_slider_buttons": true,
@@ -566,100 +354,311 @@
         "button_width_mode": "auto",
         "button_width": 220,
         "image_ratio": "square",
-        "background": "#fbf6ef",
+        "background": "#FAF8F5",
         "color_scheme": "scheme-1",
-        "padding_top": 32,
+        "padding_top": 52,
         "padding_bottom": 32
       }
     },
-    "shop_by_occasions": {
-      "type": "visual-link-grid",
+    "featured_collection_fJ49r9": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "new-in",
+        "products_to_show": 10,
+        "title": "New In",
+        "heading_size": "h1",
+        "heading_font": "geist_n4",
+        "heading_alignment": "left",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 5,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "outline",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "image_corner_radius": 5,
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "none",
+        "mobile_layout": "grid_2",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "campaign_tabs": {
+      "type": "tabbed-collections",
       "blocks": {
-        "occasion-1": {
-          "type": "link",
+        "memorial": {
+          "type": "collection_tab",
           "settings": {
-            "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/5_edited.jpg?v=1773373152",
-            "collection": "",
-            "title": "Anniversary",
-            "link": "/collections/all",
-            "eyebrow": ""
+            "label": "Pets",
+            "collection": "pets",
+            "products_to_show": 6
           }
         },
-        "occasion-2": {
-          "type": "link",
+        "jewelry": {
+          "type": "collection_tab",
           "settings": {
-            "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/Edited13_e6d9616b-644b-4b2f-bd29-de41f068b003.jpg?v=1773373159",
-            "collection": "",
-            "title": "Pet Memorial",
-            "link": "/collections/all",
-            "eyebrow": ""
+            "label": "Memorial Pet",
+            "collection": "memorial-pet",
+            "products_to_show": 6
           }
         },
-        "occasion-3": {
-          "type": "link",
+        "pet_lovers": {
+          "type": "collection_tab",
           "settings": {
-            "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/1_0d1adbcf-2b09-4560-be67-38a793b6d308.jpg?v=1773373153",
-            "collection": "",
-            "title": "Birthday",
-            "link": "/collections/all",
-            "eyebrow": ""
+            "label": "Cat Lovers",
+            "collection": "cat-lovers",
+            "products_to_show": 6
           }
         },
-        "occasion-4": {
-          "type": "link",
+        "collection_tab_79dkUt": {
+          "type": "collection_tab",
           "settings": {
-            "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/Edited13_e6d9616b-644b-4b2f-bd29-de41f068b003.jpg?v=1773373159",
-            "collection": "",
-            "title": "Christmas",
-            "link": "/collections/all",
-            "eyebrow": ""
-          }
-        },
-        "occasion-5": {
-          "type": "link",
-          "settings": {
-            "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/Pet-Cutout-Necklace_wear_cat.jpg?v=1773373155",
-            "collection": "",
-            "title": "Just Because",
-            "link": "/collections/all",
-            "eyebrow": ""
-          }
-        },
-        "occasion-6": {
-          "type": "link",
-          "settings": {
-            "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/PersonalizedPawprintNecklace-BoxGold.jpg?v=1773373160",
-            "collection": "",
-            "title": "Everyday Gifts",
-            "link": "/collections/all",
-            "eyebrow": ""
+            "label": "Dog Lovers",
+            "collection": "dog-lovers",
+            "products_to_show": 6
           }
         }
       },
       "block_order": [
-        "occasion-1",
-        "occasion-2",
-        "occasion-3",
-        "occasion-4",
-        "occasion-5",
-        "occasion-6"
+        "memorial",
+        "jewelry",
+        "pet_lovers",
+        "collection_tab_79dkUt"
       ],
       "settings": {
-        "title": "Shop By Occasions",
-        "subheading": "Be inspired by creations from our community. Standout personalized gifts refreshed daily.",
-        "heading_size": "h2",
-        "columns_desktop": 5,
-        "scroll_mode": "continuous",
-        "show_slider_buttons": true,
-        "continuous_speed": 40,
-        "display_style": "circles",
-        "button_width_mode": "auto",
-        "button_width": 220,
+        "asset_image": "cuszoo-tabs-pet-lovers.webp",
+        "external_image_url": "",
+        "campaign_image_fit": "cover",
+        "campaign_image_position": "left",
+        "title": "Pet Lovers",
+        "subtitle": "Cherish Moments, Love Your Pet",
+        "heading_font": "quicksand_n7",
+        "description_font": "nunito_n4",
+        "heading_underline_color": "#fa7b17",
+        "heading_underline_thickness": 5,
+        "background": "#FFF3E3",
+        "heading_size": "h1",
+        "see_all_label": "See all",
+        "tab_wrap_mode": "inside",
+        "tabs_per_row": 4,
+        "tabs_per_row_mobile": "2",
+        "columns_desktop": 4,
+        "desktop_rows": "1",
+        "desktop_layout": "slider",
+        "mobile_layout": "slider",
+        "mobile_rows": "1",
         "image_ratio": "square",
-        "background": "#fbf6ef",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "none",
         "color_scheme": "scheme-1",
-        "padding_top": 20,
-        "padding_bottom": 16
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "tabbed_collections_AM3NFT": {
+      "type": "tabbed-collections",
+      "blocks": {
+        "collection_tab_geCYwm": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Football",
+            "collection": "football",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_KTqUhK": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Baseball",
+            "collection": "baseball",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_ced4wQ": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Golf",
+            "collection": "golf",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_MWrdRx": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Outdoor",
+            "collection": "outdoor-adventure",
+            "products_to_show": 6
+          }
+        }
+      },
+      "block_order": [
+        "collection_tab_geCYwm",
+        "collection_tab_KTqUhK",
+        "collection_tab_ced4wQ",
+        "collection_tab_MWrdRx"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_Sep_7_2026_05_30_02_AM.webp",
+        "asset_image": "",
+        "external_image_url": "",
+        "campaign_image_fit": "cover",
+        "campaign_image_position": "right",
+        "title": "Sport Time",
+        "subtitle": "Celebrate Your Sports‑loving Family",
+        "heading_font": "quicksand_n7",
+        "description_font": "nunito_n4",
+        "heading_underline_color": "#FA7B17",
+        "heading_underline_thickness": 5,
+        "background": "#E2F9FF",
+        "heading_size": "h1",
+        "see_all_label": "See all",
+        "tab_wrap_mode": "inside",
+        "tabs_per_row": 4,
+        "tabs_per_row_mobile": "2",
+        "columns_desktop": 4,
+        "desktop_rows": "1",
+        "desktop_layout": "slider",
+        "mobile_layout": "slider",
+        "mobile_rows": "1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "none",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "tabbed_collections_CxNBCq": {
+      "type": "tabbed-collections",
+      "blocks": {
+        "collection_tab_edFPGg": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Couples",
+            "collection": "couples",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_rqghxp": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Letter Lamp",
+            "collection": "letter-photo-lamp",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_yFXU69": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Anniversary",
+            "collection": "anniversary",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_jnb3ED": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Wedding",
+            "collection": "wedding",
+            "products_to_show": 6
+          }
+        }
+      },
+      "block_order": [
+        "collection_tab_edFPGg",
+        "collection_tab_rqghxp",
+        "collection_tab_yFXU69",
+        "collection_tab_jnb3ED"
+      ],
+      "settings": {
+        "asset_image": "cuszoo-tabs-couple-anniversary.webp",
+        "external_image_url": "",
+        "campaign_image_fit": "cover",
+        "campaign_image_position": "left",
+        "title": "Couple Anniversary",
+        "subtitle": "Personalized Gifts for Every Milestone",
+        "heading_font": "quicksand_n7",
+        "description_font": "nunito_n4",
+        "heading_underline_color": "#FA7B17",
+        "heading_underline_thickness": 5,
+        "background": "#FCE2E9",
+        "heading_size": "h1",
+        "see_all_label": "See all",
+        "tab_wrap_mode": "inside",
+        "tabs_per_row": 4,
+        "tabs_per_row_mobile": "2",
+        "columns_desktop": 4,
+        "desktop_rows": "1",
+        "desktop_layout": "slider",
+        "mobile_layout": "slider",
+        "mobile_rows": "1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "none",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "personalization_steps": {
+      "type": "cuszoo-personalization-steps",
+      "blocks": {
+        "step-1": {
+          "type": "step",
+          "settings": {
+            "asset_image": "cuszoo-personalization-1.webp",
+            "image_alt": "Choose a photo you love",
+            "text": "Shop for your favorite product."
+          }
+        },
+        "step-2": {
+          "type": "step",
+          "settings": {
+            "asset_image": "cuszoo-personalization-2.webp",
+            "image_alt": "Turn your photo into a design",
+            "text": "Share your photos & custom requests."
+          }
+        },
+        "step-3": {
+          "type": "step",
+          "settings": {
+            "asset_image": "cuszoo-personalization-3.webp",
+            "image_alt": "Make a personalized keepsake",
+            "text": "Your unique item is carefully produced."
+          }
+        },
+        "step-4": {
+          "type": "step",
+          "settings": {
+            "asset_image": "cuszoo-personalization-4.webp",
+            "image_alt": "Ship a personalized gift",
+            "text": "Delivered your home."
+          }
+        }
+      },
+      "block_order": [
+        "step-1",
+        "step-2",
+        "step-3",
+        "step-4"
+      ],
+      "settings": {
+        "heading": "Made for your story",
+        "background": "#FAF8F5"
       }
     },
     "social_proof_videos": {
@@ -810,28 +809,23 @@
       ],
       "settings": {
         "heading": "Shop With Confidence",
+        "heading_size": 32,
+        "heading_weight": "600",
         "color_scheme": "scheme-1"
       }
-    },
-    "judge_me_reviews_carousel": {
-      "type": "judge-me-reviews-carousel",
-      "settings": {}
     }
   },
   "order": [
     "large_hero",
-    "trending_finds",
-    "trending_now",
-    "campaign_memorial",
-    "campaign_jewelry",
-    "campaign_pet_lovers",
-    "campaign_tabs",
-    "tabbed_collections_CxNBCq",
-    "tabbed_collections_AM3NFT",
-    "shop_by_recipient",
     "shop_by_occasions",
+    "featured_collection_Q4KNq7",
+    "shop_by_recipient",
+    "featured_collection_fJ49r9",
+    "campaign_tabs",
+    "tabbed_collections_AM3NFT",
+    "tabbed_collections_CxNBCq",
+    "personalization_steps",
     "social_proof_videos",
-    "trust_badges",
-    "judge_me_reviews_carousel"
+    "trust_badges"
   ]
 }

@@ -491,8 +491,6 @@ class MenuDrawer extends HTMLElement {
   }
 
   closeMenuDrawer(event, elementToFocus = false) {
-    if (event === undefined) return;
-
     this.mainDetailsToggle.classList.remove('menu-opening');
     this.mainDetailsToggle.querySelectorAll('details').forEach((details) => {
       details.removeAttribute('open');
@@ -508,14 +506,23 @@ class MenuDrawer extends HTMLElement {
     if (event instanceof KeyboardEvent) elementToFocus?.setAttribute('aria-expanded', false);
   }
 
-  onFocusOut() {
+  onFocusOut(event) {
     setTimeout(() => {
-      if (this.mainDetailsToggle.hasAttribute('open') && !this.mainDetailsToggle.contains(document.activeElement))
-        this.closeMenuDrawer();
+      if (
+        event.relatedTarget &&
+        this.mainDetailsToggle.hasAttribute('open') &&
+        !this.contains(event.relatedTarget)
+      ) {
+        this.closeMenuDrawer(event, this.mainDetailsToggle.querySelector('summary'));
+      }
     });
   }
 
   onCloseButtonClick(event) {
+    if (event.currentTarget.classList.contains('cuszoo-mobile-menu__main-close')) {
+      this.closeMenuDrawer(event, this.mainDetailsToggle.querySelector('summary'));
+      return;
+    }
     const detailsElement = event.currentTarget.closest('details');
     this.closeSubmenu(detailsElement);
   }
@@ -581,9 +588,9 @@ class HeaderDrawer extends MenuDrawer {
   }
 
   closeMenuDrawer(event, elementToFocus) {
-    if (!elementToFocus) return;
+    this.header = this.header || document.querySelector('.section-header');
     super.closeMenuDrawer(event, elementToFocus);
-    this.header.classList.remove('menu-open');
+    this.header?.classList.remove('menu-open');
     window.removeEventListener('resize', this.onResize);
   }
 

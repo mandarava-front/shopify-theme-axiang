@@ -16,12 +16,47 @@
           "type": "title",
           "settings": {}
         },
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
         "price": {
           "type": "price",
           "settings": {}
         },
+        "volume_discount": {
+          "type": "volume_discount",
+          "settings": {
+            "vd_title": "BUY MORE SAVE MORE",
+            "vd_compact_2_items": "2 ITEMS",
+            "vd_compact_2_save": "SAVE 10%",
+            "vd_compact_3_items": "3 ITEMS",
+            "vd_compact_3_save": "SAVE 15%",
+            "vd_compact_4_items": "4+ ITEMS",
+            "vd_compact_4_save": "SAVE 20%",
+            "vd_buy_2": "BUY 2 GET A DISCOUNT! 🔥",
+            "vd_buy_3": "BUY 3 GET A DISCOUNT!",
+            "vd_buy_4": "BUY 4+ GET A DISCOUNT!",
+            "vd_save_2": "SAVE 10%!",
+            "vd_save_3": "SAVE 15%!",
+            "vd_save_4": "SAVE 20%!",
+            "vd_from": "From",
+            "vd_footer": "Discount applied automatically in cart. Mix and match eligible items.",
+            "vd_title_size": 18,
+            "vd_body_size": 15,
+            "vd_radius": 10,
+            "vd_background": "#FAF8F5",
+            "vd_tier_background": "#ffffff",
+            "vd_border": "#0A2759",
+            "vd_text": "#0a2759",
+            "vd_muted_text": "#52657d",
+            "vd_accent": "#0A2759",
+            "vd_badge_text": "#ffffff"
+          }
+        },
         "sales_proof": {
           "type": "sales_proof",
+          "disabled": true,
           "settings": {
             "sales_icon": "celebration",
             "sales_custom_icon": "",
@@ -34,28 +69,29 @@
             "assurance_3_text": "Secure checkout"
           }
         },
-        "delivery_estimate": {
-          "type": "delivery_estimate",
-          "settings": {
-            "summary_icon": "local_shipping",
-            "summary_custom_icon": "",
-            "day_mode": "business",
-            "processing_min_days": 3,
-            "processing_max_days": 7,
-            "transit_min_days": 7,
-            "transit_max_days": 15,
-            "summary_prefix": "Arrives by",
-            "summary_suffix": "if you order today.",
-            "order_label": "Order placed",
-            "ship_label": "Order ships",
-            "delivery_label": "Delivered"
-          }
-        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
             "picker_type": "button",
             "swatch_shape": "circle"
+          }
+        },
+        "apparel_size": {
+          "type": "apparel_size",
+          "settings": {
+            "label": "Size",
+            "property_name": "Clothing size",
+            "placeholder": "Select a size",
+            "options": "S\nM\nL\nXL\n2XL",
+            "required": false
+          }
+        },
+        "size_chart": {
+          "type": "size_chart",
+          "settings": {
+            "label": "Size Chart",
+            "accent_color": "#0a2759",
+            "accent_background": "#eef3f9"
           }
         },
         "quantity_selector": {
@@ -65,36 +101,70 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": true,
+            "show_dynamic_checkout": false,
             "show_gift_card_recipient": false
           }
         },
-        "secure_payment": {
-          "type": "secure_payment",
+        "delivery_estimate": {
+          "type": "delivery_estimate",
           "settings": {
-            "heading": "Secure checkout"
+            "summary_icon": "local_shipping",
+            "summary_custom_icon": "",
+            "day_mode": "business",
+            "processing_min_days": 3,
+            "processing_max_days": 7,
+            "transit_min_days": 7,
+            "transit_max_days": 20,
+            "summary_prefix": "Arrives by",
+            "summary_suffix": "if you order today.",
+            "order_label": "Order placed",
+            "ship_label": "Order ships",
+            "delivery_label": "Delivered",
+            "background_color": "#FAF8F5",
+            "border_color": "#0A2759",
+            "summary_icon_color": "#0a2759",
+            "summary_text_color": "#0a2759",
+            "line_color": "#0A2759",
+            "order_icon_color": "#0A2759",
+            "ship_icon_color": "#0A2759",
+            "delivery_icon_color": "#0A2759",
+            "icon_background_color": "#FAF8F5",
+            "date_color": "#0a2759",
+            "label_color": "#637381"
           }
         },
         "description": {
           "type": "description",
-          "settings": {}
+          "settings": {
+            "icon": "description"
+          }
         },
         "shipping_returns": {
           "type": "shipping_returns",
           "settings": {
             "heading": "Shipping & Returns",
+            "icon": "local_shipping",
             "method_label": "Standard Shipping",
             "day_mode": "business",
             "processing_min_days": 3,
-            "processing_max_days": 5,
+            "processing_max_days": 7,
             "transit_min_days": 7,
-            "transit_max_days": 9,
+            "transit_max_days": 20,
             "order_label": "Order Placed:",
             "ship_label": "Order Ships:",
             "delivery_label": "Delivered:",
-            "notes": "<p>Orders can be cancelled or modified within 2 hours after being placed.</p><p>Canvas, poster and metal sign packages cannot be delivered to a PO box.</p>",
+            "notes": "<p>Orders can be cancelled or modified within 12 hours after being placed.</p><p>Canvas, poster and metal sign packages cannot be delivered to a PO box.</p>",
             "show_shipping_policy": true,
             "show_refund_policy": true
+          }
+        },
+        "satisfaction_guarantee": {
+          "type": "satisfaction_guarantee",
+          "disabled": true,
+          "settings": {
+            "heading": "Satisfaction Guarantee",
+            "icon": "verified_user",
+            "content": "<p>Your happiness matters to us. If something is not right, contact our support team and we will help make it right.</p>"
           }
         },
         "share_JAmQek": {
@@ -106,15 +176,19 @@
       },
       "block_order": [
         "title",
+        "rating",
         "price",
+        "volume_discount",
         "sales_proof",
-        "delivery_estimate",
         "variant_picker",
+        "apparel_size",
+        "size_chart",
         "quantity_selector",
         "buy_buttons",
-        "secure_payment",
+        "delivery_estimate",
         "description",
         "shipping_returns",
+        "satisfaction_guarantee",
         "share_JAmQek"
       ],
       "settings": {
@@ -173,7 +247,7 @@
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
-        "show_rating": false,
+        "show_rating": true,
         "padding_top": 32,
         "padding_bottom": 64
       }

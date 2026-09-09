@@ -1,0 +1,87 @@
+{{ 'cuszoo-guide.css' | asset_url | stylesheet_tag }}
+
+<div class="cuszoo-guide">
+  <div class="page-width cuszoo-guide__inner">
+    <header class="cuszoo-guide__header">
+      {% if section.settings.eyebrow != blank %}<p class="cuszoo-guide__eyebrow">{{ section.settings.eyebrow }}</p>{% endif %}
+      {% if section.settings.heading != blank %}<h1 class="cuszoo-guide__title">{{ section.settings.heading }}</h1>{% endif %}
+      {% if section.settings.intro != blank %}<p class="cuszoo-guide__intro">{{ section.settings.intro }}</p>{% endif %}
+    </header>
+
+    {% if section.blocks.size > 0 %}
+      <div class="cuszoo-guide__steps">
+        {% for block in section.blocks %}
+          {% liquid
+            assign fallback_asset = blank
+            case forloop.index
+              when 1
+                assign fallback_asset = 'cuszoo-personalization-1.webp'
+              when 2
+                assign fallback_asset = 'cuszoo-personalization-2.webp'
+              when 3
+                assign fallback_asset = 'cuszoo-personalization-3.webp'
+              when 4
+                assign fallback_asset = 'cuszoo-personalization-4.webp'
+            endcase
+          %}
+          <article class="cuszoo-guide__step" {{ block.shopify_attributes }}>
+            {% if block.settings.image != blank %}
+              {{ block.settings.image | image_url: width: 800 | image_tag: widths: '400, 600, 800', sizes: '(min-width: 750px) 33vw, 100vw', loading: 'lazy', alt: block.settings.image_alt }}
+            {% elsif fallback_asset != blank %}
+              <img src="{{ fallback_asset | asset_url }}" width="800" height="800" loading="lazy" alt="{{ block.settings.image_alt }}">
+            {% endif %}
+            <div class="cuszoo-guide__step-copy">
+              {% if block.settings.title != blank %}<h2>{{ block.settings.title }}</h2>{% endif %}
+              {% if block.settings.text != blank %}<p>{{ block.settings.text }}</p>{% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.note_heading != blank or section.settings.note_text != blank %}
+      <div class="cuszoo-guide__note">
+        {% if section.settings.note_heading != blank %}<strong>{{ section.settings.note_heading }}</strong>{% endif %}
+        {% if section.settings.note_text != blank %}{{ section.settings.note_text }}{% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Personalization Guide",
+  "tag": "section",
+  "class": "section section--cuszoo-personalization-guide",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "PERSONALIZATION GUIDE" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "From Your Photo to Your Keepsake" },
+    { "type": "textarea", "id": "intro", "label": "Intro text", "default": "A little preparation helps us create a sharper, more personal result. Here is what happens after you place an order." },
+    { "type": "text", "id": "note_heading", "label": "Note heading", "default": "Important:" },
+    { "type": "richtext", "id": "note_text", "label": "Note text", "default": "<p>We aim to follow the processed preview shown on the product page. Once a custom order is confirmed, dissatisfaction with the customer-provided image alone is not eligible for a return or refund. If a printing issue makes the image unclear, or the product arrives damaged in transit, contact us for a free replacement or refund.</p>" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Guide step",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "image_alt", "label": "Image alt text", "default": "Personalization guide image" },
+        { "type": "text", "id": "title", "label": "Step title", "default": "Guide step title" },
+        { "type": "textarea", "id": "text", "label": "Step text", "default": "Add a short explanation for this step." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Personalization Guide",
+      "blocks": [
+        { "type": "step", "settings": { "title": "1. Start with a clear image", "text": "Choose the clearest photo you have. Keep faces, pets, and important details visible and avoid screenshots that are heavily compressed.", "image_alt": "A designer preparing a personalized artwork" } },
+        { "type": "step", "settings": { "title": "2. Our team checks the artwork", "text": "Because every order is custom, our designers review image clarity and prepare the artwork for the selected product before production.", "image_alt": "A Cuszoo production process for a personalized product" } },
+        { "type": "step", "settings": { "title": "3. We make your keepsake", "text": "Our team prints your approved design on the product you selected, then checks every detail before packing.", "image_alt": "A personalized product being printed" } },
+        { "type": "step", "settings": { "title": "4. Delivered with care", "text": "Your finished gift is packed securely and shipped with tracking, so you can follow it all the way home.", "image_alt": "A personalized gift ready for delivery" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

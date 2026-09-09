@@ -1,0 +1,66 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "cuszoo-personalization-guide",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "image_alt": "A designer preparing a personalized artwork",
+            "title": "1. Pick your favorite product",
+            "text": "Browse our collection and select the custom item you love."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "image_alt": "A Cuszoo production process for a personalized product",
+            "title": "2. Share your photos & custom requests",
+            "text": "Upload your photos and tell us all your custom requirements for your order."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "image_alt": "A finished personalized gift ready to give",
+            "title": "3. We craft your personalized order",
+            "text": "Our designers process your artwork and carefully produce your one‑of‑a‑kind custom piece."
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "image_alt": "A personalized gift ready for delivery",
+            "title": "4. Packed & Shipped Right Away",
+            "text": "Once finished, your order will be carefully packed and shipped immediately. Check the product page for exact production & delivery timelines."
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4"
+      ],
+      "settings": {
+        "eyebrow": "PERSONALIZATION GUIDE",
+        "heading": "From Your Photo to Your Keepsake",
+        "intro": "A little preparation helps us create a sharper, more personal result. Here is what happens after you place an order.",
+        "note_heading": "Important:",
+        "note_text": "<p>We will produce your item based on the preview shown on the product page. Once your custom order is confirmed, returns or refunds will not be granted if you are dissatisfied solely with your own uploaded source image.<br/><br/>If you receive an item with printing defects or transit damage, please contact us for a free replacement or refund.</p>"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

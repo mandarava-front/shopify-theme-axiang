@@ -28,27 +28,11 @@
             assign help_center_link = section.settings.help_center_link | default: routes.root_url
           -%}
           <div class="cuszoo-mobile-menu__topbar">
-            <span class="cuszoo-mobile-menu__currency">
-              <span aria-hidden="true">{{ localization.country.currency.iso_code }}</span>
-            </span>
-            <a href="{{ routes.account_login_url }}">
-              <span class="svg-wrapper" aria-hidden="true">{{- 'icon-account.svg' | inline_asset_content -}}</span>
-              {{ section.settings.sign_in_label | escape }}
-            </a>
+            <strong>Menu</strong>
+            <button type="button" class="cuszoo-mobile-menu__main-close" aria-label="{{ 'accessibility.close' | t }}">
+              <span class="svg-wrapper">{{- 'icon-close.svg' | inline_asset_content -}}</span>
+            </button>
           </div>
-          {%- if section.settings.mobile_promo_image != blank -%}
-            <a href="{{ section.settings.mobile_promo_link | default: routes.all_products_collection_url }}" class="cuszoo-mobile-menu__promo">
-              {{
-                section.settings.mobile_promo_image
-                | image_url: width: 1600
-                | image_tag:
-                  widths: '600, 900, 1200, 1600',
-                  sizes: '100vw',
-                  loading: 'lazy',
-                  alt: section.settings.mobile_promo_alt
-              }}
-            </a>
-          {%- endif -%}
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu cuszoo-mobile-menu" role="list">
               {%- for link in section.settings.menu.links -%}
@@ -112,11 +96,11 @@
                         tabindex="-1"
                       >
                         <div class="menu-drawer__inner-submenu">
-                          <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                          <button class="menu-drawer__close-button link link--text focus-inset" type="button" aria-expanded="true" aria-label="{{ 'accessibility.close' | t }}">
                             <span class="svg-wrapper">
-                              {{- 'icon-arrow.svg' | inline_asset_content -}}
+                              {{- 'icon-close.svg' | inline_asset_content -}}
                             </span>
-                            {{ link.title | escape }}
+                            <span class="visually-hidden">{{ link.title | escape }}</span>
                           </button>
                           <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
                             {%- for childlink in link.links -%}
@@ -133,16 +117,16 @@
                                     {{ childlink.title | escape }}
                                   </a>
                                 {%- else -%}
-                                  <details id="Details-menu-drawer-{{ link.handle }}-{{ childlink.handle }}">
+                                    <details id="Details-menu-drawer-{{ link.handle }}-{{ childlink.handle }}" open>
                                     <summary
                                       id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
                                       class="menu-drawer__menu-item link link--text list-menu__item focus-inset"
                                     >
                                       {{ childlink.title | escape }}
-                                      <span class="svg-wrapper">
+                                      <span class="svg-wrapper menu-drawer__submenu-arrow">
                                         {{- 'icon-arrow.svg' | inline_asset_content -}}
                                       </span>
-                                      <span class="svg-wrapper">
+                                      <span class="svg-wrapper menu-drawer__submenu-caret">
                                         {{- 'icon-caret.svg' | inline_asset_content -}}
                                       </span>
                                     </summary>
@@ -152,12 +136,14 @@
                                     >
                                       <button
                                         class="menu-drawer__close-button link link--text focus-inset"
+                                        type="button"
                                         aria-expanded="true"
+                                        aria-label="{{ 'accessibility.close' | t }}"
                                       >
                                         <span class="svg-wrapper">
-                                          {{- 'icon-arrow.svg' | inline_asset_content -}}
+                                          {{- 'icon-close.svg' | inline_asset_content -}}
                                         </span>
-                                        {{ childlink.title | escape }}
+                                        <span class="visually-hidden">{{ childlink.title | escape }}</span>
                                       </button>
                                       <ul
                                         class="menu-drawer__menu list-menu"

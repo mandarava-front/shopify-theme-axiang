@@ -178,9 +178,13 @@ button.shopify-payment-button__button--unbranded {
 .header__icon .cuszoo-header-solid-icon {
   width: auto;
   height: auto;
-  color: #111;
+  color: #0A2759;
   font-size: 2.5rem;
   line-height: 1;
+}
+
+.header__icon.cuszoo-header-wishlist {
+  display: none;
 }
 
 @media screen and (min-width: 990px) and (max-width: 1199px) {
@@ -190,6 +194,35 @@ button.shopify-payment-button__button--unbranded {
     font-size: 1.2rem;
   }
 
+}
+
+/* Stable search geometry: focus/hover must not animate the corner radius. */
+.cuszoo-header-search .field__input,
+.cuszoo-header-search .field::before,
+.cuszoo-header-search .field::after,
+.cuszoo-header-search .predictive-search {
+  border-radius: 1.4rem !important;
+  transition: none !important;
+}
+
+@media screen and (max-width: 989px) {
+  .cuszoo-mobile-menu {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .cuszoo-mobile-menu .menu-drawer__menu-item {
+    min-height: 7rem;
+    padding: 1.4rem;
+    font-size: 1.7rem;
+    font-weight: 700;
+  }
+
+  .cuszoo-mobile-menu .cuszoo-mobile-menu__icon {
+    width: 2.8rem;
+    height: 2.8rem;
+    flex-basis: 2.8rem;
+  }
 }
 
 .cuszoo-header-link--icon .svg-wrapper {
@@ -315,7 +348,7 @@ button.shopify-payment-button__button--unbranded {
   .cuszoo-mobile-menu {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.8rem;
+    gap: 1rem;
     padding: 0 1.5rem;
   }
 
@@ -324,12 +357,12 @@ button.shopify-payment-button__button--unbranded {
   }
 
   .cuszoo-mobile-menu .menu-drawer__menu-item {
-    min-height: 6.4rem;
-    padding: 1.2rem;
+    min-height: 7rem;
+    padding: 1.4rem;
     border-radius: 0.6rem;
     background: rgba(var(--cuszoo-navy), 0.045);
-    font-size: 1.4rem;
-    font-weight: 500;
+    font-size: 1.7rem;
+    font-weight: 700;
     line-height: 1.25;
   }
 
@@ -351,8 +384,8 @@ button.shopify-payment-button__button--unbranded {
 }
 
 .cart-count-bubble {
-  background-color: rgb(var(--cuszoo-cyan));
-  color: rgb(var(--cuszoo-navy));
+  background-color: #fa7b17;
+  color: #fff;
   font-weight: 700;
 }
 
@@ -362,13 +395,76 @@ button.shopify-payment-button__button--unbranded {
 
 .search-modal__content .field,
 .cuszoo-header-search .field {
-  border-radius: 1rem;
+  border-radius: 2.4rem;
 }
 
 .predictive-search {
   border-color: rgba(var(--cuszoo-navy), 0.12);
-  border-radius: 0 0 1.2rem 1.2rem;
+  border-radius: 1.2rem;
   box-shadow: 0 1.2rem 3rem rgba(var(--cuszoo-navy), 0.12);
+}
+
+details[open] > .search-modal {
+  animation: none;
+}
+
+.search-modal__content .field__label,
+.cuszoo-header-search .field__label {
+  display: none;
+}
+
+.search-modal__content .search__input,
+.search-modal__content .search__input:focus,
+.search-modal__content .search__input:not(:placeholder-shown),
+.cuszoo-header-search .search__input,
+.cuszoo-header-search .search__input:focus,
+.cuszoo-header-search .search__input:not(:placeholder-shown) {
+  padding: 0 5.2rem 0 1.8rem;
+  box-shadow: none;
+  font-size: 1.8rem;
+  font-weight: 600;
+  transition: none;
+}
+
+.search-modal__content .field:after,
+.cuszoo-header-search .field:after {
+  transition: none;
+}
+
+.search-modal__content .search__input:focus-visible,
+.cuszoo-header-search .search__input:focus-visible {
+  outline: 0.2rem solid rgba(var(--cuszoo-navy), 0.35);
+  outline-offset: 0.2rem;
+}
+
+/* Predictive search: one rounded panel below the field, without connector lines or underlined links. */
+.cuszoo-header-search .predictive-search,
+.search-modal__content .predictive-search {
+  border: 0.1rem solid rgba(var(--cuszoo-navy), 0.14);
+  border-radius: 1.4rem;
+  background: #fff;
+  box-shadow: 0 1.2rem 3rem rgba(var(--cuszoo-navy), 0.16);
+}
+
+.cuszoo-header-search .predictive-search a,
+.search-modal__content .predictive-search a {
+  text-decoration: none;
+}
+
+.cuszoo-header-search .predictive-search__heading,
+.search-modal__content .predictive-search__heading {
+  font-size: 1.6rem;
+}
+
+.cuszoo-header-search .predictive-search__item-heading,
+.search-modal__content .predictive-search__item-heading {
+  font-size: 1.55rem;
+}
+
+.cuszoo-search-links a,
+.cuszoo-search-tags a,
+.cuszoo-search-view-more {
+  font-size: 1.5rem;
 }
 
 .card--standard .card__inner {
@@ -401,9 +497,15 @@ button.shopify-payment-button__button--unbranded {
   min-height: 2.8em;
 }
 
-.price:not(.price--on-sale) .price__regular .price-item--regular:not(s):not(.variant-item__old-price),
-.price.price--on-sale .price-item--sale {
-  color: rgb(var(--cuszoo-price));
+.price:not(.price--on-sale):not(.volume-pricing--sale-badge)
+  .price__regular
+  .price-item--regular:not(s):not(.variant-item__old-price) {
+  color: #fa7b17;
+}
+
+.price.price--on-sale .price-item--sale,
+.price.volume-pricing--sale-badge .price__regular .price-item--regular:not(s):not(.variant-item__old-price) {
+  color: #f34028;
 }
 
 .card-information > .price {
@@ -497,10 +599,16 @@ button.shopify-payment-button__button--unbranded {
     z-index: 4;
   }
 
+  .header .cuszoo-header-search predictive-search {
+    position: static;
+  }
+
   .cuszoo-header-search .field__input {
     height: 4.4rem;
     border-radius: 2.4rem;
     background: #fff;
+    font-size: 1.6rem;
+    font-weight: 600;
   }
 
   .cuszoo-header-search .field:after {
@@ -520,8 +628,14 @@ button.shopify-payment-button__button--unbranded {
   }
 
   .cuszoo-header-search .predictive-search {
-    top: calc(100% + 0.2rem);
-    width: 100%;
+    top: calc(100% + 1rem);
+    right: auto;
+    left: 50%;
+    width: min(146rem, calc(100vw - 4rem));
+    max-width: none;
+    transform: translateX(-50%);
+    border: 0.1rem solid rgba(var(--cuszoo-navy), 0.14);
+    border-radius: 1.4rem;
   }
 
   .header__icons > .header__search {

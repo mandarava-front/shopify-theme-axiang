@@ -46,7 +46,7 @@
 
   #shopify-section-{{ section.id }} {
     margin-top: 0;
-    background: {{ section.settings.background | default: '#fbf6ef' }};
+    background: rgb(var(--color-background));
   }
 
   @media screen and (min-width: 750px) {
@@ -57,8 +57,8 @@
   }
 {%- endstyle -%}
 
-<div class="color-{{ section.settings.color_scheme }} cuszoo-visual-links-section">
-  <div class="page-width section-{{ section.id }}-padding cuszoo-visual-links cuszoo-visual-links--{{ section.settings.display_style }} cuszoo-visual-links--button-width-{{ section.settings.button_width_mode }}">
+<div class="color-{{ section.settings.color_scheme }} cuszoo-visual-links-section{% if section.settings.title contains 'Who Are You' %} cuszoo-visual-links-section--recipient{% endif %}">
+  <div class="page-width section-{{ section.id }}-padding cuszoo-visual-links cuszoo-visual-links--{{ section.settings.display_style }} cuszoo-visual-links--button-width-{{ section.settings.button_width_mode }}{% if section.settings.title contains 'Who Are You' %} cuszoo-visual-links--two-column-mobile{% endif %}">
     {%- if section.settings.title != blank -%}
       <h2 class="cuszoo-section-heading inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
     {%- endif -%}
@@ -80,7 +80,8 @@
         {%- for block in section.blocks -%}
           {%- liquid
             assign block_collection = block.settings.collection
-            assign block_image = block.settings.image | default: block_collection.featured_image
+            assign block_image = block.settings.image
+            assign block_asset_image = block.settings.asset_image
             assign block_external_image = block.settings.external_image_url
             assign block_title = block.settings.title | default: block_collection.title | default: 'Collection'
             assign block_link = block.settings.link | default: block_collection.url | default: routes.collections_url
@@ -95,6 +96,24 @@
                 {%- if block_image != blank -%}
                   {{
                     block_image
+                    | image_url: width: 1200
+                    | image_tag:
+                      widths: '165, 360, 533, 720, 940, 1200',
+                      sizes: '(min-width: 990px) calc((100vw - 10rem) / 6), 45vw',
+                      loading: 'lazy',
+                      alt: block_title
+                  }}
+                {%- elsif block_asset_image != blank -%}
+                  <img
+                    src="{{ block_asset_image | asset_url }}"
+                    alt="{{ block_title | escape }}"
+                    width="600"
+                    height="600"
+                    loading="lazy"
+                  >
+                {%- elsif block_collection.featured_image != blank -%}
+                  {{
+                    block_collection.featured_image
                     | image_url: width: 1200
                     | image_tag:
                       widths: '165, 360, 533, 720, 940, 1200',
@@ -222,6 +241,7 @@
       "name": "可视链接",
       "settings": [
         { "type": "image_picker", "id": "image", "label": "图片" },
+        { "type": "text", "id": "asset_image", "label": "主题图片文件名（assets 内，可选）" },
         { "type": "url", "id": "external_image_url", "label": "外部图片链接" },
         { "type": "collection", "id": "collection", "label": "产品系列" },
         { "type": "text", "id": "title", "label": "自定义标题" },

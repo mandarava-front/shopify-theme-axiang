@@ -1,33 +1,172 @@
 /* Hide options outside the current TeeInBlue variant combination. */
-.tee-artwork-form .tee-option .tee-radio--unavailable {
+:is(.tee-artwork-form, #tee-artwork-form) .tee-option .tee-radio--unavailable {
   display: none !important;
 }
 
-/* Keep TeeInBlue's price and hide the theme price when its personalizer is present. */
-body:has(.tee-artwork-form)
-  main[data-template='product']
-  product-info
-  .product__info-container
+/* Campaign by Teeinblue owns these controls; Campaign by Shopify keeps them. */
+.cuszoo-teeinblue-product:not(.cuszoo-teeinblue-platform-product) [id^='price-'],
+main[data-template='product']
+  .product__info-container:not(.cuszoo-teeinblue-platform-product):has(:is(.tee-artwork-form, #tee-artwork-form))
   [id^='price-'] {
   display: none !important;
 }
 
-/* TeeInBlue replaces the theme controls below, but not the delivery and trust content. */
-body:has(.tee-artwork-form) main[data-template='product'] .cuszoo-native-variant-picker,
-body:has(.tee-artwork-form) main[data-template='product'] .product-form__quantity,
-body:has(.tee-artwork-form) main[data-template='product'] .cuszoo-native-buy-buttons,
-body:has(.tee-artwork-form) main[data-template='product'] .cuszoo-product-description {
+.cuszoo-teeinblue-product:not(.cuszoo-teeinblue-platform-product) .product__tax,
+.cuszoo-teeinblue-product:not(.cuszoo-teeinblue-platform-product) .installment:not(.tee-form-wrapper),
+main[data-template='product']
+  .product__info-container:not(.cuszoo-teeinblue-platform-product):has(:is(.tee-artwork-form, #tee-artwork-form))
+  .product__tax,
+main[data-template='product']
+  .product__info-container:not(.cuszoo-teeinblue-platform-product):has(:is(.tee-artwork-form, #tee-artwork-form))
+  .installment:not(.tee-form-wrapper) {
   display: none !important;
 }
 
-/* Customall supplies variants, quantity and add-to-cart after it successfully mounts. */
-.customall-active main[data-template='product'] .cuszoo-native-variant-picker,
-.customall-active main[data-template='product'] .product-form__quantity {
+/* Only Campaign by Teeinblue replaces the native purchase controls. */
+.cuszoo-teeinblue-product:not(.cuszoo-teeinblue-platform-product) .cuszoo-native-variant-picker,
+.cuszoo-teeinblue-product:not(.cuszoo-teeinblue-platform-product) .product-form__quantity,
+.cuszoo-teeinblue-product:not(.cuszoo-teeinblue-platform-product) .cuszoo-native-buy-buttons,
+.cuszoo-teeinblue-product:not(.cuszoo-teeinblue-platform-product) .cuszoo-product-description,
+main[data-template='product']
+  .product__info-container:not(.cuszoo-teeinblue-platform-product):has(:is(.tee-artwork-form, #tee-artwork-form))
+  .cuszoo-native-variant-picker,
+main[data-template='product']
+  .product__info-container:not(.cuszoo-teeinblue-platform-product):has(:is(.tee-artwork-form, #tee-artwork-form))
+  .product-form__quantity,
+main[data-template='product']
+  .product__info-container:not(.cuszoo-teeinblue-platform-product):has(:is(.tee-artwork-form, #tee-artwork-form))
+  .cuszoo-native-buy-buttons,
+main[data-template='product']
+  .product__info-container:not(.cuszoo-teeinblue-platform-product):has(:is(.tee-artwork-form, #tee-artwork-form))
+  .cuszoo-product-description {
   display: none !important;
+}
+
+.cuszoo-teeinblue-product .tee-price-hook--after .cuszoo-volume-discount {
+  width: 100%;
+  margin: 1.6rem 0;
+}
+
+.cuszoo-teeinblue-product .tee-price-hook--after [data-cuszoo-product-block='sales'],
+.cuszoo-teeinblue-product .tee-price-hook--after [data-cuszoo-product-block='delivery'] {
+  width: 100%;
+  margin: 1.2rem 0;
+}
+
+.cuszoo-teeinblue-product [data-cuszoo-product-block] {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.cuszoo-apparel-size {
+  display: grid;
+  gap: 0.8rem;
+  margin: 1.6rem 0;
+}
+
+.cuszoo-apparel-size .form__label {
+  margin-bottom: 0;
+  font-weight: 600;
+}
+
+.cuszoo-apparel-size .select__select {
+  width: 100%;
+  min-height: 4.4rem;
+}
+
+@media screen and (max-width: 749px) {
+  .cuszoo-teeinblue-product :is(.tee-artwork-form, #tee-artwork-form),
+  .cuszoo-teeinblue-product .cuszoo-product-purchase,
+  .cuszoo-teeinblue-product .cuszoo-volume-discount,
+  .cuszoo-teeinblue-product .cuszoo-delivery-estimate,
+  .cuszoo-teeinblue-product [data-cuszoo-product-block] {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Teeinblue sets the gallery width inline. Center that box on mobile and
+     clip every slide to the same rounded frame. */
+  [data-template='product'] .tee-gallery-wrapper,
+  [data-template='product'] #tee-gallery {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  [data-template='product'] #tee-gallery:not(:has(.tee-platform-mockup)) > .tee-gallery,
+  [data-template='product'] #tee-gallery:not(:has(.tee-platform-mockup)) .tee-gallery__stage {
+    display: flex;
+    width: 100% !important;
+    justify-content: center;
+  }
+
+  [data-template='product'] #tee-gallery:not(:has(.tee-platform-mockup)) .tee-slider {
+    max-width: 100% !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  /* Campaign by Shopify renders a 400px slider and thumbnail rail inside a
+     wider mobile gallery. Center those two fixed-size children without
+     changing Teeinblue's calculated dimensions. */
+  [data-template='product'] #tee-gallery:has(.tee-gallery--platform-product) .tee-gallery__stage {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* The platform gallery itself is a fixed 400px layer. Center that outer
+     layer in the expanded mobile media wrapper so the preview and thumbnails
+     move together. */
+  [data-template='product'] #tee-gallery:has(.tee-gallery--platform-product) {
+    width: min(100%, 400px) !important;
+    max-width: 400px !important;
+    position: relative !important;
+    left: 50% !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    transform: translateX(-50%) !important;
+  }
+
+  [data-template='product'] #tee-gallery:has(.tee-gallery--platform-product) .tee-thumbnails {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  [data-template='product'] #tee-gallery:has(.tee-platform-mockup) .tee-thumbnails__track {
+    justify-content: center !important;
+  }
+
+  [data-template='product'] #tee-gallery:not(:has(.tee-platform-mockup)) .tee-mockup-zoomable,
+  [data-template='product'] #tee-gallery:not(:has(.tee-platform-mockup)) .tee-zoom-normal,
+  [data-template='product'] #tee-gallery:not(:has(.tee-platform-mockup)) .tee-platform-mockup {
+    display: flex;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  [data-template='product'] #tee-gallery:not(:has(.tee-platform-mockup)) .tee-mockup-item {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  [data-template='product'] #tee-gallery:not(:has(.tee-platform-mockup)) .tee-slider__inner,
+  [data-template='product'] #tee-gallery:not(:has(.tee-platform-mockup)) .tee-slide,
+  [data-template='product'] #tee-gallery:not(:has(.tee-platform-mockup)) .tee-mockup-normal,
+  [data-template='product'] #tee-gallery:not(:has(.tee-platform-mockup)) .tee-mockup-item {
+    border-radius: 1.2rem !important;
+    overflow: hidden;
+  }
 }
 
 /* Hide a variant group when only one available option remains. */
-.tee-artwork-form
+:is(.tee-artwork-form, #tee-artwork-form)
   .tee-option:has(.tee-option-inner > .tee-radio:not(.tee-radio--unavailable)):not(
     :has(
       .tee-option-inner
@@ -36,4 +175,57 @@ body:has(.tee-artwork-form) main[data-template='product'] .cuszoo-product-descri
     )
   ) {
   display: none !important;
+}
+
+@media only screen and (max-width: 749px) {
+  .teeinblue-enabled [data-template=product] .product__media-wrapper {
+    margin-left: 0 !important;
+  }
+}
+
+/* Teeinblue renders cart editing in its own modal root. Keep that root above
+   the cart drawer (1000) and the theme preview modal (1100). */
+#modals-container > .vm--container {
+  z-index: 1200 !important;
+}
+
+/* The Teeinblue success response includes a built-in "View cart" link to
+   /cart. The theme opens the cart drawer from the success event, so keep the
+   success message but remove that page link for Campaign by Teeinblue only. */
+.cuszoo-teeinblue-product:not(.cuszoo-teeinblue-platform-product) .tee-response > a {
+  display: none !important;
+}
+
+@media screen and (max-width: 749px) {
+  #modals-container > .vm--container.tee-edit-popup {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow-x: hidden;
+  }
+
+  #modals-container > .vm--container.tee-edit-popup > .vm--modal {
+    left: 0 !important;
+    width: calc(100vw - 1.6rem) !important;
+    max-width: calc(100vw - 1.6rem) !important;
+    max-height: 100dvh !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  #modals-container > .vm--container.tee-edit-popup .tee-dialog-body {
+    max-width: 100%;
+    max-height: calc(100dvh - 90px) !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #modals-container > .vm--container.tee-edit-popup :is(.tee__editor, .editor-gallery-wrapper, .editor-form-wrapper) {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
 }

@@ -9,8 +9,8 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/cuszoo_4a943aea-b3b0-43bc-bfcb-99d575d91363.png",
-    "logo_width": 160,
+    "logo": "shopify://shop_images/only_cuszoo.png",
+    "logo_width": 180,
     "favicon": "shopify://shop_images/small_786794ce-7328-4a15-8ca4-8499584cf648.png",
     "type_header_font": "geist_n4",
     "heading_scale": 100,
@@ -108,9 +108,6 @@
     "badge_corner_radius": 40,
     "sale_badge_color_scheme": "scheme-4",
     "sold_out_badge_color_scheme": "scheme-1",
-    "brand_headline": "",
-    "brand_description": "<p></p>",
-    "brand_image_width": 100,
     "social_facebook_link": "https://www.facebook.com/people/Cuszoo/61591543876582",
     "social_instagram_link": "",
     "social_youtube_link": "",
@@ -123,8 +120,11 @@
     "predictive_search_enabled": true,
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": true,
+    "search_popular_suggestions": "Best sellers\nNew arrivals\nPersonalized gifts",
+    "search_categories": "T-Shirts|/collections/t-shirts\nHoodies|/collections/hoodies\nAccessories|/collections/accessories",
+    "search_featured_products": [],
+    "search_recommended_tags": "Pet gifts|pet\nMemorial gifts|memorial\nCustom portraits|custom",
     "currency_code_enabled": true,
-    "cart_type": "page",
     "show_vendor": false,
     "show_cart_note": false,
     "cart_drawer_collection": "",
@@ -150,27 +150,29 @@
         "disabled": false,
         "settings": {}
       },
-      "13047258039897440615": {
-        "type": "shopify://apps/judge-me-reviews/blocks/cart_drawer_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-        "disabled": false,
-        "settings": {
-          "widget_type": "review-widget"
-        }
-      },
       "421424240597080315": {
         "type": "shopify://apps/teeinblue-product-personalizer/blocks/product-personalizer/67212f31-32b0-450c-97dd-7e182a5fac7b",
         "disabled": false,
         "settings": {}
       },
-      "11684363649699469453": {
-        "type": "shopify://apps/customall-product-personalizer/blocks/cart-add-on-embed/b650bc26-6607-4c69-9cf0-907b269e319d",
-        "disabled": false,
+      "15181020662106344915": {
+        "type": "shopify://apps/judge-me-reviews/blocks/popup_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": true,
         "settings": {}
       },
-      "4791009344482628482": {
-        "type": "shopify://apps/customall-product-personalizer/blocks/app-embed/b650bc26-6607-4c69-9cf0-907b269e319d",
-        "disabled": false,
-        "settings": {}
+      "13047258039897440615": {
+        "type": "shopify://apps/judge-me-reviews/blocks/cart_drawer_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": true,
+        "settings": {
+          "widget_type": "review-widget"
+        }
+      },
+      "12120936241911852800": {
+        "type": "shopify://apps/judge-me-reviews/blocks/reviews_tab/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": true,
+        "settings": {
+          "position": "right"
+        }
       }
     },
     "color_schemes": {
@@ -178,55 +180,55 @@
         "settings": {
           "background": "#faf8f5",
           "background_gradient": "",
-          "text": "#312b36",
-          "button": "#ee860f",
+          "text": "#0a2759",
+          "button": "#0a2759",
           "button_label": "#ffffff",
-          "secondary_button_label": "#f06724",
-          "shadow": "#312b36"
+          "secondary_button_label": "#0a2759",
+          "shadow": "#0a2759"
         }
       },
       "scheme-2": {
         "settings": {
           "background": "#faf8f5",
           "background_gradient": "",
-          "text": "#312b36",
-          "button": "#ee860f",
+          "text": "#0a2759",
+          "button": "#0a2759",
           "button_label": "#ffffff",
-          "secondary_button_label": "#f06724",
-          "shadow": "#312b36"
+          "secondary_button_label": "#0a2759",
+          "shadow": "#0a2759"
         }
       },
       "scheme-3": {
         "settings": {
-          "background": "#312b36",
+          "background": "#0a2759",
           "background_gradient": "",
-          "text": "#faf8f5",
-          "button": "#ee860f",
-          "button_label": "#ffffff",
-          "secondary_button_label": "#faf8f5",
-          "shadow": "#312b36"
+          "text": "#ffffff",
+          "button": "#ffffff",
+          "button_label": "#0a2759",
+          "secondary_button_label": "#ffffff",
+          "shadow": "#0a2759"
         }
       },
       "scheme-4": {
         "settings": {
-          "background": "#f06724",
+          "background": "#fa7b17",
           "background_gradient": "",
-          "text": "#ffffff",
-          "button": "#ee860f",
+          "text": "#0a2759",
+          "button": "#0a2759",
           "button_label": "#ffffff",
-          "secondary_button_label": "#ffffff",
-          "shadow": "#312b36"
+          "secondary_button_label": "#0a2759",
+          "shadow": "#0a2759"
         }
       },
       "scheme-5": {
         "settings": {
-          "background": "#f2eee7",
+          "background": "#fff7f0",
           "background_gradient": "",
-          "text": "#312b36",
-          "button": "#ee860f",
+          "text": "#0a2759",
+          "button": "#0a2759",
           "button_label": "#ffffff",
-          "secondary_button_label": "#f06724",
-          "shadow": "#312b36"
+          "secondary_button_label": "#0a2759",
+          "shadow": "#0a2759"
         }
       }
     }
@@ -402,8 +404,11 @@
       "predictive_search_enabled": true,
       "predictive_search_show_vendor": false,
       "predictive_search_show_price": true,
+      "search_popular_suggestions": "Best sellers\nNew arrivals\nPersonalized gifts",
+      "search_categories": "T-Shirts|/collections/t-shirts\nHoodies|/collections/hoodies\nAccessories|/collections/accessories",
+      "search_featured_products": [],
+      "search_recommended_tags": "Pet gifts|pet\nMemorial gifts|memorial\nCustom portraits|custom",
       "currency_code_enabled": true,
-      "cart_type": "notification",
       "show_vendor": false,
       "show_cart_note": true,
       "cart_drawer_collection": "",

@@ -32,10 +32,11 @@
 
 @media screen and (max-width: 749px) {
   .back-to-top {
-    right: 50%;
-    bottom: calc(7.2rem + env(safe-area-inset-bottom));
+    right: 1.2rem;
+    left: auto;
+    bottom: calc(1.2rem + env(safe-area-inset-bottom));
     width: 4.8rem;
     height: 4.8rem;
-    transform: translateX(50%);
+    transform: none;
   }
 }

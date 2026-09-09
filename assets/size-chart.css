@@ -1,0 +1,388 @@
+/* Size Chart popup (size_chart block on main-product). Colors are set per block in the theme editor. */
+
+.size-chart {
+  display: block;
+}
+
+/* Standalone row spacing; once the trigger is moved into the Size option row
+   the block only hosts the (fixed) overlay and must take no space. */
+.cuszoo-size-chart:not(.cuszoo-size-chart--detached) {
+  margin: 0.2rem 0 1.2rem;
+}
+
+/* Trigger: standalone row, or right-aligned inside the Size option row. */
+.size-chart__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--size-chart-accent, #0a2759);
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+
+.size-chart__trigger:hover {
+  color: var(--size-chart-accent, #0a2759);
+}
+
+.size-chart__trigger .material-icons-round {
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+/* Size option row (apparel_size label or variant-picker legend) with the
+   trigger at the far right. */
+.has-size-chart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+.has-size-chart > size-chart-popup {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+}
+
+/* Teeinblue can expose an option without a separate title element. Keep the
+   option group in its normal block layout and place the chart link at the
+   title line's top-right edge instead of turning the whole group into a row. */
+.has-size-chart--tee-option {
+  position: relative;
+  display: block;
+}
+
+.has-size-chart--tee-option > size-chart-popup {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* Overlay: explicit edges (no `inset` shorthand) so the dialog can never end up
+   positioned by its flow location on browsers without `inset` support. */
+.size-chart__modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.6rem;
+}
+
+.size-chart__modal[hidden] {
+  display: none;
+}
+
+.size-chart__backdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(15, 23, 32, 0.55);
+}
+
+.size-chart__dialog {
+  position: relative;
+  width: 100%;
+  max-width: 52rem;
+  max-height: 90vh;
+  max-height: 90dvh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding: 1.6rem 1.8rem 1.6rem;
+  background: #fff;
+  border-radius: 1.6rem;
+  box-shadow: 0 1.2rem 4rem rgba(15, 23, 32, 0.28);
+  animation: size-chart-pop 0.22s ease-out;
+}
+
+@keyframes size-chart-pop {
+  from {
+    opacity: 0;
+    transform: translateY(1.2rem) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+body.size-chart-open {
+  overflow: hidden;
+}
+
+.size-chart__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.size-chart__title {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.size-chart__close {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 3.2rem;
+  height: 3.2rem;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  color: #26323d;
+}
+
+.size-chart__close:hover {
+  background: var(--size-chart-accent-background, #eef3f9);
+}
+
+.size-chart__close .svg-wrapper {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+/* Figure left, stacked garment tabs right. */
+.size-chart__top {
+  display: flex;
+  align-items: stretch;
+  gap: 1.2rem;
+  margin: 0.6rem 0 1.2rem;
+}
+
+.size-chart__figures {
+  flex: 0 0 42%;
+  max-width: 17rem;
+}
+
+.size-chart__figure[hidden] {
+  display: none;
+}
+
+.size-chart__figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.size-chart__figure svg line {
+  stroke: var(--size-chart-accent, #0a2759) !important;
+}
+
+.size-chart__figure svg text {
+  fill: var(--size-chart-accent, #0a2759) !important;
+}
+
+.size-chart__defs marker path {
+  fill: var(--size-chart-accent, #0a2759) !important;
+}
+
+.size-chart__tabs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.size-chart__tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 1.1rem;
+  border: 1.5px solid var(--size-chart-accent-background, #eef3f9);
+  border-radius: 1rem;
+  background: #fff;
+  cursor: pointer;
+  color: #456;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.size-chart__tab.is-active {
+  border-color: var(--size-chart-accent, #0a2759);
+  background: var(--size-chart-accent-background, #eef3f9);
+  color: var(--size-chart-accent, #0a2759);
+}
+
+.size-chart__table-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.size-chart__table-head h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #26323d;
+}
+
+.size-chart__units {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1.5px solid var(--size-chart-accent-background, #eef3f9);
+  border-radius: 999px;
+}
+
+.size-chart__unit {
+  padding: 0.45rem 1.3rem;
+  border: none;
+  background: #fff;
+  cursor: pointer;
+  color: var(--size-chart-accent, #0a2759);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.size-chart__unit.is-active {
+  background: var(--size-chart-accent, #0a2759);
+  color: #fff;
+}
+
+.size-chart__table {
+  width: 100%;
+  border: 1.5px solid var(--size-chart-accent-background, #eef3f9);
+  border-radius: 1.2rem;
+  border-spacing: 0;
+  overflow: hidden;
+  font-size: 1.35rem;
+}
+
+.size-chart__table th,
+.size-chart__table td {
+  padding: 0.75rem 0.6rem;
+  text-align: center;
+}
+
+.size-chart__table thead th {
+  background: var(--size-chart-accent-background, #eef3f9);
+  border-bottom: 1.5px solid var(--size-chart-accent-background, #eef3f9);
+  color: #0a2759;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.size-chart__table tbody th {
+  font-weight: 700;
+  color: #26323d;
+}
+
+.size-chart__table tbody tr:nth-child(even) {
+  background: #f7fbfe;
+}
+
+.size-chart__table tbody tr + tr th,
+.size-chart__table tbody tr + tr td {
+  border-top: 1px solid #e3f1f9;
+}
+
+.size-chart__disclaimers {
+  margin-top: 1rem;
+  color: #607d8b;
+  font-size: 1.2rem;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.size-chart__disclaimers p {
+  margin: 0;
+}
+
+.size-chart__modal[data-unit='in'] .sc-cm,
+.size-chart__modal[data-unit='cm'] .sc-in {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  .size-chart__modal {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .size-chart__dialog {
+    max-height: 92vh;
+    max-height: 92dvh;
+    padding: 1.4rem 1.3rem 1.5rem;
+    border-radius: 1.8rem 1.8rem 0 0;
+    animation: size-chart-slide-up 0.26s ease-out;
+  }
+
+  @keyframes size-chart-slide-up {
+    from {
+      transform: translateY(8%);
+      opacity: 0.6;
+    }
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+
+  .size-chart__figures {
+    flex: 0 0 36%;
+    max-width: 12.5rem;
+  }
+
+  .size-chart__tabs {
+    gap: 0.5rem;
+  }
+
+  .size-chart__tab {
+    padding: 0.5rem 0.9rem;
+    border-radius: 0.9rem;
+    font-size: 1.3rem;
+  }
+
+  .size-chart__table {
+    font-size: 1.3rem;
+  }
+
+  .size-chart__table th,
+  .size-chart__table td {
+    padding: 0.65rem 0.4rem;
+  }
+
+  .size-chart__disclaimers {
+    font-size: 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .size-chart__dialog {
+    animation: none !important;
+  }
+}

@@ -451,6 +451,21 @@
   opacity: 0.88;
 }
 
+.tg-order-tracking__dialog-action--contact {
+  width: 100%;
+  max-width: 30rem;
+  border: 0.1rem solid var(--tracking-primary);
+  border-radius: 0.6rem;
+  color: var(--tracking-primary);
+  text-decoration: none;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.tg-order-tracking__dialog-action--contact:hover {
+  background: var(--tracking-primary);
+  color: var(--tracking-on-primary);
+}
+
 @media screen and (max-width: 480px) {
   .tg-order-tracking__dialog-body {
     padding: 3.2rem 2rem 2.4rem;
@@ -461,6 +476,10 @@
   }
 
   .tg-order-tracking__dialog-action--primary {
+    max-width: none;
+  }
+
+  .tg-order-tracking__dialog-action--contact {
     max-width: none;
   }
 }
@@ -859,6 +878,17 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+@media screen and (max-width: 749px) {
+  .tg-order-tracking__heading { font-size: 2.8rem; }
+  .tg-order-tracking__subtitle,
+  .tg-order-tracking__field label,
+  .tg-order-tracking__input,
+  .tg-order-tracking__submit { font-size: 1.7rem; }
+  .tg-order-tracking__input,
+  .tg-order-tracking__submit { min-height: 4.8rem; }
+  .tg-order-tracking__submit { font-weight: 800; }
 }
 
 @keyframes tg-order-tracking-spin {

@@ -53,9 +53,15 @@
         tabindex="-1"
         data-predictive-search
       >
+        {%- render 'cuszoo-search-suggestions' -%}
         {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
       </div>
-      <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+      <span
+        class="predictive-search-status visually-hidden"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      ></span>
     {%- endif -%}
   </form>
   {%- if settings.predictive_search_enabled -%}

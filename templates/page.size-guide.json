@@ -1,0 +1,43 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "cuszoo-size-guide",
+      "settings": {
+        "eyebrow": "SIZE GUIDE",
+        "heading": "Choose Your Best Fit",
+        "intro": "Use the chart for the garment style you are ordering. Measurements are taken by hand, so a small difference is possible.",
+        "note_heading": "How to measure:",
+        "note_text": "<p>Measure a similar garment flat, without stretching it. If you are between sizes, compare the chart with your favorite fit and choose the closest match. If you have a fuller build, we recommend choosing one size up for a more comfortable fit. Because each item is made to order, please confirm your size before checkout.</p>"
+      },
+      "blocks": {
+        "chart_1": {
+          "type": "chart",
+          "settings": {
+            "image_alt": "Cuszoo crewneck and hoodie size chart",
+            "title": "Crewneck / Hoodie",
+            "text": "Compare the length, width, and sleeve measurements with a similar garment you already own."
+          }
+        },
+        "chart_2": {
+          "type": "chart",
+          "settings": {
+            "image_alt": "Cuszoo standard T-shirt size chart",
+            "title": "Standard T-Shirt",
+            "text": "Lay a similar T-shirt flat and check the length, width, and sleeve before choosing your size."
+          }
+        }
+      },
+      "block_order": ["chart_1", "chart_2"]
+    }
+  },
+  "order": ["main"]
+}

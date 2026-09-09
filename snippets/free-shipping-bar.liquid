@@ -1,0 +1,46 @@
+{%- comment -%}
+  Free shipping banner for the cart.
+  Threshold and texts are set in theme settings (Cart group).
+  Use {amount} in the text to show how much is left, e.g.:
+  🚚 You're {amount} away from FREE shipping!
+{%- endcomment -%}
+
+{{ 'free-shipping-banner.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  {{ settings.free_shipping_font | font_face: font_display: 'swap' }}
+
+  .free-shipping-banner p {
+    font-family: {{ settings.free_shipping_font.family }}, {{ settings.free_shipping_font.fallback_families }};
+    font-weight: {{ settings.free_shipping_font.weight }};
+    text-align: {{ settings.free_shipping_align_mobile }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .free-shipping-banner p {
+      text-align: {{ settings.free_shipping_align_desktop }};
+    }
+  }
+{% endstyle %}
+
+{%- liquid
+  assign threshold_cents = settings.free_shipping_threshold | times: 100
+  assign remaining = threshold_cents | minus: cart.total_price
+  if remaining > 0
+    assign amount_text = remaining | money
+    assign amount_html = '<strong class="free-shipping-banner__amount">' | append: amount_text | append: '</strong>'
+    assign banner_text = settings.free_shipping_text_progress | replace: '{amount}', amount_html
+  else
+    assign banner_text = settings.free_shipping_text_unlocked
+  endif
+-%}
+
+{%- if settings.free_shipping_threshold > 0 and cart.item_count > 0 and banner_text != blank -%}
+  <div
+    class="free-shipping-banner free-shipping-banner--{% if remaining > 0 %}progress{% else %}unlocked{% endif %}"
+    role="status"
+    style="--fs-background: {{ settings.free_shipping_background }}; --fs-text: {{ settings.free_shipping_text_color }}; --fs-amount: {{ settings.free_shipping_amount_color }}; --fs-unlocked-background: {{ settings.free_shipping_unlocked_background }}; --fs-unlocked-text: {{ settings.free_shipping_unlocked_text }};"
+  >
+    <p>{{ banner_text }}</p>
+  </div>
+{%- endif -%}

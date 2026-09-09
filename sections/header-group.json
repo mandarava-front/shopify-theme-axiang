@@ -14,22 +14,29 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
+        "announcement_NwbGcY": {
+          "type": "announcement",
+          "settings": {
+            "text": "BUY 2 GET 10% OFF, BUY 3 GET 15% OFF",
+            "link": ""
+          }
+        },
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Welcome to our store",
+            "text": "Free Worldwide Shipping Over $70",
             "link": ""
           }
         }
       },
       "block_order": [
+        "announcement_NwbGcY",
         "announcement-bar-0"
       ],
-      "disabled": true,
       "settings": {
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "color_scheme": "scheme-4",
+        "auto_rotate": true,
+        "change_slides_speed": 3,
+        "color_scheme": "scheme-1",
         "show_line_separator": true,
         "show_social": false,
         "enable_country_selector": false,
@@ -45,16 +52,16 @@
         "gift_finder_link": "/pages/gift-finder",
         "track_order_link": "/pages/track-order",
         "reviews_link": "/pages/reviews",
-        "wishlist_link": "/pages/wishlist",
-        "help_center_link": "/pages/contact",
+        "wishlist_link": "/pages/about-us",
+        "help_center_link": "/pages/faq",
         "mobile_promo_link": "",
         "mobile_promo_alt": "Featured products",
         "gift_finder_label": "Gift Finder",
         "sign_in_label": "Sign In",
         "track_order_label": "Track Order",
-        "help_center_label": "Help Center",
+        "help_center_label": "FAQ",
         "reviews_label": "Reviews",
-        "wishlist_label": "Favorite",
+        "wishlist_label": "About Us",
         "mega_menu_explore_label": "Explore all",
         "copyright_suffix": "All Rights Reserved.",
         "menu_type_desktop": "mega",

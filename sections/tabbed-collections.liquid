@@ -5,6 +5,15 @@
 {{ 'cuszoo-home.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'cuszoo-collection-tabs.js' | asset_url }}" defer="defer"></script>
 
+{%- liquid
+  assign desktop_product_capacity = section.settings.columns_desktop | times: section.settings.desktop_rows
+  assign mobile_product_capacity = 2 | times: section.settings.mobile_rows
+  assign campaign_image_aspect = section.settings.image.aspect_ratio | default: 1.6
+  if section.settings.image == blank and section.settings.asset_image != blank
+    assign campaign_image_aspect = 1
+  endif
+-%}
+
 {%- if section.settings.quick_add == 'standard' -%}
   {{ 'quick-add.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
@@ -12,6 +21,9 @@
 {%- endif -%}
 
 {%- style -%}
+  {{ section.settings.heading_font | font_face: font_display: 'swap' }}
+  {{ section.settings.description_font | font_face: font_display: 'swap' }}
+
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -22,10 +34,35 @@
     --tabs-row-gap: {{ section.settings.tabs_per_row | minus: 1 | times: 0.8 }}rem;
   }
 
+  #shopify-section-{{ section.id }} .cuszoo-tabs__campaign-content h2 {
+    font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+    font-style: {{ section.settings.heading_font.style }};
+    font-weight: {{ section.settings.heading_font.weight }};
+  }
+
+  #shopify-section-{{ section.id }} .cuszoo-tabs__campaign-content h2 > span {
+    border-bottom-color: {{ section.settings.heading_underline_color }};
+    border-bottom-width: {{ section.settings.heading_underline_thickness }}px;
+  }
+
+  #shopify-section-{{ section.id }} .cuszoo-tabs__title-link {
+    --cuszoo-tab-arrow-background: {{ section.settings.heading_underline_color }};
+  }
+
+  #shopify-section-{{ section.id }} .cuszoo-tabs__campaign-content > p {
+    font-family: {{ section.settings.description_font.family }}, {{ section.settings.description_font.fallback_families }};
+    font-style: {{ section.settings.description_font.style }};
+    font-weight: {{ section.settings.description_font.weight }};
+  }
+
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    #shopify-section-{{ section.id }} .cuszoo-tabs__panel[data-desktop-layout='fixed'] .cuszoo-tabs__products > .grid__item:nth-child(n + {{ desktop_product_capacity | plus: 1 }}) {
+      display: none;
     }
   }
 
@@ -34,14 +71,18 @@
       --tabs-per-row: {{ section.settings.tabs_per_row_mobile }};
       --tabs-row-gap: {{ section.settings.tabs_per_row_mobile | minus: 1 | times: 0.8 }}rem;
     }
+
+    #shopify-section-{{ section.id }} .cuszoo-tabs__panel[data-mobile-layout='fixed'] .cuszoo-tabs__products > .grid__item:nth-child(n + {{ mobile_product_capacity | plus: 1 }}) {
+      display: none;
+    }
   }
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <cuszoo-collection-tabs class="page-width section-{{ section.id }}-padding">
     {%- assign initial_collection = section.blocks.first.settings.collection -%}
-    <div class="cuszoo-tabs__campaign" style="--campaign-tabs-background: {{ section.settings.background }};">
-      <div class="cuszoo-tabs__campaign-media">
+    <div class="cuszoo-tabs__campaign cuszoo-tabs__campaign--image-{{ section.settings.campaign_image_fit }} cuszoo-tabs__campaign--media-{{ section.settings.campaign_image_position }}" style="--campaign-tabs-background: {{ section.settings.background }};">
+      <div class="cuszoo-tabs__campaign-media" style="--campaign-image-aspect: {{ campaign_image_aspect }};">
         {%- if section.settings.image != blank -%}
           {{
             section.settings.image
@@ -52,6 +93,14 @@
               loading: 'lazy',
               alt: section.settings.title
           }}
+        {%- elsif section.settings.asset_image != blank -%}
+          <img
+            src="{{ section.settings.asset_image | asset_url }}"
+            alt="{{ section.settings.title | escape }}"
+            width="800"
+            height="800"
+            loading="lazy"
+          >
         {%- elsif section.settings.external_image_url != blank -%}
           <img
             src="{{ section.settings.external_image_url }}"
@@ -67,7 +116,17 @@
 
       <div class="cuszoo-tabs__campaign-content">
         {%- if section.settings.title != blank -%}
-          <h2 class="inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+          <div class="cuszoo-tabs__title-row">
+            <h2 class="inline-richtext {{ section.settings.heading_size }}"><span>{{ section.settings.title }}</span></h2>
+            <a
+              class="cuszoo-tabs__title-link"
+              href="{{ initial_collection.url | default: routes.all_products_collection_url }}"
+              data-cuszoo-tabs-see-all
+              aria-label="{{ section.settings.see_all_label | default: 'View collection' | escape }}"
+            >
+              <span class="svg-wrapper" aria-hidden="true">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+            </a>
+          </div>
         {%- endif -%}
         {%- if section.settings.subtitle != blank -%}
           <p>{{ section.settings.subtitle | escape }}</p>
@@ -96,17 +155,7 @@
             {%- endfor -%}
           </div>
 
-          <a
-            class="cuszoo-tabs__see-all"
-            href="{{ initial_collection.url | default: routes.all_products_collection_url }}"
-            data-cuszoo-tabs-see-all
-          >
-            {{ section.settings.see_all_label | escape }}
-            <span class="svg-wrapper" aria-hidden="true">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
-          </a>
         </div>
-      </div>
-    </div>
 
     {%- for block in section.blocks -%}
       {%- liquid
@@ -117,7 +166,7 @@
           assign products_to_display = product_limit
         endif
         assign show_tab_slider = false
-        if section.settings.mobile_layout == 'slider' and products_to_display > 2
+        if section.settings.desktop_layout == 'slider' or section.settings.mobile_layout == 'slider'
           assign show_tab_slider = true
         endif
         assign tab_index = forloop.index
@@ -127,20 +176,26 @@
         id="Panel-{{ section.id }}-{{ forloop.index }}"
         role="tabpanel"
         aria-labelledby="Tab-{{ section.id }}-{{ forloop.index }}"
+        data-desktop-layout="{{ section.settings.desktop_layout }}"
+        data-desktop-rows="{{ section.settings.desktop_rows }}"
+        data-mobile-layout="{{ section.settings.mobile_layout | replace: 'grid_2', 'fixed' }}"
+        data-mobile-rows="{{ section.settings.mobile_rows }}"
+        style="--desktop-product-columns: {{ section.settings.columns_desktop }}; --desktop-product-rows: {{ section.settings.desktop_rows }}; --mobile-product-rows: {{ section.settings.mobile_rows }};"
         {% unless forloop.first %}hidden{% endunless %}
       >
-        <slider-component>
+        <div class="cuszoo-tabs__products-shell" data-cuszoo-products-slider>
           <ul
             id="Slider-{{ section.id }}-{{ forloop.index }}"
-            class="grid product-grid contains-card contains-card--product grid--{{ section.settings.columns_desktop }}-col-desktop grid--2-col-tablet-down cuszoo-mobile-products{% if show_tab_slider %} slider slider--tablet grid--peek cuszoo-mobile-products--slider{% else %} cuszoo-mobile-products--grid{% endif %}"
+            class="grid product-grid contains-card contains-card--product cuszoo-tabs__products"
             role="list"
             aria-label="{{ block.settings.label | default: tab_collection.title | escape }}"
+            data-cuszoo-tabs-track
           >
             {%- if tab_collection.products.size > 0 -%}
               {%- for product in tab_collection.products limit: product_limit -%}
                 <li
                   id="Slide-{{ section.id }}-{{ tab_index }}-{{ forloop.index }}"
-                  class="grid__item{% if show_tab_slider %} slider__slide{% endif %}"
+                  class="grid__item"
                 >
                   {% render 'card-product',
                     card_product: product,
@@ -160,7 +215,7 @@
               {%- for i in (1..products_to_display) -%}
                 <li
                   id="Slide-{{ section.id }}-{{ tab_index }}-{{ forloop.index }}"
-                  class="grid__item{% if show_tab_slider %} slider__slide{% endif %}"
+                  class="grid__item"
                 >
                   {%- assign placeholder_index = forloop.index0 | modulo: 4 | plus: 1 -%}
                   {%- assign placeholder_image = 'product-apparel-' | append: placeholder_index -%}
@@ -171,33 +226,21 @@
           </ul>
 
           {%- if show_tab_slider -%}
-            <div class="slider-buttons">
-              <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'general.slider.previous_slide' | t }}" aria-controls="Slider-{{ section.id }}-{{ forloop.index }}">
+            <div class="cuszoo-tabs__slider-controls" hidden>
+              <button type="button" class="cuszoo-tabs__slider-button cuszoo-tabs__slider-button--prev" name="previous" aria-label="{{ 'general.slider.previous_slide' | t }}" aria-controls="Slider-{{ section.id }}-{{ forloop.index }}" data-cuszoo-tabs-previous>
                 <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
               </button>
-              <div class="slider-counter caption">
-                <span class="slider-counter--current">1</span>
-                <span aria-hidden="true"> / </span>
-                <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-                <span class="slider-counter--total">{{ products_to_display }}</span>
-              </div>
-              <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'general.slider.next_slide' | t }}" aria-controls="Slider-{{ section.id }}-{{ forloop.index }}">
+              <button type="button" class="cuszoo-tabs__slider-button cuszoo-tabs__slider-button--next" name="next" aria-label="{{ 'general.slider.next_slide' | t }}" aria-controls="Slider-{{ section.id }}-{{ forloop.index }}" data-cuszoo-tabs-next>
                 <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
               </button>
             </div>
           {%- endif -%}
-        </slider-component>
+        </div>
 
-        {%- if section.settings.show_view_all and tab_collection != blank -%}
-          <div class="cuszoo-tabs__view-all">
-            <a class="button button--secondary" href="{{ tab_collection.url }}">
-              {{ section.settings.view_all_label | escape }}
-              <span class="svg-wrapper" aria-hidden="true">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
-            </a>
-          </div>
-        {%- endif -%}
       </div>
     {%- endfor -%}
+      </div>
+    </div>
   </cuszoo-collection-tabs>
 </div>
 
@@ -209,9 +252,35 @@
   "disabled_on": { "groups": ["header", "footer"] },
   "settings": [
     { "type": "image_picker", "id": "image", "label": "活动图片（推荐 1200 × 1200px）" },
+    { "type": "text", "id": "asset_image", "label": "主题图片文件名（assets 内，可选）" },
     { "type": "url", "id": "external_image_url", "label": "外部活动图片链接" },
+    {
+      "type": "select",
+      "id": "campaign_image_fit",
+      "label": "活动图片显示方式",
+      "options": [
+        { "value": "cover", "label": "填充并裁剪" },
+        { "value": "contain", "label": "完整显示" },
+        { "value": "adapt", "label": "按图片原比例" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "campaign_image_position",
+      "label": "电脑端活动图片位置",
+      "options": [
+        { "value": "left", "label": "左侧" },
+        { "value": "right", "label": "右侧" }
+      ],
+      "default": "left"
+    },
     { "type": "inline_richtext", "id": "title", "label": "标题", "default": "Curated choices" },
     { "type": "text", "id": "subtitle", "label": "副标题", "default": "Thoughtful picks for every occasion." },
+    { "type": "font_picker", "id": "heading_font", "label": "标题字体", "default": "quicksand_n7" },
+    { "type": "font_picker", "id": "description_font", "label": "说明字体", "default": "nunito_n4" },
+    { "type": "color", "id": "heading_underline_color", "label": "标题下划线颜色", "default": "#FA7B17" },
+    { "type": "range", "id": "heading_underline_thickness", "label": "标题下划线粗细", "min": 2, "max": 8, "step": 1, "unit": "px", "default": 5 },
     { "type": "color", "id": "background", "label": "活动区域背景", "default": "#f7e7d2" },
     {
       "type": "select",
@@ -224,8 +293,7 @@
       ],
       "default": "h2"
     },
-    { "type": "text", "id": "see_all_label", "label": "顶部链接文字", "default": "See all" },
-    { "type": "text", "id": "view_all_label", "label": "底部链接文字", "default": "View More" },
+    { "type": "text", "id": "see_all_label", "label": "标题箭头无障碍说明", "default": "View collection" },
     {
       "type": "select",
       "id": "tab_wrap_mode",
@@ -236,7 +304,7 @@
       ],
       "default": "inside"
     },
-    { "type": "range", "id": "tabs_per_row", "label": "电脑端每行选项数量", "min": 1, "max": 4, "step": 1, "default": 3 },
+    { "type": "range", "id": "tabs_per_row", "label": "电脑端每行选项数量", "min": 1, "max": 4, "step": 1, "default": 4 },
     {
       "type": "select",
       "id": "tabs_per_row_mobile",
@@ -250,13 +318,43 @@
     { "type": "range", "id": "columns_desktop", "label": "电脑端每行产品数量", "min": 2, "max": 6, "step": 1, "default": 4 },
     {
       "type": "select",
+      "id": "desktop_rows",
+      "label": "电脑端产品行数",
+      "options": [
+        { "value": "1", "label": "1 行" },
+        { "value": "2", "label": "2 行" }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "select",
+      "id": "desktop_layout",
+      "label": "电脑端产品布局",
+      "options": [
+        { "value": "slider", "label": "左右滑动" },
+        { "value": "fixed", "label": "固定网格" }
+      ],
+      "default": "slider"
+    },
+    {
+      "type": "select",
       "id": "mobile_layout",
       "label": "手机端产品布局",
       "options": [
         { "value": "grid_2", "label": "双列网格" },
         { "value": "slider", "label": "横向滑动" }
       ],
-      "default": "grid_2"
+      "default": "slider"
+    },
+    {
+      "type": "select",
+      "id": "mobile_rows",
+      "label": "手机端产品行数",
+      "options": [
+        { "value": "1", "label": "1 行" },
+        { "value": "2", "label": "2 行" }
+      ],
+      "default": "1"
     },
     {
       "type": "select",
@@ -282,7 +380,6 @@
       ],
       "default": "none"
     },
-    { "type": "checkbox", "id": "show_view_all", "label": "显示查看全部按钮", "default": true },
     { "type": "color_scheme", "id": "color_scheme", "label": "配色方案", "default": "scheme-1" },
     { "type": "header", "content": "模块间距" },
     { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "上边距", "default": 24 },

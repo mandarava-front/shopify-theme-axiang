@@ -26,6 +26,9 @@
 {%- endif -%}
 
 {%- style -%}
+  {%- assign heading_font = section.settings.heading_font | default: settings.type_header_font -%}
+  {%- assign heading_alignment = section.settings.heading_alignment | default: 'left' -%}
+
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -33,6 +36,23 @@
 
   #collection-{{ section.id }} .card .card__inner .card__media {
     border-radius: {{ section.settings.image_corner_radius }}%;
+  }
+
+  {%- if heading_font != blank -%}
+    {{ heading_font | font_face: font_display: 'swap' }}
+  {%- endif -%}
+
+  #collection-{{ section.id }} .collection__title {
+    text-align: {{ heading_alignment }};
+  }
+
+  #collection-{{ section.id }} .collection__title h2 {
+    text-align: {{ heading_alignment }};
+    {%- if heading_font != blank -%}
+      font-family: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+      font-style: {{ heading_font.style }};
+      font-weight: {{ heading_font.weight }};
+    {%- endif -%}
   }
 
   @media screen and (min-width: 750px) {
@@ -55,6 +75,9 @@
   endif
 
   assign columns_mobile_int = 2
+  if section.settings.mobile_layout == 'grid_1'
+    assign columns_mobile_int = 1
+  endif
   assign columns_desktop_int = section.settings.columns_desktop | plus: 0
   assign show_mobile_slider = false
   if section.settings.mobile_layout == 'slider' and products_to_display > columns_mobile_int
@@ -104,7 +127,7 @@
       <ul
         id="Slider-{{ section.id }}"
         data-id="{{ section.id }}"
-        class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop grid--2-col-tablet-down cuszoo-mobile-products{% if show_mobile_slider %} cuszoo-mobile-products--slider{% else %} cuszoo-mobile-products--grid{% endif %}{% if show_mobile_slider or show_desktop_slider %} slider{% if show_desktop_slider %} slider--desktop{% endif %}{% if show_mobile_slider %} slider--tablet grid--peek{% endif %}{% endif %}"
+        class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ columns_mobile_int }}-col-tablet-down cuszoo-mobile-products{% if show_mobile_slider %} cuszoo-mobile-products--slider{% else %} cuszoo-mobile-products--grid{% endif %}{% if show_mobile_slider or show_desktop_slider %} slider{% if show_desktop_slider %} slider--desktop{% endif %}{% if show_mobile_slider %} slider--tablet grid--peek{% endif %}{% endif %}"
         role="list"
         aria-label="{{ 'general.slider.name' | t }}"
       >
@@ -205,10 +228,13 @@
       <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <a
           href="{{ section.settings.collection.url }}"
-          class="{% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
+          class="cuszoo-view-more-button {% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
           aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title | escape }}"
         >
           {{ 'sections.featured_collection.view_all' | t }}
+          <span class="svg-wrapper cuszoo-button-arrow" aria-hidden="true">
+            {{- 'icon-arrow.svg' | inline_asset_content -}}
+          </span>
         </a>
       </div>
     {%- endif -%}
@@ -278,6 +304,22 @@
       ],
       "default": "h1",
       "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "标题字体",
+      "default": "geist_n4"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "标题对齐方式",
+      "options": [
+        { "value": "left", "label": "靠左" },
+        { "value": "center", "label": "居中" }
+      ],
+      "default": "left"
     },
     {
       "type": "richtext",
@@ -495,6 +537,10 @@
         {
           "value": "grid_2",
           "label": "双列网格"
+        },
+        {
+          "value": "grid_1",
+          "label": "单列网格"
         },
         {
           "value": "slider",

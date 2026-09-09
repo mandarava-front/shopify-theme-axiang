@@ -2,9 +2,22 @@
 {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
 {{ 'cuszoo-collection.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  assign desktop_banner = section.settings.banner_image_desktop
+  assign mobile_banner = section.settings.banner_image_mobile | default: desktop_banner
+  if desktop_banner == blank
+    assign desktop_banner = mobile_banner
+  endif
+-%}
+
 {%- style -%}
   #shopify-section-{{ section.id }} .collection-hero__title {
     font-size: {{ section.settings.title_size }}px;
+  }
+
+  #shopify-section-{{ section.id }} .collection-hero__inner {
+    padding-top: {{ section.settings.title_vertical_spacing }}px;
+    padding-bottom: {{ section.settings.title_vertical_spacing }}px;
   }
 
   @media screen and (max-width: 749px) {
@@ -24,6 +37,30 @@
       </nav>
     {%- endif -%}
   </div>
+
+  {%- if desktop_banner != blank -%}
+    <div class="cuszoo-collection-banner page-width">
+      <picture>
+        {%- if mobile_banner != blank -%}
+          <source
+            media="(max-width: 749px)"
+            srcset="{{ mobile_banner | image_url: width: 375 }} 375w, {{ mobile_banner | image_url: width: 550 }} 550w, {{ mobile_banner | image_url: width: 750 }} 750w"
+            sizes="100vw"
+          >
+        {%- endif -%}
+        <img
+          src="{{ desktop_banner | image_url: width: 1920 }}"
+          srcset="{{ desktop_banner | image_url: width: 960 }} 960w, {{ desktop_banner | image_url: width: 1440 }} 1440w, {{ desktop_banner | image_url: width: 1920 }} 1920w, {{ desktop_banner | image_url: width: 2400 }} 2400w"
+          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width }}px, 100vw"
+          alt="{{ section.settings.banner_alt | default: desktop_banner.alt | escape }}"
+          width="{{ desktop_banner.width }}"
+          height="{{ desktop_banner.height }}"
+          loading="eager"
+          fetchpriority="high"
+        >
+      </picture>
+    </div>
+  {%- endif -%}
 
   <div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
     <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
@@ -96,6 +133,21 @@
       "label": "t:sections.main-collection-banner.settings.show_collection_image.label"
     },
     {
+      "type": "image_picker",
+      "id": "banner_image_desktop",
+      "label": "电脑端横幅（建议 1920 × 400，比例 24:5）"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image_mobile",
+      "label": "手机端横幅（建议 750 × 500，比例 3:2）"
+    },
+    {
+      "type": "text",
+      "id": "banner_alt",
+      "label": "横幅图片替代文字"
+    },
+    {
       "type": "range",
       "id": "title_size",
       "min": 24,
@@ -104,6 +156,16 @@
       "unit": "px",
       "label": "系列标题字号",
       "default": 40
+    },
+    {
+      "type": "range",
+      "id": "title_vertical_spacing",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "系列标题上下留白",
+      "default": 16
     },
     {
       "type": "color_scheme",

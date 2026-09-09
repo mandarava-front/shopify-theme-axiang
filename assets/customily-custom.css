@@ -1,0 +1,26 @@
+#cl_optionsapp > .customily-option-title {
+  display: flex;
+  height: 3.2rem;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.1rem dashed #d9d9d9;
+  color: #0a2759;
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* Keep Customily's built-in gallery in the main media column after the
+   desktop thumbnail layout moves thumbnails to the left. */
+@media screen and (min-width: 750px) {
+  [data-template='product'] media-gallery[data-desktop-layout='thumbnail'] #customily-gallery {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+    width: 100%;
+  }
+
+  [data-template='product'] media-gallery[data-desktop-layout='thumbnail'] #customily-gallery .customily_gallery {
+    width: 100%;
+  }
+}

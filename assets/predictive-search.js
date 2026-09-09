@@ -3,10 +3,13 @@ class PredictiveSearch extends SearchForm {
     super();
     this.cachedResults = {};
     this.predictiveSearchResults = this.querySelector('[data-predictive-search]');
+    this.emptyResultsMarkup = this.querySelector('[data-search-empty]')?.outerHTML || '';
     this.allPredictiveSearchInstances = document.querySelectorAll('predictive-search');
     this.isOpen = false;
     this.abortController = new AbortController();
     this.searchTerm = '';
+    this.onDocumentPointerDown = this.handleDocumentPointerDown.bind(this);
+    this.onViewportChange = this.handleViewportChange.bind(this);
 
     this.setupEventListeners();
   }
@@ -18,6 +21,26 @@ class PredictiveSearch extends SearchForm {
     this.addEventListener('focusout', this.onFocusOut.bind(this));
     this.addEventListener('keyup', this.onKeyup.bind(this));
     this.addEventListener('keydown', this.onKeydown.bind(this));
+    document.addEventListener('pointerdown', this.onDocumentPointerDown, true);
+    window.addEventListener('resize', this.onViewportChange);
+    window.visualViewport?.addEventListener('resize', this.onViewportChange);
+    window.visualViewport?.addEventListener('scroll', this.onViewportChange);
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener('pointerdown', this.onDocumentPointerDown, true);
+    window.removeEventListener('resize', this.onViewportChange);
+    window.visualViewport?.removeEventListener('resize', this.onViewportChange);
+    window.visualViewport?.removeEventListener('scroll', this.onViewportChange);
+  }
+
+  handleDocumentPointerDown(event) {
+    if (this.isOpen && !this.contains(event.target)) this.close();
+  }
+
+  handleViewportChange() {
+    if (!this.isOpen) return;
+    this.predictiveSearchResults.style.maxHeight = `${this.getResultsMaxHeight()}px`;
   }
 
   getQuery() {
@@ -39,7 +62,7 @@ class PredictiveSearch extends SearchForm {
     this.searchTerm = newSearchTerm;
 
     if (!this.searchTerm.length) {
-      this.close(true);
+      this.openEmpty();
       return;
     }
 
@@ -57,13 +80,17 @@ class PredictiveSearch extends SearchForm {
       this.abortController.abort();
       this.abortController = new AbortController();
       this.closeResults(true);
+      setTimeout(() => this.openEmpty());
     }
   }
 
   onFocus() {
     const currentSearchTerm = this.getQuery();
 
-    if (!currentSearchTerm.length) return;
+    if (!currentSearchTerm.length) {
+      this.openEmpty();
+      return;
+    }
 
     if (this.searchTerm !== currentSearchTerm) {
       // Search term was changed from other search input, treat it as a user change
@@ -82,7 +109,7 @@ class PredictiveSearch extends SearchForm {
   }
 
   onKeyup(event) {
-    if (!this.getQuery().length) this.close(true);
+    if (!this.getQuery().length) this.openEmpty();
     event.preventDefault();
 
     switch (event.code) {
@@ -243,12 +270,7 @@ class PredictiveSearch extends SearchForm {
   }
 
   setLiveRegionText(statusText) {
-    this.statusElement.setAttribute('aria-hidden', 'false');
     this.statusElement.textContent = statusText;
-
-    setTimeout(() => {
-      this.statusElement.setAttribute('aria-hidden', 'true');
-    }, 1000);
   }
 
   renderSearchResults(resultsMarkup) {
@@ -259,19 +281,32 @@ class PredictiveSearch extends SearchForm {
     this.open();
   }
 
+  openEmpty() {
+    if (!this.emptyResultsMarkup) return;
+    this.predictiveSearchResults.innerHTML = this.emptyResultsMarkup;
+    this.setAttribute('results', 'true');
+    this.open();
+  }
+
   setLiveRegionResults() {
     this.removeAttribute('loading');
     this.setLiveRegionText(this.querySelector('[data-predictive-search-live-region-count-value]').textContent);
   }
 
   getResultsMaxHeight() {
-    this.resultsMaxHeight =
-      window.innerHeight - document.querySelector('.section-header')?.getBoundingClientRect().bottom;
+    const viewportBottom = window.visualViewport
+      ? window.visualViewport.offsetTop + window.visualViewport.height
+      : window.innerHeight;
+    const resultsTop = this.predictiveSearchResults.getBoundingClientRect().top;
+    this.resultsMaxHeight = Math.max(0, Math.floor(viewportBottom - resultsTop));
     return this.resultsMaxHeight;
   }
 
   open() {
-    this.predictiveSearchResults.style.maxHeight = this.resultsMaxHeight || `${this.getResultsMaxHeight()}px`;
+    // Keep desktop mega menus closed while the predictive panel is open.
+    document.querySelectorAll('header-menu details[open]').forEach((details) => details.removeAttribute('open'));
+    document.body.classList.add('cuszoo-search-open');
+    this.predictiveSearchResults.style.maxHeight = `${this.getResultsMaxHeight()}px`;
     this.setAttribute('open', true);
     this.input.setAttribute('aria-expanded', true);
     this.isOpen = true;
@@ -297,6 +332,9 @@ class PredictiveSearch extends SearchForm {
     this.input.setAttribute('aria-expanded', false);
     this.resultsMaxHeight = false;
     this.predictiveSearchResults.removeAttribute('style');
+    if (!document.querySelector('predictive-search[open]')) {
+      document.body.classList.remove('cuszoo-search-open');
+    }
   }
 }
 

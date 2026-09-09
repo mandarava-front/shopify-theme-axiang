@@ -71,3 +71,25 @@ if (!customElements.get('share-button')) {
     }
   );
 }
+
+if (!window.cuszooInlineShareReady) {
+  window.cuszooInlineShareReady = true;
+  document.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-inline-share] [data-native-share]');
+    if (!button) return;
+
+    const share = button.closest('[data-inline-share]');
+    const url = share.dataset.shareUrl || document.location.href;
+    const platform = button.dataset.nativeShare;
+
+    if (navigator.share) {
+      navigator.share({ url, title: document.title }).catch((error) => {
+        if (error.name !== 'AbortError') console.error('Unable to share this product.', error);
+      });
+      return;
+    }
+
+    navigator.clipboard?.writeText(url).catch(() => {});
+    window.open(platform === 'tiktok' ? 'https://www.tiktok.com/' : 'https://www.instagram.com/', '_blank', 'noopener');
+  });
+}

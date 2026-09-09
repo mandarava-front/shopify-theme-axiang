@@ -22,7 +22,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1.6rem;
-  padding: 1.2rem 0;
+  padding: 1.2rem 2rem 1.2rem 0;
   font-weight: 700;
   cursor: pointer;
   list-style: none;
@@ -63,6 +63,14 @@
   .track-order__faq > h2 {
     font-size: 2rem;
   }
+
+  .track-order__faq-item summary {
+    padding-right: 1.2rem;
+    min-height: 6rem;
+    font-size: 1.7rem;
+  }
+
+  .track-order__faq-answer { font-size: 1.6rem; line-height: 1.6; }
 }
 
 @media (prefers-reduced-motion: reduce) {

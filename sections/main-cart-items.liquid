@@ -20,9 +20,7 @@
   }
 {%- endstyle -%}
 
-{%- unless settings.cart_type == 'drawer' -%}
-  <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
-{%- endunless -%}
+<script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
 
@@ -33,12 +31,23 @@
   <div class="page-width">
     <div class="title-wrapper-with-link">
       <h1 class="title title--primary">{{ 'sections.cart.title' | t }}</h1>
-      <a href="{{ routes.all_products_collection_url }}" class="button button--secondary cuszoo-cart-continue">
+      <a
+        href="{{ routes.all_products_collection_url }}"
+        class="button button--secondary cuszoo-cart-continue cuszoo-cart-continue--mobile"
+      >
         {{- 'general.continue_shopping' | t -}}
       </a>
     </div>
 
-    {%- render 'volume-discount', context: 'cart' -%}
+    <div class="cart-banner-row">
+      {%- render 'free-shipping-bar' -%}
+      <a
+        href="{{ routes.all_products_collection_url }}"
+        class="button button--secondary cuszoo-cart-continue cuszoo-cart-continue--desktop"
+      >
+        {{- 'general.continue_shopping' | t -}}
+      </a>
+    </div>
 
     <div class="cart__warnings">
       <h1 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h1>
@@ -95,14 +104,11 @@
                     <td class="cart-item__media">
                       {%- liquid
                         assign customily_preview = item.properties['_customily-thumb'] | default: item.properties['_customily-preview']
-                        assign customall_preview = item.properties['_customall_preview']
                         assign teeinblue_preview = item.properties['_customization_image']
-                        assign personalization_preview = customily_preview | default: customall_preview | default: teeinblue_preview
+                        assign personalization_preview = customily_preview | default: teeinblue_preview
                         assign personalization_provider = ''
                         if customily_preview != blank
                           assign personalization_provider = 'customily'
-                        elsif customall_preview != blank
-                          assign personalization_provider = 'customall'
                         elsif teeinblue_preview != blank
                           assign personalization_provider = 'teeinblue'
                         endif

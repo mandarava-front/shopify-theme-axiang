@@ -30,6 +30,8 @@
             <picture>
               {%- if block.settings.mobile_image != blank -%}
                 <source media="(max-width: 749px)" srcset="{{ block.settings.mobile_image | image_url: width: 900 }}">
+              {%- elsif block.settings.asset_mobile_image != blank -%}
+                <source media="(max-width: 749px)" srcset="{{ block.settings.asset_mobile_image | asset_url }}">
               {%- elsif block.settings.external_mobile_image_url != blank -%}
                 <source media="(max-width: 749px)" srcset="{{ block.settings.external_mobile_image_url }}">
               {%- endif -%}
@@ -43,9 +45,30 @@
                   alt: block.settings.image_alt
               }}
             </picture>
+          {%- elsif block.settings.asset_desktop_image != blank -%}
+            <picture>
+              {%- if block.settings.mobile_image != blank -%}
+                <source media="(max-width: 749px)" srcset="{{ block.settings.mobile_image | image_url: width: 900 }}">
+              {%- elsif block.settings.asset_mobile_image != blank -%}
+                <source media="(max-width: 749px)" srcset="{{ block.settings.asset_mobile_image | asset_url }}">
+              {%- elsif block.settings.external_mobile_image_url != blank -%}
+                <source media="(max-width: 749px)" srcset="{{ block.settings.external_mobile_image_url }}">
+              {%- endif -%}
+              <img
+                src="{{ block.settings.asset_desktop_image | asset_url }}"
+                alt="{{ block.settings.image_alt | escape }}"
+                width="2002"
+                height="785"
+                {% if slide_index == 0 %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
+              >
+            </picture>
           {%- elsif block.settings.external_desktop_image_url != blank -%}
             <picture>
-              {%- if block.settings.external_mobile_image_url != blank -%}
+              {%- if block.settings.mobile_image != blank -%}
+                <source media="(max-width: 749px)" srcset="{{ block.settings.mobile_image | image_url: width: 900 }}">
+              {%- elsif block.settings.asset_mobile_image != blank -%}
+                <source media="(max-width: 749px)" srcset="{{ block.settings.asset_mobile_image | asset_url }}">
+              {%- elsif block.settings.external_mobile_image_url != blank -%}
                 <source media="(max-width: 749px)" srcset="{{ block.settings.external_mobile_image_url }}">
               {%- endif -%}
               <img
@@ -168,6 +191,8 @@
       "settings": [
         { "type": "image_picker", "id": "desktop_image", "label": "电脑端图片" },
         { "type": "image_picker", "id": "mobile_image", "label": "手机端图片" },
+        { "type": "text", "id": "asset_desktop_image", "label": "电脑端主题图片文件名（assets 内，可选）" },
+        { "type": "text", "id": "asset_mobile_image", "label": "手机端主题图片文件名（assets 内，可选）" },
         { "type": "url", "id": "external_desktop_image_url", "label": "外部电脑端图片链接" },
         { "type": "url", "id": "external_mobile_image_url", "label": "外部手机端图片链接" },
         { "type": "text", "id": "image_alt", "label": "图片替代文字" },

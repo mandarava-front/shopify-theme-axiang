@@ -182,9 +182,9 @@
 .cuszoo-delivery-estimate {
   display: block;
   padding: 1.6rem;
-  border: 0.1rem solid #d7e1e8;
+  border: 0.1rem solid var(--delivery-border, #f3c49d);
   border-radius: 0.6rem;
-  background: #f8fbfc;
+  background: var(--delivery-background, #fff7f0);
 }
 
 .cuszoo-delivery-estimate__summary {
@@ -192,14 +192,14 @@
   align-items: center;
   gap: 0.8rem;
   margin: 0 0 1.8rem;
-  color: rgb(var(--color-foreground));
+  color: var(--delivery-summary-text, rgb(var(--color-foreground)));
   font-size: 1.6rem;
 }
 
 .cuszoo-delivery-estimate__summary .material-icons-round {
   flex: 0 0 2.2rem;
   font-size: 2.2rem;
-  color: rgb(var(--color-link));
+  color: var(--delivery-summary-icon, rgb(var(--color-link)));
 }
 
 .cuszoo-delivery-estimate__steps {
@@ -218,7 +218,7 @@
   top: 1.5rem;
   right: 16%;
   left: 16%;
-  border-top: 0.1rem dashed #36887e;
+  border-top: 0.1rem dashed var(--delivery-line, #fa7b17);
 }
 
 .cuszoo-delivery-estimate__step {
@@ -233,13 +233,23 @@
   height: 3.2rem;
   margin: 0 auto 0.8rem;
   border-radius: 50%;
-  background: #c9f2f8;
-  color: rgb(var(--color-link));
+  background: var(--delivery-icon-background, #fff1e6);
+  color: var(--delivery-order-icon, rgb(var(--color-link)));
   place-items: center;
+}
+
+.cuszoo-delivery-estimate__step--ship .cuszoo-delivery-estimate__icon {
+  color: var(--delivery-ship-icon, rgb(var(--color-link))) !important;
+}
+
+.cuszoo-delivery-estimate__step--arrival .cuszoo-delivery-estimate__icon {
+  color: var(--delivery-arrival-icon, rgb(var(--color-link))) !important;
 }
 
 .cuszoo-delivery-estimate__icon svg {
   width: 1.7rem;
+  color: inherit;
+  fill: currentColor;
 }
 
 .cuszoo-delivery-estimate__step strong,
@@ -249,13 +259,13 @@
 }
 
 .cuszoo-delivery-estimate__step strong {
-  color: rgb(var(--color-foreground));
+  color: var(--delivery-date, rgb(var(--color-foreground)));
   font-size: 1.25rem;
 }
 
 .cuszoo-delivery-estimate__step small {
   margin-top: 0.3rem;
-  color: #637381;
+  color: var(--delivery-label, #637381);
   font-size: 1.1rem;
 }
 

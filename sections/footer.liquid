@@ -4,6 +4,19 @@
 {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'macorner-footer.js' | asset_url }}" defer="defer"></script>
 
+{%- style -%}
+  #shopify-section-{{ section.id }} .mc-footer__logo img {
+    width: min(100%, {{ section.settings.logo_width_mobile | default: 200 }}px);
+    height: auto;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .mc-footer__logo img {
+      width: min(100%, {{ section.settings.logo_width_desktop | default: 280 }}px);
+    }
+  }
+{%- endstyle -%}
+
 <footer class="mc-footer color-{{ section.settings.color_scheme }} gradient">
   {%- if section.settings.newsletter_enable -%}
     <div class="mc-footer__newsletter color-{{ section.settings.newsletter_color_scheme }} gradient">
@@ -80,14 +93,33 @@
           <p><strong>{{ section.settings.service_hours_label | escape }}:</strong> {{ section.settings.service_hours | escape }}</p>
         {%- endif -%}
         {%- liquid
+          assign brand_facebook_url = section.settings.facebook_url | default: settings.social_facebook_link
+          assign brand_tiktok_url = section.settings.tiktok_url | default: settings.social_tiktok_link
           assign has_brand_social = true
-          if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
+          if brand_facebook_url == blank and brand_tiktok_url == blank
             assign has_brand_social = false
           endif
         -%}
         {%- if section.settings.show_brand_social and has_brand_social -%}
-          <strong class="mc-footer__follow-label">{{ section.settings.follow_label | escape }}</strong>
-          {%- render 'social-icons', class: 'mc-footer__brand-social' -%}
+          <div class="mc-footer__follow-row">
+            <strong class="mc-footer__follow-label">{{ section.settings.follow_label | escape }}</strong>
+            <ul class="mc-footer__brand-social" role="list">
+              {%- if brand_facebook_url != blank -%}
+                <li>
+                  <a href="{{ brand_facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook">
+                    <span class="svg-wrapper">{{- 'icon-facebook.svg' | inline_asset_content -}}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if brand_tiktok_url != blank -%}
+                <li>
+                  <a href="{{ brand_tiktok_url }}" target="_blank" rel="noopener" aria-label="TikTok">
+                    <span class="svg-wrapper">{{- 'icon-tiktok.svg' | inline_asset_content -}}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+            </ul>
+          </div>
         {%- endif -%}
       </div>
 
@@ -161,14 +193,13 @@
       {%- render 'social-icons', class: 'mc-footer__social' -%}
     {%- endif -%}
 
-    {%- if shop.enabled_payment_types.size > 0 -%}
-      <div class="mc-footer__payment" aria-label="{{ 'sections.footer.payment' | t }}">
-        <ul class="list list-payment" role="list">
-          {%- for type in shop.enabled_payment_types -%}
-            <li class="list-payment__item">{{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}</li>
-          {%- endfor -%}
-        </ul>
-      </div>
+    {%- comment -%} `!= false` on purpose: section-group settings missing from the stored JSON render blank, and blank means enabled. {%- endcomment -%}
+    {%- if section.settings.show_payment_icons != false and shop.enabled_payment_types.size > 0 -%}
+      <ul class="mc-footer__payment list-unstyled" role="list">
+        {%- for type in shop.enabled_payment_types -%}
+          <li>{{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}</li>
+        {%- endfor -%}
+      </ul>
     {%- endif -%}
 
     <div class="mc-footer__copyright">
@@ -176,18 +207,37 @@
         >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url }}. {{ section.settings.copyright_suffix | escape }}</span
       >
       {%- if section.settings.show_powered_by -%}<br><span>{{ powered_by_link }}</span>{%- endif -%}
-      {%- if section.settings.show_policy -%}
-        <ul class="mc-footer__policies">
-          {%- for policy in shop.policies -%}
-            {%- if policy != blank -%}
-              <li><a href="{{ policy.url }}">{{ policy.title | escape }}</a></li>
-            {%- endif -%}
-          {%- endfor -%}
-        </ul>
-      {%- endif -%}
     </div>
   </div>
 </footer>
+
+{%- comment -%} Hide the Oceanpayment app-injected payment icon bar appended after the footer. {%- endcomment -%}
+<script>
+  (function () {
+    function hideOceanpaymentBar() {
+      var footer = document.querySelector('footer');
+      if (!footer) return false;
+      var next = footer.nextElementSibling;
+      while (next) {
+        if (next.tagName === 'DIV' && next.querySelector('img[src*="oceanpayment"]')) {
+          next.style.display = 'none';
+          return true;
+        }
+        next = next.nextElementSibling;
+      }
+      return false;
+    }
+    hideOceanpaymentBar();
+    var observer = new MutationObserver(function () {
+      if (hideOceanpaymentBar()) observer.disconnect();
+    });
+    if (document.body) observer.observe(document.body, { childList: true, subtree: false });
+    setTimeout(function () {
+      hideOceanpaymentBar();
+      observer.disconnect();
+    }, 8000);
+  })();
+</script>
 
 {% schema %}
 {
@@ -276,12 +326,34 @@
       "id": "logo",
       "label": "Logo 图片（留空则使用商店名称）"
     },
+    {
+      "type": "range",
+      "id": "logo_width_desktop",
+      "label": "电脑端 Logo 宽度",
+      "min": 80,
+      "max": 480,
+      "step": 10,
+      "unit": "px",
+      "default": 280
+    },
+    {
+      "type": "range",
+      "id": "logo_width_mobile",
+      "label": "手机端 Logo 宽度",
+      "min": 60,
+      "max": 320,
+      "step": 10,
+      "unit": "px",
+      "default": 200
+    },
     { "type": "text", "id": "email_label", "label": "邮箱文字", "default": "Email" },
     { "type": "text", "id": "contact_email", "label": "客服邮箱", "default": "support@example.com" },
     { "type": "text", "id": "service_hours_label", "label": "服务时间文字", "default": "Customer service" },
-    { "type": "text", "id": "service_hours", "label": "客服时间", "default": "Monday-Friday, 9:00 AM-5:00 PM (CT)" },
+    { "type": "text", "id": "service_hours", "label": "客服时间", "default": "Monday-Friday, 9:30 AM-5:00 PM (CT)" },
     { "type": "text", "id": "follow_label", "label": "社交媒体标题", "default": "Follow us on" },
     { "type": "checkbox", "id": "show_brand_social", "label": "在联系信息下显示社交图标", "default": true },
+    { "type": "url", "id": "facebook_url", "label": "Facebook 链接" },
+    { "type": "url", "id": "tiktok_url", "label": "TikTok 链接" },
     {
       "type": "checkbox",
       "id": "show_dmca_badge",
@@ -312,8 +384,7 @@
       "type": "checkbox",
       "id": "show_social",
       "default": true,
-      "label": "t:sections.footer.settings.show_social.label",
-      "info": "t:sections.footer.settings.show_social.info"
+      "label": "t:sections.footer.settings.show_social.label"
     },
     {
       "type": "checkbox",

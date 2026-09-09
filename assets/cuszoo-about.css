@@ -1,0 +1,688 @@
+.section--cuszoo-about {
+  margin-top: 0 !important;
+}
+
+.cuszoo-about {
+  --about-ink: 49, 43, 54;
+  --about-cream: 250, 248, 245;
+  --about-warm: 242, 238, 231;
+  --about-orange: 238, 134, 15;
+  overflow: hidden;
+  color: rgb(var(--about-ink));
+  background: rgb(var(--about-cream));
+}
+
+.cuszoo-about__inner {
+  max-width: 138rem;
+}
+
+.cuszoo-about__final {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: rgb(var(--about-ink));
+}
+
+.cuszoo-about__final-media,
+.cuszoo-about__final-media picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.cuszoo-about__final-media img,
+.cuszoo-about__final-media svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cuszoo-about__final-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(32, 27, 35, 0.76) 0%, rgba(32, 27, 35, 0.42) 48%, rgba(32, 27, 35, 0.08) 78%);
+}
+
+.cuszoo-about__final-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  min-height: inherit;
+}
+
+.cuszoo-about__hero-copy {
+  width: min(100%, 66rem);
+  color: rgb(var(--about-ink));
+}
+
+.cuszoo-about__hero {
+  background: rgb(var(--about-cream));
+}
+
+.cuszoo-about__hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(32rem, 1.1fr);
+  gap: 7rem;
+  align-items: center;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.cuszoo-about__hero-media {
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  border-radius: 1.6rem;
+  aspect-ratio: 1 / 1;
+  background: rgb(var(--about-warm));
+}
+
+.cuszoo-about__hero-media img,
+.cuszoo-about__hero-media svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cuszoo-about__eyebrow {
+  margin: 0 0 1.6rem;
+  color: rgb(var(--about-orange));
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.cuszoo-about__eyebrow--light {
+  color: #ffd29d;
+}
+
+.cuszoo-about__hero-title {
+  max-width: 64rem;
+  margin: 0;
+  color: rgb(var(--about-ink));
+  font-size: 5.8rem;
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.cuszoo-about__hero-text {
+  max-width: 58rem;
+  margin: 2.2rem 0 3rem;
+  font-size: 1.9rem;
+  line-height: 1.6;
+}
+
+.cuszoo-about__hero-text p {
+  margin: 0;
+}
+
+.cuszoo-about__hero .button,
+.cuszoo-about__final .button {
+  min-height: 5rem;
+  padding-right: 3rem;
+  padding-left: 3rem;
+}
+
+.cuszoo-about__section {
+  padding: 10rem 0;
+}
+
+.cuszoo-about__story-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: 9rem;
+  align-items: center;
+}
+
+.cuszoo-about__story-copy {
+  max-width: 54rem;
+}
+
+.cuszoo-about__heading {
+  margin: 0;
+  color: rgb(var(--about-ink));
+  font-size: 4.4rem;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+.cuszoo-about__body {
+  margin-top: 2.4rem;
+  color: rgba(var(--about-ink), 0.78);
+  font-size: 1.8rem;
+  line-height: 1.75;
+}
+
+.cuszoo-about__body p {
+  margin-top: 0;
+  margin-bottom: 1.6rem;
+}
+
+.cuszoo-about__body p:last-child {
+  margin-bottom: 0;
+}
+
+.cuszoo-about__story-media {
+  position: relative;
+  min-height: 58rem;
+}
+
+.cuszoo-about__story-image {
+  position: absolute;
+  overflow: hidden;
+  margin: 0;
+  border-radius: 1.2rem;
+  background: rgb(var(--about-warm));
+}
+
+.cuszoo-about__story-image img,
+.cuszoo-about__story-image svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cuszoo-about__story-image--1 {
+  inset: 3.5rem 8rem 4.5rem 5.5rem;
+  z-index: 1;
+}
+
+.cuszoo-about__story-image--2,
+.cuszoo-about__story-image--3,
+.cuszoo-about__story-image--4 {
+  z-index: 2;
+  width: 27%;
+  border: 0.6rem solid rgb(var(--about-cream));
+  box-shadow: 0 1rem 2.5rem rgba(var(--about-ink), 0.15);
+}
+
+.cuszoo-about__story-image--2 {
+  top: 0;
+  left: 0;
+  aspect-ratio: 1 / 1;
+}
+
+.cuszoo-about__story-image--3 {
+  top: 0;
+  right: 0;
+  aspect-ratio: 3 / 4;
+}
+
+.cuszoo-about__story-image--4 {
+  left: 0;
+  bottom: 0;
+  aspect-ratio: 3 / 4;
+}
+
+.cuszoo-about__process {
+  background: rgb(var(--about-warm));
+}
+
+.cuszoo-about__section-header {
+  max-width: 74rem;
+  margin: 0 auto 5.4rem;
+  text-align: center;
+}
+
+.cuszoo-about__intro {
+  margin: 1.8rem 0 0;
+  color: rgba(var(--about-ink), 0.72);
+  font-size: 1.8rem;
+  line-height: 1.6;
+}
+
+.cuszoo-about__steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: about-step;
+}
+
+.cuszoo-about__step {
+  position: relative;
+  padding: 1rem 4.2rem 0;
+  text-align: center;
+}
+
+.cuszoo-about__step + .cuszoo-about__step {
+  border-left: 0.1rem solid rgba(var(--about-ink), 0.15);
+}
+
+.cuszoo-about__step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.2rem;
+  height: 5.2rem;
+  margin-bottom: 2rem;
+  border-radius: 50%;
+  color: #fff;
+  background: rgb(var(--about-orange));
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.cuszoo-about__step h3,
+.cuszoo-about__connection h3,
+.cuszoo-about__commitment h3 {
+  margin: 0;
+  color: rgb(var(--about-ink));
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.cuszoo-about__step p {
+  max-width: 34rem;
+  margin: 1.2rem auto 0;
+  color: rgba(var(--about-ink), 0.7);
+  font-size: 1.6rem;
+  line-height: 1.65;
+}
+
+.cuszoo-about__connections {
+  background: rgb(var(--about-cream));
+}
+
+.cuszoo-about__connection-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.cuszoo-about__connection {
+  min-width: 0;
+  overflow: hidden;
+  border: 0.1rem solid rgba(var(--about-ink), 0.12);
+  border-radius: 0.8rem;
+  background: #fff;
+}
+
+.cuszoo-about__connection-link {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+}
+
+.cuszoo-about__connection-media {
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: rgb(var(--about-warm));
+}
+
+.cuszoo-about__connection-media img,
+.cuszoo-about__connection-media svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 250ms ease;
+}
+
+.cuszoo-about__connection-copy {
+  display: flex;
+  min-height: 23rem;
+  flex: 1;
+  flex-direction: column;
+  padding: 2.4rem;
+}
+
+.cuszoo-about__connection-copy p {
+  margin: 1rem 0 2.2rem;
+  color: rgba(var(--about-ink), 0.7);
+  font-size: 1.5rem;
+  line-height: 1.6;
+}
+
+.cuszoo-about__connection-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: auto;
+  color: rgb(var(--about-orange));
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.cuszoo-about__connection-action .material-icons-round {
+  font-size: 1.9rem;
+  transition: transform 200ms ease;
+}
+
+.cuszoo-about__commitments {
+  color: #fff;
+  background: rgb(var(--about-ink));
+}
+
+.cuszoo-about__commitments-inner {
+  display: grid;
+  grid-template-columns: minmax(26rem, 0.72fr) minmax(0, 1.28fr);
+  gap: 9rem;
+  align-items: start;
+}
+
+.cuszoo-about__commitments .cuszoo-about__heading {
+  color: #fff;
+}
+
+.cuszoo-about__commitment-list {
+  display: grid;
+  gap: 0;
+}
+
+.cuszoo-about__commitment {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  gap: 2rem;
+  padding: 0 0 2.8rem;
+}
+
+.cuszoo-about__commitment + .cuszoo-about__commitment {
+  padding-top: 2.8rem;
+  border-top: 0.1rem solid rgba(255, 255, 255, 0.18);
+}
+
+.cuszoo-about__commitment-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  color: rgb(var(--about-ink));
+  background: #ffd29d;
+  font-size: 2.5rem;
+}
+
+.cuszoo-about__commitment h3 {
+  color: #fff;
+}
+
+.cuszoo-about__commitment p {
+  margin: 0.8rem 0 0;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+.cuszoo-about__final {
+  min-height: 50rem;
+}
+
+.cuszoo-about__final-shade {
+  background: linear-gradient(90deg, rgba(32, 27, 35, 0.82) 0%, rgba(32, 27, 35, 0.54) 52%, rgba(32, 27, 35, 0.12) 100%);
+}
+
+.cuszoo-about__final-copy {
+  width: min(100%, 72rem);
+  padding: 7rem 0;
+  color: #fff;
+}
+
+.cuszoo-about__final-copy h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 4.6rem;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+.cuszoo-about__final-copy p {
+  margin: 1.6rem 0 0;
+  font-size: 1.9rem;
+  line-height: 1.6;
+}
+
+.cuszoo-about__final-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.4rem;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.cuszoo-about__text-link {
+  display: inline-flex;
+  min-height: 4.4rem;
+  align-items: center;
+  gap: 0.7rem;
+  color: #fff;
+  font-weight: 700;
+  text-underline-offset: 0.4rem;
+}
+
+.cuszoo-about__text-link .material-icons-round {
+  font-size: 2rem;
+}
+
+@media screen and (hover: hover) {
+  .cuszoo-about__connection-link:hover .cuszoo-about__connection-media img {
+    transform: scale(1.035);
+  }
+
+  .cuszoo-about__connection-link:hover .cuszoo-about__connection-action .material-icons-round {
+    transform: translateX(0.4rem);
+  }
+}
+
+@media screen and (max-width: 989px) {
+  .cuszoo-about__hero-title {
+    font-size: 4.8rem;
+  }
+
+  .cuszoo-about__section {
+    padding: 8rem 0;
+  }
+
+  .cuszoo-about__story-grid {
+    grid-template-columns: 1fr;
+    gap: 5rem;
+  }
+
+  .cuszoo-about__story-copy {
+    max-width: 68rem;
+  }
+
+  .cuszoo-about__story-media {
+    min-height: 54rem;
+  }
+
+  .cuszoo-about__connection-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cuszoo-about__commitments-inner {
+    grid-template-columns: 1fr;
+    gap: 5rem;
+  }
+
+  .cuszoo-about__commitments-heading {
+    max-width: 64rem;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .cuszoo-about__hero {
+    min-height: 0;
+  }
+
+  .cuszoo-about__final-inner {
+    align-items: flex-end;
+  }
+
+  .cuszoo-about__final-copy {
+    padding: 5rem 0;
+  }
+
+  .cuszoo-about__hero-inner {
+    grid-template-columns: 1fr;
+    gap: 3.2rem;
+    padding-top: 4.8rem;
+    padding-bottom: 4.8rem;
+  }
+
+  .cuszoo-about__hero-copy {
+    order: 1;
+  }
+
+  .cuszoo-about__hero-media {
+    order: 2;
+    border-radius: 1.2rem;
+  }
+
+  .cuszoo-about__hero-title {
+    font-size: 4rem;
+    line-height: 1.08;
+  }
+
+  .cuszoo-about__hero-text {
+    margin: 1.8rem 0 2.6rem;
+    font-size: 1.7rem;
+  }
+
+  .cuszoo-about__section {
+    padding: 6.4rem 0;
+  }
+
+  .cuszoo-about__heading,
+  .cuszoo-about__final-copy h2 {
+    font-size: 3.4rem;
+  }
+
+  .cuszoo-about__body {
+    margin-top: 1.8rem;
+    font-size: 1.7rem;
+  }
+
+  .cuszoo-about__story-grid {
+    gap: 3.6rem;
+  }
+
+  .cuszoo-about__story-media {
+    min-height: 42rem;
+  }
+
+  .cuszoo-about__story-image--1 {
+    inset: 3rem 4rem 4rem;
+  }
+
+  .cuszoo-about__story-image--2,
+  .cuszoo-about__story-image--3,
+  .cuszoo-about__story-image--4 {
+    width: 29%;
+    border-width: 0.4rem;
+  }
+
+  .cuszoo-about__section-header {
+    margin-bottom: 4rem;
+    text-align: left;
+  }
+
+  .cuszoo-about__intro {
+    font-size: 1.7rem;
+  }
+
+  .cuszoo-about__steps {
+    grid-template-columns: 1fr;
+  }
+
+  .cuszoo-about__step {
+    display: grid;
+    grid-template-columns: 5.2rem minmax(0, 1fr);
+    column-gap: 1.8rem;
+    padding: 0 0 3rem;
+    text-align: left;
+  }
+
+  .cuszoo-about__step + .cuszoo-about__step {
+    padding-top: 3rem;
+    border-top: 0.1rem solid rgba(var(--about-ink), 0.15);
+    border-left: 0;
+  }
+
+  .cuszoo-about__step-number {
+    grid-row: 1 / span 2;
+    margin: 0;
+  }
+
+  .cuszoo-about__step p {
+    max-width: none;
+    margin: 0.8rem 0 0;
+  }
+
+  .cuszoo-about__connection-grid {
+    display: flex;
+    gap: 1.2rem;
+    margin-right: -1.5rem;
+    padding-right: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .cuszoo-about__connection-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cuszoo-about__connection {
+    width: 82%;
+    min-width: 82%;
+    scroll-snap-align: start;
+  }
+
+  .cuszoo-about__connection-copy {
+    min-height: 21rem;
+    padding: 2.2rem;
+  }
+
+  .cuszoo-about__commitments-inner {
+    gap: 4rem;
+  }
+
+  .cuszoo-about__commitment {
+    grid-template-columns: 4.6rem minmax(0, 1fr);
+    gap: 1.6rem;
+  }
+
+  .cuszoo-about__commitment-icon {
+    width: 4.6rem;
+    height: 4.6rem;
+    font-size: 2.3rem;
+  }
+
+  .cuszoo-about__final {
+    min-height: 48rem;
+  }
+
+  .cuszoo-about__final-copy p {
+    font-size: 1.7rem;
+  }
+
+  .cuszoo-about__final-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cuszoo-about__connection-media img,
+  .cuszoo-about__connection-action .material-icons-round {
+    transition: none;
+  }
+}

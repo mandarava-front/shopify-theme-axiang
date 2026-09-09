@@ -3,11 +3,11 @@
   const defaultStrings = Object.freeze({
     submit: 'TRACK ORDER',
     loading: 'CHECKING ORDER...',
-    invalidOrder: 'Enter your order number.',
+    invalidOrder: 'Please enter a valid numeric order number, such as #1045.',
     invalidEmail: 'Enter a valid email address.',
     notFoundTitle: 'We could not find that order',
     notFound:
-      'Please check that the order number is complete (for example #TG123456) and that the email address matches the one on your order confirmation. Orders placed in the last few minutes may take a little while to appear.',
+      'Sorry, we could not find your information at the moment. Please check whether you have received a shipping confirmation email. Due to carrier update frequency, tracking information may appear 48–96 hours after you receive the shipping email. If you have any questions, please contact our support team at support@cuszoo.com.',
     noShipmentTitle: 'Your order is being prepared',
     noShipment:
       'Good news — we found your order! It has not shipped yet, so there is no tracking information available. Your items are still being produced and packed at our workshop. As soon as the carrier collects your parcel, the tracking number will appear here and we will email it to you.',
@@ -18,7 +18,8 @@
     dismissPending: 'Got it',
     dismissNotFound: 'Check my details',
     backToSearch: 'Back to search',
-    contactSupport: 'Contact support',
+    contactSupport: 'Email support',
+    supportEmail: 'support@cuszoo.com',
     order: 'Order ID',
     carrier: 'Carrier',
     carrierUnknown: 'Carrier unavailable',
@@ -190,6 +191,7 @@
         const endpoint = new URL(this.config.endpoint, window.location.origin);
         endpoint.searchParams.set('orderNumber', values.orderNumber);
         endpoint.searchParams.set('email', values.email);
+        endpoint.searchParams.set('shopName', this.config.shopName || '');
 
         const response = await fetch(endpoint, {
           method: 'GET',
@@ -224,6 +226,10 @@
             ? error.code
             : error?.name === 'AbortError'
               ? 'UPSTREAM_UNAVAILABLE'
+              // The tracking service currently does not send CORS headers. In a storefront
+              // browser this appears as a TypeError even when the API returned ORDER_NOT_FOUND.
+              : error?.name === 'TypeError'
+                ? 'NOT_FOUND'
               : 'UPSTREAM_UNAVAILABLE';
 
         this.renderError(errorCode);
@@ -244,7 +250,9 @@
       try {
         return JSON.parse(responseText);
       } catch (_error) {
-        throw new OrderTrackingError('UPSTREAM_UNAVAILABLE');
+        // Keep the HTTP status available to getResponseErrorCode(). Some API
+        // errors (for example a 404) may return plain text instead of JSON.
+        return null;
       }
     }
 
@@ -306,7 +314,8 @@
       this.clearFieldError('orderNumber');
       this.clearFieldError('email');
 
-      const orderNumber = this.orderInput?.value.trim() || '';
+      const rawOrderNumber = this.orderInput?.value.trim() || '';
+      const orderNumber = this.normalizeOrderNumber(rawOrderNumber);
       const email = this.emailInput?.value.trim().toLowerCase() || '';
       let firstInvalidField = null;
 
@@ -329,6 +338,13 @@
       this.emailInput.value = email;
 
       return { orderNumber, email };
+    }
+
+    normalizeOrderNumber(value) {
+      // Shopify displays order numbers with wrappers such as "#1045" or
+      // "(1045)". The tracking API accepts digits only, so remove every
+      // non-digit character before building the request.
+      return this.textValue(value).replace(/\D/g, '');
     }
 
     isValidEmail(value) {
@@ -406,8 +422,19 @@
       dismiss.addEventListener('click', () => this.closeDialog());
       actions.appendChild(dismiss);
 
+      if (code === 'NOT_FOUND') {
+        const supportEmail = this.config.supportEmail || this.config.strings.supportEmail;
+        const subjectOrder = this.orderInput?.value.trim() || '';
+        const normalizedOrder = subjectOrder ? (subjectOrder.startsWith('#') ? subjectOrder : `#${subjectOrder}`) : '#Order';
+        const subject = `${normalizedOrder} – Shipping tracking inquiry`;
+        const contact = this.createElement('a', 'tg-order-tracking__dialog-action tg-order-tracking__dialog-action--contact', this.config.strings.contactSupport);
+        contact.href = `mailto:${encodeURIComponent(supportEmail)}?subject=${encodeURIComponent(subject)}`;
+        contact.setAttribute('aria-label', `Email ${supportEmail}`);
+        actions.appendChild(contact);
+      }
+
       const contactUrl = this.safeUrl(this.config.contactUrl, true);
-      if (contactUrl) {
+      if (contactUrl && code !== 'NOT_FOUND') {
         const contact = this.createElement(
           'a',
           'tg-order-tracking__dialog-action',

@@ -57,7 +57,7 @@
             "type": "color",
             "id": "background",
             "label": "t:settings_schema.colors.settings.background.label",
-            "default": "#FFFFFF"
+            "default": "#FAF8F5"
           },
           {
             "type": "color_background",
@@ -1286,40 +1286,6 @@
     ]
   },
   {
-    "name": "t:settings_schema.brand_information.name",
-    "settings": [
-      {
-        "type": "paragraph",
-        "content": "t:settings_schema.brand_information.settings.paragraph.content"
-      },
-      {
-        "type": "inline_richtext",
-        "id": "brand_headline",
-        "label": "t:settings_schema.brand_information.settings.brand_headline.label"
-      },
-      {
-        "type": "richtext",
-        "id": "brand_description",
-        "label": "t:settings_schema.brand_information.settings.brand_description.label"
-      },
-      {
-        "type": "image_picker",
-        "id": "brand_image",
-        "label": "t:settings_schema.brand_information.settings.brand_image.label"
-      },
-      {
-        "type": "range",
-        "id": "brand_image_width",
-        "min": 50,
-        "max": 550,
-        "step": 5,
-        "default": 100,
-        "unit": "px",
-        "label": "t:settings_schema.brand_information.settings.brand_image_width.label"
-      }
-    ]
-  },
-  {
     "name": "t:settings_schema.social-media.name",
     "settings": [
       {
@@ -1400,6 +1366,30 @@
         "default": true,
         "label": "t:settings_schema.search_input.settings.predictive_search_show_price.label",
         "info": "t:settings_schema.search_input.settings.predictive_search_show_price.info"
+      },
+      {
+        "type": "textarea",
+        "id": "search_popular_suggestions",
+        "label": "Popular suggestions（每行一个）",
+        "default": "Best sellers\nNew arrivals\nPersonalized gifts"
+      },
+      {
+        "type": "textarea",
+        "id": "search_categories",
+        "label": "搜索分类（每行：名称|链接）",
+        "default": "T-Shirts|/collections/t-shirts\nHoodies|/collections/hoodies\nAccessories|/collections/accessories"
+      },
+      {
+        "type": "product_list",
+        "id": "search_featured_products",
+        "label": "搜索框推荐产品",
+        "limit": 6
+      },
+      {
+        "type": "textarea",
+        "id": "search_recommended_tags",
+        "label": "推荐系列标签（每行：名称|搜索词）",
+        "default": "Pet gifts|pet\nMemorial gifts|memorial\nCustom portraits|custom"
       }
     ]
   },
@@ -1526,57 +1516,37 @@
         "type": "color",
         "id": "vd_background",
         "label": "整体背景颜色",
-        "default": "#f7faff"
+        "default": "#fff7f0"
       },
       {
         "type": "color",
         "id": "vd_tier_background",
         "label": "优惠档位背景颜色",
-        "default": "#eaf2fd"
+        "default": "#ffffff"
       },
       {
         "type": "color",
         "id": "vd_border",
         "label": "描边颜色",
-        "default": "#91cfee"
+        "default": "#f3c49d"
       },
       {
         "type": "color",
         "id": "vd_text",
         "label": "主要文字颜色",
-        "default": "#17263b"
+        "default": "#0a2759"
       },
       {
         "type": "color",
         "id": "vd_accent",
         "label": "价格和 SAVE 标签颜色",
-        "default": "#244a85"
+        "default": "#fa7b17"
       }
     ]
   },
   {
     "name": "t:settings_schema.cart.name",
     "settings": [
-      {
-        "type": "select",
-        "id": "cart_type",
-        "options": [
-          {
-            "value": "drawer",
-            "label": "t:settings_schema.cart.settings.cart_type.drawer.label"
-          },
-          {
-            "value": "page",
-            "label": "t:settings_schema.cart.settings.cart_type.page.label"
-          },
-          {
-            "value": "notification",
-            "label": "t:settings_schema.cart.settings.cart_type.notification.label"
-          }
-        ],
-        "default": "notification",
-        "label": "t:settings_schema.cart.settings.cart_type.label"
-      },
       {
         "type": "checkbox",
         "id": "show_vendor",
@@ -1604,6 +1574,348 @@
         "id": "cart_color_scheme",
         "label": "t:sections.all.colors.label",
         "default": "scheme-1"
+      },
+      {
+        "type": "header",
+        "content": "购物车抽屉文案"
+      },
+      {
+        "type": "text",
+        "id": "cart_drawer_title",
+        "label": "抽屉标题",
+        "default": "Your Cart"
+      },
+      {
+        "type": "text",
+        "id": "cart_preview_label",
+        "label": "预览按钮文字",
+        "default": "Preview"
+      },
+      {
+        "type": "text",
+        "id": "cart_continue_label",
+        "label": "继续购物按钮文字",
+        "default": "Continue shopping"
+      },
+      {
+        "type": "text",
+        "id": "cart_edit_label",
+        "label": "编辑定制文字",
+        "default": "Edit Design"
+      },
+      {
+        "type": "text",
+        "id": "cart_custom_info_label",
+        "label": "定制信息下拉框名称",
+        "default": "Custom Info"
+      },
+      {
+        "type": "text",
+        "id": "cart_checkout_label",
+        "label": "结账按钮文字",
+        "default": "SECURE CHECKOUT"
+      },
+      {
+        "type": "text",
+        "id": "cart_subtotal_label",
+        "label": "小计文字",
+        "default": "Subtotal"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_show_payment_icons",
+        "label": "显示支付方式图标",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "cart_payment_icon_mode",
+        "label": "支付图标显示方式",
+        "options": [
+          {
+            "value": "automatic",
+            "label": "自动显示所有已启用方式"
+          },
+          {
+            "value": "manual",
+            "label": "手动选择"
+          }
+        ],
+        "default": "automatic"
+      },
+      {
+        "type": "paragraph",
+        "content": "手动模式只会显示下面勾选且店铺实际已启用的支付方式。"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_payment_visa",
+        "label": "Visa",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_payment_master",
+        "label": "Mastercard",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_payment_american_express",
+        "label": "American Express",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_payment_paypal",
+        "label": "PayPal",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_payment_apple_pay",
+        "label": "Apple Pay",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_payment_google_pay",
+        "label": "Google Pay",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_payment_shopify_pay",
+        "label": "Shop Pay",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_payment_discover",
+        "label": "Discover",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_payment_jcb",
+        "label": "JCB",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_payment_unionpay",
+        "label": "UnionPay",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "cart_payment_label",
+        "label": "支付方式无障碍说明",
+        "default": "Accepted payment methods"
+      },
+      {
+        "type": "header",
+        "content": "购物车抽屉品牌配色"
+      },
+      {
+        "type": "color",
+        "id": "cart_drawer_accent",
+        "label": "Secure Checkout 按钮底色",
+        "default": "#FA7B17"
+      },
+      {
+        "type": "color",
+        "id": "cart_drawer_accent_text",
+        "label": "Secure Checkout 按钮文字",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "cart_drawer_link",
+        "label": "Preview、Edit Design 和链接颜色",
+        "default": "#0A2759"
+      },
+      {
+        "type": "header",
+        "content": "买多优惠进度条（抽屉顶部）"
+      },
+      {
+        "type": "text",
+        "id": "cart_vd_status_0",
+        "label": "0 件提示",
+        "default": "Buy 2 eligible items to save 10%"
+      },
+      {
+        "type": "text",
+        "id": "cart_vd_status_1",
+        "label": "1 件提示",
+        "default": "Add 1 more eligible item to save 10%"
+      },
+      {
+        "type": "text",
+        "id": "cart_vd_status_2",
+        "label": "2 件提示",
+        "default": "Buy 2 Get 10% OFF"
+      },
+      {
+        "type": "text",
+        "id": "cart_vd_status_3",
+        "label": "3 件提示",
+        "default": "Buy 3 Get 15% OFF"
+      },
+      {
+        "type": "text",
+        "id": "cart_vd_status_4",
+        "label": "4 件及以上提示",
+        "default": "Buy 4 Get 20% OFF"
+      },
+      {
+        "type": "text",
+        "id": "cart_vd_milestone_2",
+        "label": "第 1 个节点文字",
+        "default": "Buy 2 Get 10% OFF"
+      },
+      {
+        "type": "text",
+        "id": "cart_vd_milestone_3",
+        "label": "第 2 个节点文字",
+        "default": "Buy 3 Get 15% OFF"
+      },
+      {
+        "type": "text",
+        "id": "cart_vd_milestone_4",
+        "label": "第 3 个节点文字",
+        "default": "Buy 4 Get 20% OFF"
+      },
+      {
+        "type": "color",
+        "id": "cart_vd_background",
+        "label": "进度区底色",
+        "default": "#FAF8F5"
+      },
+      {
+        "type": "color",
+        "id": "cart_vd_track",
+        "label": "进度条未完成颜色",
+        "default": "#D5E1F2"
+      },
+      {
+        "type": "color",
+        "id": "cart_vd_fill",
+        "label": "进度条已完成颜色",
+        "default": "#0A2759"
+      },
+      {
+        "type": "color",
+        "id": "cart_vd_border",
+        "label": "进度区边框颜色",
+        "default": "#0A2759"
+      },
+      {
+        "type": "color",
+        "id": "cart_vd_text",
+        "label": "提示文字颜色",
+        "default": "#0A2759"
+      },
+      {
+        "type": "color",
+        "id": "cart_vd_muted_text",
+        "label": "节点文字颜色",
+        "default": "#52657D"
+      },
+      {
+        "type": "range",
+        "id": "cart_vd_radius",
+        "label": "进度区圆角",
+        "min": 0,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "包邮进度条（购物车抽屉）"
+      },
+      {
+        "type": "number",
+        "id": "free_shipping_threshold",
+        "label": "包邮门槛金额（美元）",
+        "info": "购物车满该金额即免邮，例如填 70 表示满 $70 包邮；填 0 隐藏横幅。",
+        "default": 70
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_text_progress",
+        "label": "横幅文案（未达包邮门槛）",
+        "info": "可加 emoji；用 {amount} 代表还差的金额，例如：🚚 You're {amount} away from FREE shipping!",
+        "default": "🚚 You're {amount} away from FREE shipping!"
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_text_unlocked",
+        "label": "横幅文案（已达包邮门槛）",
+        "info": "可加 emoji，例如：🎉 Congrats! You've unlocked FREE shipping!",
+        "default": "🎉 Congrats! You've unlocked FREE shipping!"
+      },
+      {
+        "type": "select",
+        "id": "free_shipping_align_desktop",
+        "label": "横幅文字对齐（电脑端）",
+        "options": [
+          { "value": "left", "label": "靠左" },
+          { "value": "center", "label": "居中" },
+          { "value": "right", "label": "靠右" }
+        ],
+        "default": "left"
+      },
+      {
+        "type": "select",
+        "id": "free_shipping_align_mobile",
+        "label": "横幅文字对齐（手机端）",
+        "options": [
+          { "value": "left", "label": "靠左" },
+          { "value": "center", "label": "居中" },
+          { "value": "right", "label": "靠右" }
+        ],
+        "default": "center"
+      },
+      {
+        "type": "font_picker",
+        "id": "free_shipping_font",
+        "label": "横幅字体（含粗细）",
+        "info": "嫌细就选 Medium/SemiBold 以上的字重",
+        "default": "poppins_n5"
+      },
+      {
+        "type": "color",
+        "id": "free_shipping_background",
+        "label": "未达包邮门槛底色",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "free_shipping_text_color",
+        "label": "未达包邮门槛文字",
+        "default": "#0A2759"
+      },
+      {
+        "type": "color",
+        "id": "free_shipping_amount_color",
+        "label": "剩余金额颜色",
+        "default": "#FA7B17"
+      },
+      {
+        "type": "color",
+        "id": "free_shipping_unlocked_background",
+        "label": "已包邮底色",
+        "default": "#0A2759"
+      },
+      {
+        "type": "color",
+        "id": "free_shipping_unlocked_text",
+        "label": "已包邮文字",
+        "default": "#FFFFFF"
       }
     ]
   }

@@ -11,11 +11,13 @@
 }
 
 .volume-discount-offer {
-  --vd-background: #f7faff;
-  --vd-tier-background: #eaf2fd;
-  --vd-border: #91cfee;
-  --vd-text: #17263b;
-  --vd-accent: #244a85;
+  --vd-background: #fff7f0;
+  --vd-tier-background: #fff;
+  --vd-border: #f3c49d;
+  --vd-text: #0a2759;
+  --vd-muted-text: #52657d;
+  --vd-accent: #fa7b17;
+  --vd-badge-text: #fff;
   --vd-radius: 10px;
   --vd-title-size: 18px;
   --vd-body-size: 15px;
@@ -84,7 +86,7 @@
 .volume-discount-offer__compact-tiers > span {
   border: 0.2rem solid var(--vd-border);
   border-radius: calc(var(--vd-radius) * 0.8);
-  color: #52657d;
+  color: var(--vd-muted-text);
   font-size: 1.2rem;
   line-height: 1.25;
   min-width: 0;
@@ -181,7 +183,7 @@
 }
 
 .volume-discount-offer__prices s {
-  color: #8c9bb0;
+  color: var(--vd-muted-text);
   font-size: 1.3rem;
   margin-top: 0.3rem;
 }
@@ -189,7 +191,7 @@
 .volume-discount-offer__save {
   background: var(--vd-accent);
   border-radius: 99rem;
-  color: #fff;
+  color: var(--vd-badge-text);
   font-size: 1rem;
   font-weight: 800;
   padding: 0.4rem 0.8rem;
@@ -200,7 +202,7 @@
 }
 
 .volume-discount-offer__details > p {
-  color: #60728a;
+  color: var(--vd-muted-text);
   font-size: 1.25rem;
   line-height: 1.4;
   margin: 0.2rem 0 0;
@@ -208,7 +210,7 @@
 }
 
 .volume-discount-progress {
-  background: #edf4fd;
+  background: var(--vd-background, #edf4fd);
   border-bottom: 0.1rem solid var(--vd-border, #d5e1f2);
   border-top: 0.1rem solid var(--vd-border, #d5e1f2);
   padding: 1.2rem 1.6rem 1rem;
@@ -223,26 +225,48 @@
 }
 
 .volume-discount-progress__track {
-  background: #cad7e9;
-  border-radius: 0.3rem;
-  height: 0.6rem;
-  margin-top: 1rem;
+  background: var(--vd-track, #d5e1f2);
+  border: 0.1rem solid #9ed8f2;
+  border-radius: 0.6rem;
+  height: 1.2rem;
+  margin-top: 0;
   overflow: hidden;
 }
 
 .volume-discount-progress__track span {
-  background: var(--vd-accent, #244a85);
+  background: linear-gradient(90deg, #b8e6f8, #74c8ea);
   display: block;
   height: 100%;
+  animation: volume-discount-fill 0.9s ease-out;
+}
+
+@keyframes volume-discount-fill {
+  from {
+    width: 0;
+  }
 }
 
 .volume-discount-progress__milestones {
-  color: #52657d;
-  display: flex;
+  color: var(--vd-muted-text, #52657d);
+  display: grid;
   font-size: 1.05rem;
-  justify-content: space-between;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   line-height: 1.3;
   margin-top: 0.5rem;
+}
+
+.volume-discount-progress__milestones span:nth-child(2) {
+  text-align: center;
+}
+
+.volume-discount-progress__milestones span:last-child {
+  text-align: right;
+}
+
+.volume-discount-progress__milestones span.is-active {
+  color: #d92d20;
+  font-size: 1.15rem;
+  font-weight: 800;
 }
 
 [data-template='cart'] .volume-discount-progress {
@@ -254,7 +278,6 @@
 .product-card-wrapper .card__heading.product-card-title--1,
 .product-card-wrapper .card__heading.product-card-title--1 a {
   display: -webkit-box !important;
-  min-height: 1.4em !important;
   overflow: hidden !important;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1 !important;
@@ -263,7 +286,6 @@
 .product-card-wrapper .card__heading.product-card-title--2,
 .product-card-wrapper .card__heading.product-card-title--2 a {
   display: -webkit-box !important;
-  min-height: 2.8em !important;
   overflow: hidden !important;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2 !important;
@@ -277,18 +299,12 @@
   -webkit-line-clamp: unset !important;
 }
 
-[data-template='index'] .product-card-wrapper .rating-star {
-  font-size: var(--product-star-size, 18px) !important;
-  letter-spacing: 0.2rem;
-}
-
 [data-template='index'] .product-card-wrapper .jdgm-star {
   font-size: var(--product-star-size, 18px) !important;
 }
 
-[data-template='index'] .product-card-wrapper .cuszoo-card-rating {
+.product-card-wrapper .cuszoo-card-rating {
   display: flex;
-  min-height: 2.2rem;
   align-items: center;
   gap: 0.4rem;
   margin-bottom: 0.4rem;
@@ -297,66 +313,72 @@
   line-height: 1;
 }
 
-[data-template='index'] .product-card-wrapper .cuszoo-card-rating__stars {
-  display: inline-flex;
-  gap: 0.15rem;
-  color: #f4c430;
-  font-size: var(--product-star-size, 18px);
+/* Judge.me Star Rating Badge supplies the actual stars and review count. */
+.product-card-wrapper .jdgm-widget.cuszoo-card-rating {
+  margin-bottom: 0.4rem;
+  color: #0a2759;
 }
 
-[data-template='index'] .product-card-wrapper .cuszoo-card-rating__star {
-  position: relative;
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  color: #f4c430;
-  line-height: 1;
+.product-card-wrapper .jdgm-widget.cuszoo-card-rating .jdgm-prev-badge__text {
+  color: rgba(10, 39, 89, 0.72);
 }
 
-[data-template='index'] .product-card-wrapper .cuszoo-card-rating__star::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  overflow: hidden;
-  color: #f4c430;
-  content: '★';
-  white-space: nowrap;
-}
-
-[data-template='index'] .product-card-wrapper .cuszoo-card-rating__star--full::before {
-  width: 100%;
-}
-
-[data-template='index'] .product-card-wrapper .cuszoo-card-rating__star--half::before {
-  width: 50%;
-}
-
-[data-template='index'] .product-card-wrapper .card__heading,
-[data-template='index'] .product-card-wrapper .card__heading a {
-  font-size: 1.4rem;
-  font-weight: 400;
+.product-card-wrapper .card__heading,
+.product-card-wrapper .card__heading a {
+  display: -webkit-box !important;
+  overflow: hidden !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2 !important;
+  font-size: 1.4rem !important;
+  font-weight: 400 !important;
   letter-spacing: 0;
 }
 
-[data-template='index'] .product-card-wrapper .price {
+.product-card-wrapper .price {
   font-size: 1.5rem;
   letter-spacing: 0;
 }
 
-[data-template='index'] .product-card-wrapper .price__regular .price-item--regular,
-[data-template='index'] .product-card-wrapper .price__sale .price-item--sale {
-  color: #f34028;
-  font-weight: 700;
+.product-card-wrapper .price__regular .price-item--regular {
+  color: #fa7b17 !important;
+  font-weight: 700 !important;
 }
 
-[data-template='index'] .product-card-wrapper .price__sale s.price-item--regular {
-  color: rgba(var(--color-foreground), 0.62);
-  font-size: 1.3rem;
-  font-weight: 400;
+.product-card-wrapper .price__sale .price-item--sale {
+  color: #f34028 !important;
+  font-weight: 700 !important;
+}
+
+/* A regular (non-sale) card price uses the brand orange. */
+.product-card-wrapper .price:not(.price--on-sale) .price__regular .price-item--regular {
+  color: #fa7b17 !important;
+}
+
+.product-card-wrapper
+  .price.volume-pricing--sale-badge
+  .price__regular
+  .price-item--regular:not(s):not(.variant-item__old-price) {
+  color: #f34028 !important;
+}
+
+/* Sale badges belong on product detail pages, not inside product grids. */
+.product-card-wrapper .price__badge-sale,
+.product-card-wrapper .badge.price__badge-sale {
+  display: none !important;
+}
+
+.product-card-wrapper .price__sale s.price-item--regular {
+  color: rgba(var(--color-foreground), 0.62) !important;
+  font-size: 1.3rem !important;
+  font-weight: 400 !important;
 }
 
 @media screen and (max-width: 749px) {
+  .product-card-wrapper .cuszoo-card-rating {
+    gap: 0.25rem;
+    font-size: 1.2rem;
+  }
+
   /* Teeinblue writes a desktop sticky-gallery height inline; reset it on mobile. */
   #tee-gallery.tee-gallery-content {
     height: auto !important;

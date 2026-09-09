@@ -12,22 +12,38 @@
       assign buy_2_price = buy_2_regular | times: 90 | divided_by: 100
       assign buy_3_price = buy_3_regular | times: 85 | divided_by: 100
       assign buy_4_price = buy_4_regular | times: 80 | divided_by: 100
+      assign vd_title = block.settings.vd_title | default: settings.vd_title
+      assign vd_buy_2 = block.settings.vd_buy_2 | default: settings.vd_buy_2
+      assign vd_buy_3 = block.settings.vd_buy_3 | default: settings.vd_buy_3
+      assign vd_buy_4 = block.settings.vd_buy_4 | default: settings.vd_buy_4
+      assign vd_from = block.settings.vd_from | default: settings.vd_from
+      assign vd_footer = block.settings.vd_footer | default: settings.vd_footer
+      assign vd_background = block.settings.vd_background | default: settings.vd_background
+      assign vd_tier_background = block.settings.vd_tier_background | default: settings.vd_tier_background
+      assign vd_border = block.settings.vd_border | default: settings.vd_border
+      assign vd_text = block.settings.vd_text | default: settings.vd_text
+      assign vd_muted_text = block.settings.vd_muted_text | default: '#52657D'
+      assign vd_accent = block.settings.vd_accent | default: settings.vd_accent
+      assign vd_badge_text = block.settings.vd_badge_text | default: '#FFFFFF'
+      assign vd_radius = block.settings.vd_radius | default: settings.vd_radius
+      assign vd_title_size = block.settings.vd_title_size | default: settings.vd_title_size
+      assign vd_body_size = block.settings.vd_body_size | default: settings.vd_body_size
     -%}
     <details
       class="volume-discount-offer"
-      style="--vd-background: {{ settings.vd_background }}; --vd-tier-background: {{ settings.vd_tier_background }}; --vd-border: {{ settings.vd_border }}; --vd-text: {{ settings.vd_text }}; --vd-accent: {{ settings.vd_accent }}; --vd-radius: {{ settings.vd_radius }}px; --vd-title-size: {{ settings.vd_title_size }}px; --vd-body-size: {{ settings.vd_body_size }}px;"
+      style="--vd-background: {{ vd_background }}; --vd-tier-background: {{ vd_tier_background }}; --vd-border: {{ vd_border }}; --vd-text: {{ vd_text }}; --vd-muted-text: {{ vd_muted_text }}; --vd-accent: {{ vd_accent }}; --vd-badge-text: {{ vd_badge_text }}; --vd-radius: {{ vd_radius }}px; --vd-title-size: {{ vd_title_size }}px; --vd-body-size: {{ vd_body_size }}px;"
     >
       <summary class="volume-discount-offer__summary">
         <div class="volume-discount-offer__summary-content">
           <div class="volume-discount-offer__title">
             <span aria-hidden="true"></span>
-            <strong>{{ settings.vd_title | escape }}</strong>
+            <strong>{{ vd_title | escape }}</strong>
             <span aria-hidden="true"></span>
           </div>
           <div class="volume-discount-offer__compact-tiers">
-            <span>2 ITEMS <strong>SAVE 10%</strong></span>
-            <span>3 ITEMS <strong>SAVE 15%</strong></span>
-            <span>4+ ITEMS <strong>SAVE 20%</strong></span>
+            <span>{{ block.settings.vd_compact_2_items | escape }} <strong>{{ block.settings.vd_compact_2_save | escape }}</strong></span>
+            <span>{{ block.settings.vd_compact_3_items | escape }} <strong>{{ block.settings.vd_compact_3_save | escape }}</strong></span>
+            <span>{{ block.settings.vd_compact_4_items | escape }} <strong>{{ block.settings.vd_compact_4_save | escape }}</strong></span>
           </div>
         </div>
         <span class="volume-discount-offer__chevron" aria-hidden="true"></span>
@@ -36,37 +52,37 @@
         <div class="volume-discount-offer__tier">
           <span class="volume-discount-offer__tier-copy">
             <span class="volume-discount-offer__marker" aria-hidden="true"></span>
-            <strong>{{ settings.vd_buy_2 | escape }}</strong>
+            <strong>{{ vd_buy_2 | escape }}</strong>
           </span>
           <span class="volume-discount-offer__prices">
-            <strong>{% if product.price_varies %}{{ settings.vd_from | escape }} {% endif %}{{ buy_2_price | money }}</strong>
+            <strong>{% if product.price_varies %}{{ vd_from | escape }} {% endif %}{{ buy_2_price | money }}</strong>
             <s>{{ buy_2_regular | money }}</s>
           </span>
-          <span class="volume-discount-offer__save">SAVE 10%!</span>
+          <span class="volume-discount-offer__save">{{ block.settings.vd_save_2 | escape }}</span>
         </div>
         <div class="volume-discount-offer__tier">
           <span class="volume-discount-offer__tier-copy">
             <span class="volume-discount-offer__marker" aria-hidden="true"></span>
-            <strong>{{ settings.vd_buy_3 | escape }}</strong>
+            <strong>{{ vd_buy_3 | escape }}</strong>
           </span>
           <span class="volume-discount-offer__prices">
-            <strong>{% if product.price_varies %}{{ settings.vd_from | escape }} {% endif %}{{ buy_3_price | money }}</strong>
+            <strong>{% if product.price_varies %}{{ vd_from | escape }} {% endif %}{{ buy_3_price | money }}</strong>
             <s>{{ buy_3_regular | money }}</s>
           </span>
-          <span class="volume-discount-offer__save">SAVE 15%!</span>
+          <span class="volume-discount-offer__save">{{ block.settings.vd_save_3 | escape }}</span>
         </div>
         <div class="volume-discount-offer__tier">
           <span class="volume-discount-offer__tier-copy">
             <span class="volume-discount-offer__marker" aria-hidden="true"></span>
-            <strong>{{ settings.vd_buy_4 | escape }}</strong>
+            <strong>{{ vd_buy_4 | escape }}</strong>
           </span>
           <span class="volume-discount-offer__prices">
-            <strong>{% if product.price_varies %}{{ settings.vd_from | escape }} {% endif %}{{ buy_4_price | money }}</strong>
+            <strong>{% if product.price_varies %}{{ vd_from | escape }} {% endif %}{{ buy_4_price | money }}</strong>
             <s>{{ buy_4_regular | money }}</s>
           </span>
-          <span class="volume-discount-offer__save">SAVE 20%!</span>
+          <span class="volume-discount-offer__save">{{ block.settings.vd_save_4 | escape }}</span>
         </div>
-        <p>{{ settings.vd_footer | escape }}</p>
+        <p>{{ vd_footer | escape }}</p>
       </div>
     </details>
   {%- endunless -%}
@@ -79,32 +95,61 @@
       endunless
     endfor
 
-    if eligible_quantity == 0
-      assign status_text = 'Buy 2 eligible items to save 10%'
+    assign middle_milestone = ''
+    assign final_milestone = ''
+    assign active_milestone = ''
+    assign show_progress = true
+
+    if drawer_context
+      assign milestone_2 = settings.cart_vd_milestone_2 | replace: ' Get ', ' Save '
+      assign milestone_3 = settings.cart_vd_milestone_3 | replace: ' Get ', ' Save '
+      assign milestone_4 = settings.cart_vd_milestone_4 | replace: ' Get ', ' Save '
+
+      if eligible_quantity == 0
+        assign show_progress = false
+      elsif eligible_quantity == 1
+        assign progress_percent = 50
+        assign final_milestone = milestone_2
+      elsif eligible_quantity == 2
+        assign progress_percent = 50
+        assign middle_milestone = milestone_2
+        assign final_milestone = milestone_3
+        assign active_milestone = 'middle'
+      elsif eligible_quantity == 3
+        assign progress_percent = 50
+        assign middle_milestone = milestone_3
+        assign final_milestone = milestone_4
+        assign active_milestone = 'middle'
+      else
+        assign progress_percent = 100
+        assign middle_milestone = milestone_3
+        assign final_milestone = milestone_4
+        assign active_milestone = 'final'
+      endif
+    elsif eligible_quantity == 0 or eligible_quantity == 1
       assign progress_percent = 0
-    elsif eligible_quantity == 1
-      assign status_text = 'Add 1 more eligible item to save 10%'
-      assign progress_percent = 25
-    elsif eligible_quantity == 2
-      assign status_text = '10% OFF unlocked - add 1 more to save 15%'
+    elsif eligible_quantity == 2 or eligible_quantity == 3
       assign progress_percent = 50
-    elsif eligible_quantity == 3
-      assign status_text = '15% OFF unlocked - add 1 more to save 20%'
-      assign progress_percent = 75
     else
-      assign status_text = '20% OFF unlocked - highest savings applied'
       assign progress_percent = 100
     endif
   -%}
-  <div class="volume-discount-progress" role="status" style="--vd-border: {{ settings.vd_border }}; --vd-text: {{ settings.vd_text }}; --vd-accent: {{ settings.vd_accent }}; --vd-radius: {{ settings.vd_radius }}px;">
-    <p>{{ status_text }}</p>
-    <div class="volume-discount-progress__track" aria-hidden="true">
-      <span style="width: {{ progress_percent }}%"></span>
+  {%- if show_progress -%}
+    <div class="volume-discount-progress" role="status" style="--vd-background: {{ settings.cart_vd_background }}; --vd-track: {{ settings.cart_vd_track }}; --vd-border: {{ settings.cart_vd_border }}; --vd-text: {{ settings.cart_vd_text }}; --vd-muted-text: {{ settings.cart_vd_muted_text }}; --vd-accent: {{ settings.cart_vd_fill }}; --vd-radius: {{ settings.cart_vd_radius }}px;">
+      <div class="volume-discount-progress__track" aria-hidden="true">
+        <span style="width: {{ progress_percent }}%"></span>
+      </div>
+      <div class="volume-discount-progress__milestones" aria-hidden="true">
+        {%- if drawer_context -%}
+          <span></span>
+          <span{% if active_milestone == 'middle' %} class="is-active"{% endif %}>{{ middle_milestone | escape }}</span>
+          <span{% if active_milestone == 'final' %} class="is-active"{% endif %}>{{ final_milestone | escape }}</span>
+        {%- else -%}
+          <span{% if eligible_quantity == 2 %} class="is-active"{% endif %}>{{ settings.cart_vd_milestone_2 | escape }}</span>
+          <span{% if eligible_quantity == 3 %} class="is-active"{% endif %}>{{ settings.cart_vd_milestone_3 | escape }}</span>
+          <span{% if eligible_quantity >= 4 %} class="is-active"{% endif %}>{{ settings.cart_vd_milestone_4 | escape }}</span>
+        {%- endif -%}
+      </div>
     </div>
-    <div class="volume-discount-progress__milestones" aria-hidden="true">
-      <span>2 · 10%</span>
-      <span>3 · 15%</span>
-      <span>4+ · 20%</span>
-    </div>
-  </div>
+  {%- endif -%}
 {%- endif -%}

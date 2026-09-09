@@ -20,6 +20,10 @@
     "cart-footer": {
       "type": "main-cart-footer",
       "blocks": {
+        "volume_discount": {
+          "type": "volume_discount",
+          "settings": {}
+        },
         "subtotal": {
           "type": "subtotal",
           "settings": {}
@@ -54,6 +58,7 @@
         }
       },
       "block_order": [
+        "volume_discount",
         "subtotal",
         "buttons",
         "payment_methods",

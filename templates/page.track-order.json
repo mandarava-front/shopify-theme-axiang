@@ -15,22 +15,22 @@
         "faq_delivery": {
           "type": "faq",
           "settings": {
-            "question": "When will I receive my order?",
-            "answer": "<p>Add your normal processing and shipping timeframe here. Customers receive tracking information by email after the order ships.</p>"
+            "question": "When can I expect my order to arrive?",
+            "answer": "<p>Most Cuszoo products are personalized and made especially for you, so your order needs time for both production and shipping.</p><p>Under normal circumstances, the estimated total delivery time is:</p><ul><li><strong>United States: 10–20 business days</strong></li><li><strong>International destinations: 15–25 business days</strong></li></ul><p>These estimates may vary during peak seasons or because of customs clearance, severe weather, carrier delays, or other circumstances outside our control.</p><p>Once your order has shipped, we’ll send a confirmation email containing your tracking details. If you don’t see it in your inbox, please check your spam or junk folder.</p>"
           }
         },
         "faq_number": {
           "type": "faq",
           "settings": {
-            "question": "My tracking number doesn't work",
-            "answer": "<p>Tracking events can take time to appear after a shipping label is created. Add the waiting period used by your carriers here.</p>"
+            "question": "Why isn’t my tracking number showing any information?",
+            "answer": "<p>Tracking information usually becomes available within <strong>48–96 hours</strong> after you receive your shipping confirmation.</p><p>A tracking number may be created before the carrier completes its first scan, so it can take a few days for the initial update to appear. Some products and shipping routes may require a little more time.</p><p>If your tracking still shows no information after 96 hours, please contact us with your order number and tracking number.</p>"
           }
         },
         "faq_stuck": {
           "type": "faq",
           "settings": {
-            "question": "Why is my order tracking not moving?",
-            "answer": "<p>Weather, customs clearance, and carrier backlogs can delay tracking updates. Add your support contact and escalation timeframe here.</p>"
+            "question": "Why has my tracking stopped updating?",
+            "answer": "<p>Packages are not always scanned at every stage of their journey. This means your order may still be moving even if the tracking page hasn’t changed recently.</p><p>Temporary pauses can also happen because of customs processing, weather conditions, peak-season volume, or delays at a local carrier facility.</p><p>If your tracking has not changed for <strong>10–15 days</strong>, please reach out through our <strong>Contact Us</strong> page and include your order number and tracking number. Our support team will check the shipment and help you with the next steps.</p>"
           }
         }
       },

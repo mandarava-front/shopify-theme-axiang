@@ -1,0 +1,69 @@
+{%- liquid
+  assign popular_items = settings.search_popular_suggestions | default: 'Best sellers\nNew arrivals\nPersonalized gifts' | newline_to_br | split: '<br />'
+  assign category_items = settings.search_categories | default: 'T-Shirts|/collections/t-shirts\nHoodies|/collections/hoodies\nAccessories|/collections/accessories' | newline_to_br | split: '<br />'
+  assign tag_items = settings.search_recommended_tags | default: 'Pet gifts|pet\nMemorial gifts|memorial\nCustom portraits|custom' | newline_to_br | split: '<br />'
+-%}
+<div class="cuszoo-search-empty cuszoo-search-layout" data-search-empty>
+  <div class="cuszoo-search-column">
+    <div class="cuszoo-search-empty__group">
+      <h2 class="predictive-search__heading">Popular suggestions</h2>
+      <ul class="list-unstyled cuszoo-search-links" role="list">
+        {%- for item in popular_items -%}
+          {%- assign label = item | strip_html | strip -%}
+          {%- if label != blank -%}
+            <li><a href="{{ routes.search_url }}?q={{ label | url_encode }}&options%5Bprefix%5D=last">{{ label | escape }}</a></li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+    <div class="cuszoo-search-empty__group">
+      <h2 class="predictive-search__heading">Categories</h2>
+      <ul class="list-unstyled cuszoo-search-links" role="list">
+        {%- for item in category_items -%}
+          {%- assign parts = item | strip_html | split: '|' -%}
+          {%- assign label = parts[0] | strip -%}
+          {%- assign url = parts[1] | strip -%}
+          {%- if label != blank -%}
+            <li><a href="{{ url | default: routes.all_products_collection_url }}">{{ label | escape }}</a></li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+
+  <div class="cuszoo-search-column">
+    <div class="cuszoo-search-empty__group cuszoo-search-empty__products">
+      <h2 class="predictive-search__heading">Products</h2>
+      {%- if settings.search_featured_products != blank -%}
+        <ul class="list-unstyled" role="list">
+          {%- for product in settings.search_featured_products limit: 4 -%}
+            <li>
+              <a class="predictive-search__item predictive-search__item--link-with-thumbnail link link--text" href="{{ product.url }}">
+                {%- if product.featured_media -%}
+                  <img class="predictive-search__image" src="{{ product.featured_media | image_url: width: 120 }}" alt="{{ product.featured_media.alt | escape }}" width="50" height="50">
+                {%- endif -%}
+                <span class="predictive-search__item-content predictive-search__item-content--centered">
+                  <span class="predictive-search__item-heading h5">{{ product.title | escape }}</span>
+                </span>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+        <a class="cuszoo-search-view-more" href="{{ routes.all_products_collection_url }}">View more</a>
+      {%- endif -%}
+    </div>
+    <div class="cuszoo-search-empty__group">
+      <h2 class="predictive-search__heading">Recommended collections</h2>
+      <div class="cuszoo-search-tags">
+        {%- for item in tag_items -%}
+          {%- assign parts = item | strip_html | split: '|' -%}
+          {%- assign label = parts[0] | strip -%}
+          {%- assign query = parts[1] | default: label | strip -%}
+          {%- if label != blank -%}
+            <a href="{{ routes.search_url }}?q={{ query | url_encode }}&options%5Bprefix%5D=last">{{ label | escape }}</a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'section-related-products.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
@@ -28,30 +29,43 @@
     data-product-id="{{ product.id }}"
   >
     {% if section.settings.product_source == 'shopify' and recommendations.performed and recommendations.products_count > 0 %}
-      <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
-        {{ section.settings.heading }}
-      </h2>
-      <ul
-        class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
-        role="list"
-      >
-        {% assign skip_card_product_styles = false %}
-        {% for recommendation in recommendations.products %}
-          <li class="grid__item">
-            {% render 'card-product',
-              card_product: recommendation,
-              media_aspect_ratio: section.settings.image_ratio,
-              image_shape: section.settings.image_shape,
-              show_secondary_image: section.settings.show_secondary_image,
-              show_vendor: section.settings.show_vendor,
-              show_rating: section.settings.show_rating,
-              skip_styles: skip_card_product_styles,
-              product_view_context: 'recommendation'
-            %}
-          </li>
-          {%- assign skip_card_product_styles = true -%}
-        {% endfor %}
-      </ul>
+      <slider-component class="related-products__slider">
+        <div class="related-products__header">
+          <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
+            {{ section.settings.heading }}
+          </h2>
+          <div class="related-products__slider-buttons">
+            <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'general.slider.previous_slide' | t }}">
+              <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+            </button>
+            <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'general.slider.next_slide' | t }}">
+              <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+            </button>
+          </div>
+        </div>
+        <ul
+          id="Slider-{{ section.id }}"
+          class="grid product-grid slider slider--mobile grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
+          role="list"
+        >
+          {% assign skip_card_product_styles = false %}
+          {% for recommendation in recommendations.products %}
+            <li id="Slide-{{ section.id }}-{{ forloop.index }}" class="grid__item slider__slide">
+              {% render 'card-product',
+                card_product: recommendation,
+                media_aspect_ratio: section.settings.image_ratio,
+                image_shape: section.settings.image_shape,
+                show_secondary_image: section.settings.show_secondary_image,
+                show_vendor: section.settings.show_vendor,
+                show_rating: section.settings.show_rating,
+                skip_styles: skip_card_product_styles,
+                product_view_context: 'recommendation'
+              %}
+            </li>
+            {%- assign skip_card_product_styles = true -%}
+          {% endfor %}
+        </ul>
+      </slider-component>
     {% else %}
       {%- comment -%}
         Fallback: if Shopify's recommendation API hasn't returned products yet,
@@ -66,34 +80,47 @@
         assign fallback_products = fallback_source.products
       -%}
       {%- if fallback_products.size > 0 -%}
-        <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
-          {{ section.settings.heading }}
-        </h2>
-        <ul
-          class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
-          role="list"
-        >
-          {% assign skip_card_product_styles = false %}
-          {% assign shown = 0 %}
-          {% for fallback_product in fallback_products %}
-            {%- if fallback_product.id == product.id -%}{%- continue -%}{%- endif -%}
-            {%- if shown >= section.settings.products_to_show -%}{%- break -%}{%- endif -%}
-            <li class="grid__item">
-              {% render 'card-product',
-                card_product: fallback_product,
-                media_aspect_ratio: section.settings.image_ratio,
-                image_shape: section.settings.image_shape,
-                show_secondary_image: section.settings.show_secondary_image,
-                show_vendor: section.settings.show_vendor,
-                show_rating: section.settings.show_rating,
-                skip_styles: skip_card_product_styles,
-                product_view_context: 'recommendation'
-              %}
-            </li>
-            {%- assign skip_card_product_styles = true -%}
-            {%- assign shown = shown | plus: 1 -%}
-          {% endfor %}
-        </ul>
+        <slider-component class="related-products__slider">
+          <div class="related-products__header">
+            <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
+              {{ section.settings.heading }}
+            </h2>
+            <div class="related-products__slider-buttons">
+              <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'general.slider.previous_slide' | t }}">
+                <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+              </button>
+              <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'general.slider.next_slide' | t }}">
+                <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+              </button>
+            </div>
+          </div>
+          <ul
+            id="Slider-{{ section.id }}"
+            class="grid product-grid slider slider--mobile grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
+            role="list"
+          >
+            {% assign skip_card_product_styles = false %}
+            {% assign shown = 0 %}
+            {% for fallback_product in fallback_products %}
+              {%- if fallback_product.id == product.id -%}{%- continue -%}{%- endif -%}
+              {%- if shown >= section.settings.products_to_show -%}{%- break -%}{%- endif -%}
+              <li id="Slide-{{ section.id }}-{{ shown | plus: 1 }}" class="grid__item slider__slide">
+                {% render 'card-product',
+                  card_product: fallback_product,
+                  media_aspect_ratio: section.settings.image_ratio,
+                  image_shape: section.settings.image_shape,
+                  show_secondary_image: section.settings.show_secondary_image,
+                  show_vendor: section.settings.show_vendor,
+                  show_rating: section.settings.show_rating,
+                  skip_styles: skip_card_product_styles,
+                  product_view_context: 'recommendation'
+                %}
+              </li>
+              {%- assign skip_card_product_styles = true -%}
+              {%- assign shown = shown | plus: 1 -%}
+            {% endfor %}
+          </ul>
+        </slider-component>
       {%- endif -%}
     {% endif %}
   </product-recommendations>

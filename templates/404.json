@@ -12,9 +12,107 @@
     "main": {
       "type": "main-404",
       "settings": {}
+    },
+    "visual_link_grid_xdaj9d": {
+      "type": "visual-link-grid",
+      "blocks": {
+        "link_QQxNhP": {
+          "type": "link",
+          "settings": {
+            "asset_image": "",
+            "external_image_url": "",
+            "collection": "pets",
+            "title": "",
+            "link": "",
+            "eyebrow": ""
+          }
+        },
+        "link_CMwNyc": {
+          "type": "link",
+          "settings": {
+            "asset_image": "",
+            "external_image_url": "",
+            "collection": "couples",
+            "title": "",
+            "link": "",
+            "eyebrow": ""
+          }
+        },
+        "link_BLapjN": {
+          "type": "link",
+          "settings": {
+            "asset_image": "",
+            "external_image_url": "",
+            "collection": "family-gifts",
+            "title": "",
+            "link": "",
+            "eyebrow": ""
+          }
+        },
+        "link_i6kpUU": {
+          "type": "link",
+          "settings": {
+            "asset_image": "",
+            "external_image_url": "",
+            "collection": "best-dad-ever",
+            "title": "",
+            "link": "",
+            "eyebrow": ""
+          }
+        },
+        "link_RdrVG9": {
+          "type": "link",
+          "settings": {
+            "asset_image": "",
+            "external_image_url": "",
+            "collection": "moms",
+            "title": "",
+            "link": "",
+            "eyebrow": ""
+          }
+        },
+        "link_RFxLYC": {
+          "type": "link",
+          "settings": {
+            "asset_image": "",
+            "external_image_url": "",
+            "collection": "grandparents",
+            "title": "",
+            "link": "",
+            "eyebrow": ""
+          }
+        }
+      },
+      "block_order": [
+        "link_QQxNhP",
+        "link_CMwNyc",
+        "link_BLapjN",
+        "link_i6kpUU",
+        "link_RdrVG9",
+        "link_RFxLYC"
+      ],
+      "name": "可视链接网格",
+      "settings": {
+        "title": "Here are some recommendations.",
+        "subheading": "",
+        "heading_size": "h2",
+        "columns_desktop": 6,
+        "scroll_mode": "grid",
+        "show_slider_buttons": true,
+        "continuous_speed": 30,
+        "display_style": "cards",
+        "button_width_mode": "auto",
+        "button_width": 220,
+        "image_ratio": "square",
+        "background": "#FAF8F5",
+        "color_scheme": "",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "visual_link_grid_xdaj9d"
   ]
 }

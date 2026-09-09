@@ -149,6 +149,8 @@
       <script type="application/json" data-tracking-config>
         {
           "endpoint": {{ tracking_endpoint | json }},
+          "shopName": {{ shop.permanent_domain | remove: '.com' | json }},
+          "supportEmail": "support@cuszoo.com",
           "locale": {{ request.locale.iso_code | json }},
           "contactUrl": {{ section.settings.contact_page.url | json }},
           "submitLabel": {{ section.settings.submit_label | json }},
@@ -204,7 +206,7 @@
       "type": "text",
       "id": "order_number_placeholder",
       "label": "订单号输入提示",
-      "default": "Example: #TG123456"
+      "default": "Example: #1045"
     },
     {
       "type": "text",
@@ -258,7 +260,7 @@
       "id": "not_found_message",
       "label": "查询不到订单提示内容",
       "info": "订单号与邮箱都匹配不到订单时展示",
-      "default": "Please check that the order number is complete (for example #TG123456) and that the email address matches the one on your order confirmation. Orders placed in the last few minutes may take a little while to appear."
+      "default": "Sorry, we could not find your information at the moment. Please check whether you have received a shipping confirmation email. Due to carrier update frequency, tracking information may appear 48–96 hours after you receive the shipping email. If you have any questions, please contact our support team at support@cuszoo.com."
     },
     {
       "type": "textarea",

@@ -1,0 +1,40 @@
+/* Free shipping banner (self-contained: loads wherever the banner renders).
+   Text alignment and font come from theme settings rendered in the snippet. */
+.free-shipping-banner {
+  margin: 0 0 1.6rem;
+  padding: 1.4rem 1.6rem;
+  border-radius: 0.8rem;
+  background: var(--fs-background, #fff);
+  border: 0.1rem solid #e4ebf0;
+  overflow: hidden;
+  animation: free-shipping-open 0.6s ease-out;
+}
+
+.free-shipping-banner p {
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: var(--fs-text, #0a2759);
+}
+
+.free-shipping-banner__amount {
+  color: var(--fs-amount, #fa7b17);
+  font-weight: 700;
+}
+
+.free-shipping-banner--unlocked {
+  background: var(--fs-unlocked-background, #0a2759);
+  border-color: var(--fs-unlocked-background, #0a2759);
+}
+
+.free-shipping-banner--unlocked p {
+  color: var(--fs-unlocked-text, #fff);
+  font-weight: 600;
+}
+
+@keyframes free-shipping-open {
+  from {
+    opacity: 0;
+    transform: translateY(-0.8rem);
+  }
+}

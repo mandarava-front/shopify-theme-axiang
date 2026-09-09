@@ -6,6 +6,11 @@
   margin-bottom: 3rem;
 }
 
+.main-page-title--intellectual-property {
+  font-size: clamp(3rem, 4vw, 4.2rem);
+  line-height: 1.12;
+}
+
 @media screen and (min-width: 750px) {
   .main-page-title {
     margin-bottom: 4rem;

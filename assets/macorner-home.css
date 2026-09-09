@@ -480,10 +480,6 @@
   color: #f34028;
 }
 
-[data-template='index'] [id*='trending_now'] .rating-star {
-  --color-rating-star: #f4c430;
-}
-
 @media screen and (min-width: 990px) {
   [data-template='index'] [id*='trending_finds'] .cuszoo-visual-links__controls {
     position: absolute;

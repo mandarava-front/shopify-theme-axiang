@@ -1,0 +1,192 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "cuszoo-about-v2",
+      "blocks": {
+        "hero": {
+          "type": "hero",
+          "settings": {
+            "image_alt": "A personalized embroidered gift being made",
+            "eyebrow": "ABOUT CUSZOO",
+            "heading": "Made Personal. Kept Forever.",
+            "text": "<p>We turn the people, pets, and moments you love into gifts that feel unmistakably yours.</p>",
+            "button_label": "Explore Personalized Gifts",
+            "button_link": "shopify://pages/gift-finder"
+          }
+        },
+        "story": {
+          "type": "story",
+          "settings": {
+            "eyebrow": "OUR STORY",
+            "heading": "Small Details. Big Meaning.",
+            "text": "<p>The best gifts start with something real: a favorite photo, a meaningful name, or a moment you never want to lose.</p><p><br/>At Cuszoo, we turn those details into personal keepsakes for celebrating, remembering, and staying connected.</p>",
+            "image_1_alt": "Customer holding personalized gifts",
+            "image_2_alt": "Customer wearing a personalized shirt",
+            "image_3_alt": "Customer wearing a personalized hat",
+            "image_4_alt": "Customer carrying a personalized pet bag"
+          }
+        },
+        "process_header": {
+          "type": "process_header",
+          "settings": {
+            "eyebrow": "FROM MEMORY TO GIFT",
+            "heading": "Your Story, Made Tangible",
+            "text": "A few personal details are all it takes to begin."
+          }
+        },
+        "process_step_1": {
+          "type": "process_step",
+          "settings": {
+            "heading": "Start With Your Story",
+            "text": "Share a photo, name, message, or meaningful detail."
+          }
+        },
+        "process_step_2": {
+          "type": "process_step",
+          "settings": {
+            "heading": "Make It Personal",
+            "text": "Customize your design and preview your one‑of‑a‑kind piece."
+          }
+        },
+        "process_step_3": {
+          "type": "process_step",
+          "settings": {
+            "heading": "Keep the Moment Close",
+            "text": "Get your keepsake‑perfect for gifting, displaying, wearing or remembrance."
+          }
+        },
+        "connections_header": {
+          "type": "connections_header",
+          "settings": {
+            "eyebrow": "MADE FOR WHAT MATTERS",
+            "heading": "For Every Meaningful Connection",
+            "text": "Find something personal for the relationships and memories closest to you."
+          }
+        },
+        "connection_pet": {
+          "type": "connection",
+          "settings": {
+            "image": "shopify://shop_images/pet_banner.jpg",
+            "use_memory_fallback": false,
+            "image_alt": "A personalized gift celebrating a beloved pet",
+            "heading": "For the Pets We Love",
+            "text": "Personal gifts celebrating the bond that makes every day brighter.",
+            "link_label": "Explore pet gifts",
+            "link": "shopify://collections/pets"
+          }
+        },
+        "connection_family": {
+          "type": "connection",
+          "settings": {
+            "image": "shopify://shop_images/beach_banner.jpg",
+            "use_memory_fallback": false,
+            "image_alt": "A personalized keepsake created for family",
+            "heading": "For Family Moments",
+            "text": "Keepsakes for the people, traditions, and everyday moments that feel like home.",
+            "link_label": "Explore family gifts",
+            "link": "shopify://collections/family-gifts"
+          }
+        },
+        "connection_love": {
+          "type": "connection",
+          "settings": {
+            "image": "shopify://shop_images/valetines_banner.jpg",
+            "use_memory_fallback": false,
+            "image_alt": "A personalized gift for love and shared milestones",
+            "heading": "For Love & Milestones",
+            "text": "Thoughtful ways to celebrate your favorite person and every chapter together.",
+            "link_label": "Explore gifts for love",
+            "link": "shopify://collections/couples"
+          }
+        },
+        "connection_memory": {
+          "type": "connection",
+          "settings": {
+            "use_memory_fallback": true,
+            "image_alt": "A customer sharing a joyful moment with his dog",
+            "heading": "For Memories That Stay",
+            "text": "Personal keepsakes to hold onto meaningful people, pets, and precious moments.",
+            "link_label": "Explore memorial gifts",
+            "link": "shopify://collections/memorial-for-loved-ones"
+          }
+        },
+        "commitments_header": {
+          "type": "commitments_header",
+          "settings": {
+            "eyebrow": "THE CUSZOO PROMISE",
+            "heading": "Thoughtful From Start to Finish"
+          }
+        },
+        "commitment_meaning": {
+          "type": "commitment",
+          "settings": {
+            "icon": "volunteer_activism",
+            "heading": "Meaningful by Design",
+            "text": "Personal details are part of the design, not an afterthought."
+          }
+        },
+        "commitment_personal": {
+          "type": "commitment",
+          "settings": {
+            "icon": "auto_awesome",
+            "heading": "Made Around You",
+            "text": "Every creation begins with the story you choose to share."
+          }
+        },
+        "commitment_support": {
+          "type": "commitment",
+          "settings": {
+            "icon": "support_agent",
+            "heading": "Support When You Need It",
+            "text": "Help is available both before and after you place your order."
+          }
+        },
+        "final": {
+          "type": "final",
+          "settings": {
+            "image_alt": "",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "/collections/all",
+            "secondary_label": "",
+            "secondary_link": "/pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "hero",
+        "story",
+        "process_header",
+        "process_step_1",
+        "process_step_2",
+        "process_step_3",
+        "connections_header",
+        "connection_pet",
+        "connection_family",
+        "connection_love",
+        "connection_memory",
+        "commitments_header",
+        "commitment_meaning",
+        "commitment_personal",
+        "commitment_support",
+        "final"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

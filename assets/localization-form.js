@@ -157,7 +157,9 @@ if (!customElements.get('localization-form')) {
         event.preventDefault();
         const form = this.querySelector('form');
         this.elements.input.value = event.currentTarget.dataset.value;
-        if (form) form.submit();
+        if (!form) return;
+        if (typeof form.requestSubmit === 'function') form.requestSubmit();
+        else form.submit();
       }
 
       openSelector() {

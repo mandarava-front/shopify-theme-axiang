@@ -1,23 +1,24 @@
 <style type="text/css">
-  .template-404 .title + * {
-    margin-top: 1rem;
+  .template-404 {
+    text-align: center;
   }
 
-  @media screen and (min-width: 750px) {
-    .template-404 .title + * {
-      margin-top: 2rem;
+  .template-404 > .title {
+    max-width: 90rem;
+    margin: 0 auto;
+    color: #0a2759;
+    font-size: clamp(3.2rem, 5vw, 5.6rem);
+    line-height: 1.12;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 749px) {
+    .template-404 > .title {
+      font-size: 3rem;
     }
   }
 </style>
 
 <div class="template-404 page-width page-margin center">
-  <p>
-    {{ 'templates.404.subtext' | t }}
-  </p>
-  <h1 class="title">
-    {{ 'templates.404.title' | t }}
-  </h1>
-  <a href="{{ routes.all_products_collection_url }}" class="button">
-    {{ 'general.continue_shopping' | t }}
-  </a>
+  <h1 class="title">Oops, we couldn't find the product you're looking for.</h1>
 </div>

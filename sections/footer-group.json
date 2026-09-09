@@ -17,15 +17,15 @@
         "information": {
           "type": "link_list",
           "settings": {
-            "heading": "Information",
-            "menu": "customer-account-main-menu"
+            "heading": "ABOUT US",
+            "menu": "footer-about-us"
           }
         },
         "customer_service": {
           "type": "link_list",
           "settings": {
-            "heading": "Customer Service",
-            "menu": "footer"
+            "heading": "HELP CENTER",
+            "menu": "footer-help-center"
           }
         },
         "link_list_XELHhf": {
@@ -37,15 +37,14 @@
         "help": {
           "type": "link_list",
           "settings": {
-            "heading": "Help",
-            "menu": "information"
+            "heading": "LEGAL & POLICIES",
+            "menu": "footer-legal-policies"
           }
         }
       },
       "block_order": [
         "information",
         "customer_service",
-        "link_list_XELHhf",
         "help"
       ],
       "settings": {
@@ -56,12 +55,16 @@
         "newsletter_text": "Join us for free gift inspiration, extra savings, and alerts on our latest drops.",
         "newsletter_placeholder": "Enter your email",
         "newsletter_button_label": "Subscribe",
+        "logo_width_desktop": 200,
+        "logo_width_mobile": 150,
         "email_label": "Email",
         "contact_email": "support@cuszoo.com",
         "service_hours_label": "Customer service",
-        "service_hours": "Monday-Friday, 9:00 AM-5:00 PM",
+        "service_hours": "Monday-Friday, 9:30 AM-5:00 PM",
         "follow_label": "Follow us on",
         "show_brand_social": true,
+        "facebook_url": "",
+        "tiktok_url": "",
         "show_dmca_badge": true,
         "dmca_alt": "",
         "dmca_url": "",
