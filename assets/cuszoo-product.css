@@ -902,3 +902,13 @@ product-recommendations.related-products:not(:has(.grid)) {
   }
 
 }
+
+/* cuszoo-variant-availability.js hides option values the current combination
+   cannot reach. It sets `hidden` too, but that loses to the pill/swatch rules
+   in component-product-variant-picker.css and component-swatch-input.css, which
+   give the labels and the swatch group an explicit display. */
+.product-form__input.cuszoo-option-hidden,
+.product-form__input--pill input[type='radio'] + label.cuszoo-option-hidden,
+.product-form__input--swatch .swatch-input__input + .swatch-input__label.cuszoo-option-hidden {
+  display: none;
+}
