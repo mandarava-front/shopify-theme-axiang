@@ -13,12 +13,33 @@
       {% for block in section.blocks %}
         <article class="cuszoo-home-steps__item" {{ block.shopify_attributes }}>
           {% assign image = block.settings.image %}
+          {% assign asset_image_small = blank %}
+          {% case block.settings.asset_image %}
+            {% when 'cuszoo-personalization-1.webp' %}
+              {% assign asset_image_small = 'cuszoo-personalization-1-400.webp' %}
+            {% when 'cuszoo-personalization-2.webp' %}
+              {% assign asset_image_small = 'cuszoo-personalization-2-400.webp' %}
+            {% when 'cuszoo-personalization-3.webp' %}
+              {% assign asset_image_small = 'cuszoo-personalization-3-400.webp' %}
+            {% when 'cuszoo-personalization-4.webp' %}
+              {% assign asset_image_small = 'cuszoo-personalization-4-400.webp' %}
+          {% endcase %}
           {% if image != blank or block.settings.asset_image != blank %}
             <div class="cuszoo-home-steps__media">
               {% if image != blank %}
                 {{ image | image_url: width: 800 | image_tag: widths: '400, 600, 800', sizes: '(min-width: 750px) 25vw, 50vw', loading: 'lazy', alt: block.settings.image_alt }}
               {% else %}
-                <img src="{{ block.settings.asset_image | asset_url }}" width="800" height="800" loading="lazy" alt="{{ block.settings.image_alt | escape }}">
+                <img
+                  {% if asset_image_small != blank %}
+                    srcset="{{ asset_image_small | asset_url }} 400w, {{ block.settings.asset_image | asset_url }} 800w"
+                    sizes="(min-width: 750px) 25vw, 50vw"
+                  {% endif %}
+                  src="{{ block.settings.asset_image | asset_url }}"
+                  width="800"
+                  height="800"
+                  loading="lazy"
+                  alt="{{ block.settings.image_alt | escape }}"
+                >
               {% endif %}
             </div>
           {% endif %}

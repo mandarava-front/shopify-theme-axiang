@@ -21,6 +21,17 @@
   display: none;
 }
 
+.back-to-top__icon,
+.back-to-top__icon .icon {
+  width: 2rem;
+  height: 1.2rem;
+}
+
+.back-to-top__icon {
+  display: inline-flex;
+  transform: rotate(180deg);
+}
+
 .back-to-top:hover {
   filter: brightness(0.94);
 }

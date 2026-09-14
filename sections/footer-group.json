@@ -71,6 +71,7 @@
         "show_social": true,
         "enable_country_selector": true,
         "show_policy": true,
+        "show_payment_icons": false,
         "copyright_suffix": "All Rights Reserved.",
         "show_powered_by": false
       }

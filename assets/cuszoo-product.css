@@ -74,6 +74,17 @@
   border-radius: 0.6rem;
 }
 
+/* The base theme draws a 6px navy media shadow below product images. It reads
+   like a decorative bar on the product page, so remove both the shadow and
+   its reserved desktop space while keeping the media itself unchanged. */
+[data-template='product'] .product__media-list {
+  padding-bottom: 0;
+}
+
+[data-template='product'] .product__media-list .global-media-settings::after {
+  box-shadow: none;
+}
+
 [data-template='product'] .thumbnail {
   background: #fff;
   border: 0.1rem solid #e0dad6;
@@ -903,10 +914,9 @@ product-recommendations.related-products:not(:has(.grid)) {
 
 }
 
-/* cuszoo-variant-availability.js hides option values the current combination
-   cannot reach. It sets `hidden` too, but that loses to the pill/swatch rules
-   in component-product-variant-picker.css and component-swatch-input.css, which
-   give the labels and the swatch group an explicit display. */
+/* cuszoo-variant-availability.js marks unavailable option values with a
+   class because the theme's pill and swatch rules override the [hidden]
+   attribute with an explicit display value. */
 .product-form__input.cuszoo-option-hidden,
 .product-form__input--pill input[type='radio'] + label.cuszoo-option-hidden,
 .product-form__input--swatch .swatch-input__input + .swatch-input__label.cuszoo-option-hidden {

@@ -193,8 +193,7 @@
       {%- render 'social-icons', class: 'mc-footer__social' -%}
     {%- endif -%}
 
-    {%- comment -%} `!= false` on purpose: section-group settings missing from the stored JSON render blank, and blank means enabled. {%- endcomment -%}
-    {%- if section.settings.show_payment_icons != false and shop.enabled_payment_types.size > 0 -%}
+    {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
       <ul class="mc-footer__payment list-unstyled" role="list">
         {%- for type in shop.enabled_payment_types -%}
           <li>{{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}</li>
@@ -210,34 +209,6 @@
     </div>
   </div>
 </footer>
-
-{%- comment -%} Hide the Oceanpayment app-injected payment icon bar appended after the footer. {%- endcomment -%}
-<script>
-  (function () {
-    function hideOceanpaymentBar() {
-      var footer = document.querySelector('footer');
-      if (!footer) return false;
-      var next = footer.nextElementSibling;
-      while (next) {
-        if (next.tagName === 'DIV' && next.querySelector('img[src*="oceanpayment"]')) {
-          next.style.display = 'none';
-          return true;
-        }
-        next = next.nextElementSibling;
-      }
-      return false;
-    }
-    hideOceanpaymentBar();
-    var observer = new MutationObserver(function () {
-      if (hideOceanpaymentBar()) observer.disconnect();
-    });
-    if (document.body) observer.observe(document.body, { childList: true, subtree: false });
-    setTimeout(function () {
-      hideOceanpaymentBar();
-      observer.disconnect();
-    }, 8000);
-  })();
-</script>
 
 {% schema %}
 {
@@ -391,6 +362,12 @@
       "id": "enable_country_selector",
       "default": true,
       "label": "t:sections.footer.settings.enable_country_selector.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "default": true,
+      "label": "显示主题支付图标"
     },
     {
       "type": "checkbox",

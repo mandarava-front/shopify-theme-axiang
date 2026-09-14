@@ -1,5 +1,7 @@
 <div id="cart-icon-bubble">
-  <span class="cuszoo-header-solid-icon material-icons-round" aria-hidden="true">shopping_cart</span>
+  <span class="cuszoo-header-solid-icon" aria-hidden="true">
+    {{- 'icon-cart.svg' | inline_asset_content -}}
+  </span>
 
   <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
   {%- if cart != empty -%}

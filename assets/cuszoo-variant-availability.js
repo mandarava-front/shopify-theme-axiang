@@ -143,9 +143,9 @@
 
     apply();
     /* product-info.js swaps whole nodes rather than their contents — the
-       variant-selects element on every option change, and <main> itself when a
-       combined listing switches product — so the observer sits on body and the
-       root is looked up again on each pass. */
+       variant-selects element on every option change, and <main> itself when
+       a combined listing switches product — so the observer sits on body and
+       the root is looked up again on each pass. */
     new MutationObserver(schedule).observe(document.body, { childList: true, subtree: true });
   }
 

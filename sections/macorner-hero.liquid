@@ -1,8 +1,10 @@
 {{ 'macorner-home.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'macorner-hero.js' | asset_url }}" defer="defer"></script>
 
 {%- assign slide_count = section.blocks | where: 'type', 'slide' | size -%}
 {%- assign shortcut_count = section.blocks | where: 'type', 'shortcut' | size -%}
+{%- if slide_count > 1 -%}
+  <script src="{{ 'macorner-hero.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
 
 {%- style -%}
   #shopify-section-{{ section.id }} {
@@ -31,7 +33,15 @@
               {%- if block.settings.mobile_image != blank -%}
                 <source media="(max-width: 749px)" srcset="{{ block.settings.mobile_image | image_url: width: 900 }}">
               {%- elsif block.settings.asset_mobile_image != blank -%}
-                <source media="(max-width: 749px)" srcset="{{ block.settings.asset_mobile_image | asset_url }}">
+                {%- if block.settings.asset_mobile_image == 'cuszoo-home-hero-mobile.webp' -%}
+                  <source
+                    media="(max-width: 749px)"
+                    srcset="{{ 'cuszoo-home-hero-mobile-750.webp' | asset_url }} 750w, {{ block.settings.asset_mobile_image | asset_url }} 1330w"
+                    sizes="100vw"
+                  >
+                {%- else -%}
+                  <source media="(max-width: 749px)" srcset="{{ block.settings.asset_mobile_image | asset_url }}">
+                {%- endif -%}
               {%- elsif block.settings.external_mobile_image_url != blank -%}
                 <source media="(max-width: 749px)" srcset="{{ block.settings.external_mobile_image_url }}">
               {%- endif -%}
@@ -50,7 +60,15 @@
               {%- if block.settings.mobile_image != blank -%}
                 <source media="(max-width: 749px)" srcset="{{ block.settings.mobile_image | image_url: width: 900 }}">
               {%- elsif block.settings.asset_mobile_image != blank -%}
-                <source media="(max-width: 749px)" srcset="{{ block.settings.asset_mobile_image | asset_url }}">
+                {%- if block.settings.asset_mobile_image == 'cuszoo-home-hero-mobile.webp' -%}
+                  <source
+                    media="(max-width: 749px)"
+                    srcset="{{ 'cuszoo-home-hero-mobile-750.webp' | asset_url }} 750w, {{ block.settings.asset_mobile_image | asset_url }} 1330w"
+                    sizes="100vw"
+                  >
+                {%- else -%}
+                  <source media="(max-width: 749px)" srcset="{{ block.settings.asset_mobile_image | asset_url }}">
+                {%- endif -%}
               {%- elsif block.settings.external_mobile_image_url != blank -%}
                 <source media="(max-width: 749px)" srcset="{{ block.settings.external_mobile_image_url }}">
               {%- endif -%}
@@ -67,7 +85,15 @@
               {%- if block.settings.mobile_image != blank -%}
                 <source media="(max-width: 749px)" srcset="{{ block.settings.mobile_image | image_url: width: 900 }}">
               {%- elsif block.settings.asset_mobile_image != blank -%}
-                <source media="(max-width: 749px)" srcset="{{ block.settings.asset_mobile_image | asset_url }}">
+                {%- if block.settings.asset_mobile_image == 'cuszoo-home-hero-mobile.webp' -%}
+                  <source
+                    media="(max-width: 749px)"
+                    srcset="{{ 'cuszoo-home-hero-mobile-750.webp' | asset_url }} 750w, {{ block.settings.asset_mobile_image | asset_url }} 1330w"
+                    sizes="100vw"
+                  >
+                {%- else -%}
+                  <source media="(max-width: 749px)" srcset="{{ block.settings.asset_mobile_image | asset_url }}">
+                {%- endif -%}
               {%- elsif block.settings.external_mobile_image_url != blank -%}
                 <source media="(max-width: 749px)" srcset="{{ block.settings.external_mobile_image_url }}">
               {%- endif -%}
