@@ -2,6 +2,7 @@
   id="MainProduct-{{ section.id }}"
   class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
   data-section="{{ section.id }}"
+  data-thumbnail-position="{{ section.settings.thumbnail_position | default: 'bottom' }}"
   data-product-id="{{ product.id }}"
   data-update-url="true"
   data-url="{{ product.url }}"
@@ -43,6 +44,8 @@
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+  {{ 'product-gallery-layout.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'product-gallery-layout.js' | asset_url }}" defer="defer"></script>
   {%- if product.quantity_price_breaks_configured? -%}
     <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
@@ -94,7 +97,7 @@
           <span aria-current="page">{{ product.title | escape }}</span>
         </nav>
       {%- endif -%}
-      <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
+      <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--thumbnail-{{ section.settings.thumbnail_position | default: 'bottom' }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
         <div class="grid__item product__media-wrapper">
           {% render 'product-media-gallery', variant_images: variant_images %}
         </div>
@@ -121,7 +124,7 @@
                     {{- block.settings.text -}}
                   </p>
                 {%- when 'title' -%}
-                  <div class="product__title" data-cuszoo-product-block="title" {{ block.shopify_attributes }}>
+                  <div class="product__title" data-cuszoo-product-block="title" style="--product-title-size-desktop: {{ block.settings.title_size_desktop | default: 22 }}px; --product-title-size-mobile: {{ block.settings.title_size_mobile | default: 24 }}px; --product-title-weight: {{ block.settings.title_weight | default: 'var(--font-heading-weight)' }};{% if block.settings.title_color != blank %} --product-title-color: {{ block.settings.title_color }};{% endif %}" {{ block.shopify_attributes }}>
                     <h1>{{ product.title | escape }}</h1>
                     <a href="{{ product.url }}" class="product__title">
                       <h2 class="h1">
@@ -1075,7 +1078,15 @@
     {
       "type": "title",
       "name": "t:sections.main-product.blocks.title.name",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        { "type": "range", "id": "title_size_desktop", "min": 14, "max": 48, "step": 1, "unit": "px", "label": "桌面标题字号", "default": 22 },
+        { "type": "range", "id": "title_size_mobile", "min": 14, "max": 36, "step": 1, "unit": "px", "label": "移动标题字号", "default": 24 },
+        { "type": "select", "id": "title_weight", "label": "标题字重", "options": [
+          { "value": "var(--font-heading-weight)", "label": "跟随主题" }, { "value": "400", "label": "常规" }, { "value": "500", "label": "中等" }, { "value": "600", "label": "半粗" }, { "value": "700", "label": "粗体" }
+        ], "default": "var(--font-heading-weight)" },
+        { "type": "color", "id": "title_color", "label": "标题颜色" }
+      ]
     },
     {
       "type": "price",
@@ -2806,6 +2817,17 @@
       ],
       "default": "stacked",
       "label": "t:sections.main-product.settings.gallery_layout.label"
+    },
+    {
+      "type": "select",
+      "id": "thumbnail_position",
+      "options": [
+        { "value": "bottom", "label": "缩略图在下方" },
+        { "value": "left", "label": "缩略图在左侧" }
+      ],
+      "default": "bottom",
+      "label": "桌面端缩略图位置",
+      "info": "适用于缩略图模式及定制应用画廊；移动端保留原布局。"
     },
     {
       "type": "select",
