@@ -295,16 +295,6 @@
   font-size: 2.8rem;
 }
 
-.macorner-trust__icon--svg,
-.macorner-trust__icon--svg .icon {
-  width: 2.8rem;
-  height: 2.8rem;
-}
-
-.macorner-trust__icon--svg {
-  display: inline-flex;
-}
-
 .macorner-trust__item strong {
   display: block;
   color: rgb(var(--cuszoo-navy));

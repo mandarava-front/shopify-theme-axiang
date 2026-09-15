@@ -3,7 +3,6 @@ class CuszooCollectionTabs extends HTMLElement {
     this.tabs = Array.from(this.querySelectorAll('[role="tab"]'));
     this.panels = Array.from(this.querySelectorAll('[role="tabpanel"]'));
     this.seeAllLink = this.querySelector('[data-cuszoo-tabs-see-all]');
-    this.panelRequests = new Map();
     this.productSliders = this.panels.map((panel) => this.initProductSlider(panel));
 
     this.tabs.forEach((tab, index) => {
@@ -26,62 +25,7 @@ class CuszooCollectionTabs extends HTMLElement {
       this.seeAllLink.href = this.tabs[index].dataset.collectionUrl;
     }
 
-    this.loadPanel(index);
     requestAnimationFrame(() => this.productSliders[index]?.update());
-  }
-
-  loadPanel(index) {
-    const panel = this.panels[index];
-    const tab = this.tabs[index];
-    const track = panel?.querySelector('[data-cuszoo-tabs-track]');
-    const status = panel?.querySelector('[data-cuszoo-tabs-status]');
-
-    if (!panel || !tab || !track || panel.dataset.productsLoaded === 'true') return;
-    if (this.panelRequests.has(index)) return;
-
-    const collectionUrl = tab.dataset.collectionUrl;
-    if (!collectionUrl) return;
-
-    const requestUrl = new URL(collectionUrl, window.location.origin);
-    requestUrl.searchParams.set('view', 'tabbed-products');
-    panel.dataset.productsLoading = 'true';
-    panel.setAttribute('aria-busy', 'true');
-    if (status) {
-      status.textContent = 'Loading products…';
-      status.hidden = false;
-    }
-
-    const request = fetch(requestUrl.toString(), {
-      headers: { Accept: 'text/html' },
-      credentials: 'same-origin',
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error(`Collection products request failed: ${response.status}`);
-        return response.text();
-      })
-      .then((html) => {
-        const loadedDocument = new DOMParser().parseFromString(html, 'text/html');
-        const loadedTrack = loadedDocument.querySelector('[data-cuszoo-tab-products] [data-cuszoo-tabs-track]');
-        if (!loadedTrack) throw new Error('Collection products markup is missing');
-
-        track.innerHTML = loadedTrack.innerHTML;
-        panel.dataset.productsLoaded = 'true';
-        delete panel.dataset.productsLoading;
-        panel.removeAttribute('aria-busy');
-        if (status) status.hidden = true;
-        requestAnimationFrame(() => this.productSliders[index]?.update());
-      })
-      .catch(() => {
-        delete panel.dataset.productsLoading;
-        panel.removeAttribute('aria-busy');
-        if (status) {
-          status.textContent = 'Unable to load products. Please try again.';
-          status.hidden = false;
-        }
-      })
-      .finally(() => this.panelRequests.delete(index));
-
-    this.panelRequests.set(index, request);
   }
 
   initProductSlider(panel) {

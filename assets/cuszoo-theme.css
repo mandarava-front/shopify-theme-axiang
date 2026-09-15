@@ -183,18 +183,6 @@ button.shopify-payment-button__button--unbranded {
   line-height: 1;
 }
 
-.header__icon .cuszoo-header-solid-icon,
-.header__icon .cuszoo-header-solid-icon .icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  color: #0A2759;
-  fill: currentColor;
-}
-
-.header__icon .cuszoo-header-solid-icon {
-  display: inline-flex;
-}
-
 .header__icon.cuszoo-header-wishlist {
   display: none;
 }

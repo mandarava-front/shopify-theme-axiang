@@ -85,37 +85,6 @@
             assign block_external_image = block.settings.external_image_url
             assign block_title = block.settings.title | default: block_collection.title | default: 'Collection'
             assign block_link = block.settings.link | default: block_collection.url | default: routes.collections_url
-            assign block_asset_image_small = blank
-            case block_asset_image
-              when 'occasion-birthday-gifts.webp'
-                assign block_asset_image_small = 'occasion-birthday-gifts-400.webp'
-              when 'occasion-memorial-gifts.webp'
-                assign block_asset_image_small = 'occasion-memorial-gifts-400.webp'
-              when 'occasion-gifts-for-mom.webp'
-                assign block_asset_image_small = 'occasion-gifts-for-mom-400.webp'
-              when 'occasion-gifts-for-dad.webp'
-                assign block_asset_image_small = 'occasion-gifts-for-dad-400.webp'
-              when 'occasion-gifts-for-grandparents.webp'
-                assign block_asset_image_small = 'occasion-gifts-for-grandparents-400.webp'
-              when 'occasion-gifts-for-couples.webp'
-                assign block_asset_image_small = 'occasion-gifts-for-couples-400.webp'
-              when 'occasion-pet-lovers.webp'
-                assign block_asset_image_small = 'occasion-pet-lovers-400.webp'
-              when 'occasion-sports-lovers.webp'
-                assign block_asset_image_small = 'occasion-sports-lovers-400.webp'
-              when 'occasion-gardening-lovers.webp'
-                assign block_asset_image_small = 'occasion-gardening-lovers-400.webp'
-              when 'occasion-book-lovers.webp'
-                assign block_asset_image_small = 'occasion-book-lovers-400.webp'
-              when 'occasion-home-living.webp'
-                assign block_asset_image_small = 'occasion-home-living-400.webp'
-              when 'occasion-gifts-for-her.webp'
-                assign block_asset_image_small = 'occasion-gifts-for-her-400.webp'
-              when 'occasion-gifts-for-him.webp'
-                assign block_asset_image_small = 'occasion-gifts-for-him-400.webp'
-              when 'occasion-apparel-accessories.webp'
-                assign block_asset_image_small = 'occasion-apparel-accessories-400.webp'
-            endcase
           -%}
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
@@ -136,14 +105,10 @@
                   }}
                 {%- elsif block_asset_image != blank -%}
                   <img
-                    {% if block_asset_image_small != blank %}
-                      srcset="{{ block_asset_image_small | asset_url }} 400w, {{ block_asset_image | asset_url }} 800w"
-                      sizes="(min-width: 990px) calc((100vw - 10rem) / 6), 45vw"
-                    {% endif %}
                     src="{{ block_asset_image | asset_url }}"
                     alt="{{ block_title | escape }}"
-                    width="800"
-                    height="800"
+                    width="600"
+                    height="600"
                     loading="lazy"
                   >
                 {%- elsif block_collection.featured_image != blank -%}

@@ -281,16 +281,12 @@
           class="header__icon cuszoo-header-wishlist link focus-inset small-hide medium-hide"
           aria-label="{{ section.settings.wishlist_label | escape }}"
         >
-          <span class="cuszoo-header-solid-icon" aria-hidden="true">
-            {{- 'icon-heart.svg' | inline_asset_content -}}
-          </span>
+          <span class="cuszoo-header-solid-icon material-icons-round" aria-hidden="true">favorite</span>
         </a>
       {%- endif -%}
 
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
-        <span class="cuszoo-header-solid-icon" aria-hidden="true">
-          {{- 'icon-cart.svg' | inline_asset_content -}}
-        </span>
+        <span class="cuszoo-header-solid-icon material-icons-round" aria-hidden="true">shopping_cart</span>
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}
           <div class="cart-count-bubble">

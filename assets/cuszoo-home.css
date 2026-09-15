@@ -487,13 +487,6 @@ cuszoo-visual-links.is-reduced-motion .cuszoo-visual-links__grid--continuous {
   margin-top: 2rem;
 }
 
-.cuszoo-tabs__load-status {
-  margin: 1.2rem 0 0;
-  color: rgba(var(--color-foreground), 0.72);
-  text-align: center;
-  font-size: 1.4rem;
-}
-
 .cuszoo-tabs__panel .product-grid {
   margin-top: 0;
 }

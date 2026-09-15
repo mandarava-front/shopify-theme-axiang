@@ -235,9 +235,7 @@
                           <div class="cart-drawer__design-actions">
                             {%- if item.properties['_customily-customization-url'] != blank -%}
                               <a class="cart-drawer__edit-design" href="{{ item.properties['_customily-customization-url'] | escape }}">
-                                <span class="cart-drawer__action-icon" aria-hidden="true">
-                                  {{- 'icon-edit.svg' | inline_asset_content -}}
-                                </span>
+                                <span class="material-icons-round" aria-hidden="true">edit</span>
                                 {{ settings.cart_edit_label | default: 'Edit Design' | escape }}
                               </a>
                             {%- endif -%}
@@ -387,9 +385,7 @@
                               data-cart-preview-url="{{ personalization_preview | escape }}"
                               aria-haspopup="dialog"
                             >
-                              <span class="cart-drawer__action-icon" aria-hidden="true">
-                                {{- 'icon-search.svg' | inline_asset_content -}}
-                              </span>
+                              <span class="material-icons-round" aria-hidden="true">search</span>
                               {{ settings.cart_preview_label | default: 'Preview' | escape }}
                             </button>
                           {%- endif -%}
@@ -690,9 +686,7 @@
               disabled
             {% endif %}
           >
-            <span class="cart-drawer__checkout-icon" aria-hidden="true">
-              {{- 'icon-padlock.svg' | inline_asset_content -}}
-            </span>
+            <span class="material-icons-round" aria-hidden="true">lock</span>
             <span>{{ settings.cart_checkout_label | default: 'SECURE CHECKOUT' | escape }}</span>
           </button>
         </div>

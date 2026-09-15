@@ -24,8 +24,8 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Free Worldwide Shipping Over $70",
-            "link": ""
+            "text": "Free Shipping on Orders Over $70",
+            "link": "/policies/shipping-policy"
           }
         }
       },
