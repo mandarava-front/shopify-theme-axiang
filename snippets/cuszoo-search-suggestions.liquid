@@ -1,6 +1,6 @@
 {%- liquid
   assign popular_items = settings.search_popular_suggestions | default: 'Best sellers\nNew arrivals\nPersonalized gifts' | newline_to_br | split: '<br />'
-  assign category_items = settings.search_categories | default: 'Apparel|/collections/apparel\nDrink & Barware|/collections/drink-barware\nHome & Living|/collections/home-living\nAccessories|/collections/accessories' | newline_to_br | split: '<br />'
+  assign category_items = settings.search_categories | default: 'T-Shirts|/collections/t-shirts\nHoodies|/collections/hoodies\nAccessories|/collections/accessories' | newline_to_br | split: '<br />'
   assign tag_items = settings.search_recommended_tags | default: 'Pet gifts|pet\nMemorial gifts|memorial\nCustom portraits|custom' | newline_to_br | split: '<br />'
 -%}
 <div class="cuszoo-search-empty cuszoo-search-layout" data-search-empty>
