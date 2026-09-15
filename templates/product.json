@@ -113,7 +113,7 @@
             "day_mode": "business",
             "processing_min_days": 3,
             "processing_max_days": 7,
-            "transit_min_days": 7,
+            "transit_min_days": 5,
             "transit_max_days": 20,
             "summary_prefix": "Arrives by",
             "summary_suffix": "if you order today.",
@@ -148,12 +148,12 @@
             "day_mode": "business",
             "processing_min_days": 3,
             "processing_max_days": 7,
-            "transit_min_days": 7,
+            "transit_min_days": 5,
             "transit_max_days": 20,
             "order_label": "Order Placed:",
             "ship_label": "Order Ships:",
             "delivery_label": "Delivered:",
-            "notes": "<p>Orders can be cancelled or modified within 12 hours after being placed.</p><p>Canvas, poster and metal sign packages cannot be delivered to a PO box.</p>",
+            "notes": "<p>Orders can be cancelled or modified within 24 hours after being placed, provided production has not started.</p><p>Canvas, poster and metal sign packages cannot be delivered to a PO box.</p>",
             "show_shipping_policy": true,
             "show_refund_policy": true
           }

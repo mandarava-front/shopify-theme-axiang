@@ -1377,7 +1377,7 @@
         "type": "textarea",
         "id": "search_categories",
         "label": "搜索分类（每行：名称|链接）",
-        "default": "T-Shirts|/collections/t-shirts\nHoodies|/collections/hoodies\nAccessories|/collections/accessories"
+        "default": "Apparel|/collections/apparel\nDrink & Barware|/collections/drink-barware\nHome & Living|/collections/home-living\nAccessories|/collections/accessories"
       },
       {
         "type": "product_list",

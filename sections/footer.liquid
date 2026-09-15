@@ -92,6 +92,12 @@
         {%- if section.settings.service_hours != blank -%}
           <p><strong>{{ section.settings.service_hours_label | escape }}:</strong> {{ section.settings.service_hours | escape }}</p>
         {%- endif -%}
+        {%- if section.settings.operated_by != blank -%}
+          <p class="mc-footer__entity">{{ shop.name | escape }} is operated by <strong>{{ section.settings.operated_by | escape }}</strong></p>
+        {%- endif -%}
+        {%- if section.settings.business_address != blank -%}
+          <p class="mc-footer__address">{{ section.settings.business_address | escape }}</p>
+        {%- endif -%}
         {%- liquid
           assign brand_facebook_url = section.settings.facebook_url | default: settings.social_facebook_link
           assign brand_tiktok_url = section.settings.tiktok_url | default: settings.social_tiktok_link
@@ -350,6 +356,8 @@
     { "type": "text", "id": "contact_email", "label": "客服邮箱", "default": "support@example.com" },
     { "type": "text", "id": "service_hours_label", "label": "服务时间文字", "default": "Customer service" },
     { "type": "text", "id": "service_hours", "label": "客服时间", "default": "Monday-Friday, 9:30 AM-5:00 PM (CT)" },
+    { "type": "text", "id": "operated_by", "label": "运营法律主体" },
+    { "type": "text", "id": "business_address", "label": "主体注册地址" },
     { "type": "text", "id": "follow_label", "label": "社交媒体标题", "default": "Follow us on" },
     { "type": "checkbox", "id": "show_brand_social", "label": "在联系信息下显示社交图标", "default": true },
     { "type": "url", "id": "facebook_url", "label": "Facebook 链接" },
