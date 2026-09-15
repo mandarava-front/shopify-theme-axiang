@@ -301,9 +301,13 @@
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'cuszoo-theme.css' | asset_url | stylesheet_tag }}
-    <script src="{{ 'cuszoo-variant-availability.js' | asset_url }}" defer="defer"></script>
+    {%- if template contains 'product' -%}
+      <script src="{{ 'cuszoo-variant-availability.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
     {{ 'teeinblue-custom.css' | asset_url | stylesheet_tag }}
-    <script src="{{ 'teeinblue-layout.js' | asset_url }}" defer="defer"></script>
+    {%- if template contains 'product' -%}
+      <script src="{{ 'teeinblue-layout.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
     {%- if template contains 'product' -%}
       {{ 'customily-custom.css' | asset_url | stylesheet_tag }}
     {%- endif -%}
@@ -322,9 +326,20 @@
       {% comment %}theme-check-enable AssetPreload{% endcomment %}
     {%- endunless -%}
     {%- unless settings.type_header_font.system? -%}
-      {% comment %}theme-check-disable AssetPreload{% endcomment %}
-      <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
-      {% comment %}theme-check-enable AssetPreload{% endcomment %}
+      {%- assign preload_header_font = true -%}
+      {%- unless settings.type_body_font.system? -%}
+        {%- if settings.type_header_font.family == settings.type_body_font.family
+          and settings.type_header_font.style == settings.type_body_font.style
+          and settings.type_header_font.weight == settings.type_body_font.weight
+        -%}
+          {%- assign preload_header_font = false -%}
+        {%- endif -%}
+      {%- endunless -%}
+      {%- if preload_header_font -%}
+        {% comment %}theme-check-disable AssetPreload{% endcomment %}
+        <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+        {% comment %}theme-check-enable AssetPreload{% endcomment %}
+      {%- endif -%}
     {%- endunless -%}
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}

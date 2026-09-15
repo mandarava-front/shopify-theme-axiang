@@ -1,0 +1,46 @@
+{%- assign product_limit = section.settings.products_to_show | default: 6 -%}
+
+<div class="cuszoo-tabs__loaded-products" data-cuszoo-tab-products>
+  <ul
+    class="grid product-grid contains-card contains-card--product cuszoo-tabs__products"
+    role="list"
+    data-cuszoo-tabs-track
+  >
+    {%- assign skip_card_product_styles = false -%}
+    {%- for product in collection.products limit: product_limit -%}
+      <li class="grid__item">
+        {% render 'card-product',
+          card_product: product,
+          media_aspect_ratio: 'square',
+          image_shape: 'default',
+          lazy_load: true,
+          show_secondary_image: true,
+          show_vendor: false,
+          show_rating: true,
+          skip_styles: skip_card_product_styles,
+          section_id: section.id,
+          quick_add: 'none',
+          product_view_context: 'collection'
+        %}
+      </li>
+      {%- assign skip_card_product_styles = true -%}
+    {%- endfor -%}
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "选项卡商品加载",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "显示产品数量",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 6
+    }
+  ]
+}
+{% endschema %}

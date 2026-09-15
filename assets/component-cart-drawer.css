@@ -552,8 +552,18 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   font-family: inherit;
 }
 
-.cart-drawer__media-action .material-icons-round {
-  font-size: 1.8rem;
+.cart-drawer__action-icon,
+.cart-drawer__checkout-icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-drawer__action-icon,
+.cart-drawer__action-icon .icon {
+  width: 1.8rem;
+  height: 1.8rem;
 }
 
 .cart-preview-modal[hidden] {
@@ -733,10 +743,6 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   font-size: 1.35rem;
   font-weight: 700;
   text-underline-offset: 0.3rem;
-}
-
-.cart-drawer__edit-design .material-icons-round {
-  font-size: 1.8rem;
 }
 
 .cart-drawer__custom-info {
@@ -956,8 +962,10 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   box-shadow: none;
 }
 
-.cart-drawer .cart__checkout-button .material-icons-round {
-  font-size: 2rem;
+.cart-drawer__checkout-icon,
+.cart-drawer__checkout-icon .icon {
+  width: 2rem;
+  height: 2rem;
 }
 
 .cart-drawer__payment-list {

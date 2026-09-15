@@ -11,7 +11,36 @@
     <div class="macorner-trust__grid" role="list">
       {%- for block in section.blocks -%}
         <div class="macorner-trust__item" role="listitem" {{ block.shopify_attributes }}>
-          {%- render 'material-icon', icon: block.settings.icon, custom_icon: block.settings.custom_icon, class: 'macorner-trust__icon' -%}
+          {%- liquid
+            assign trust_icon = block.settings.custom_icon | default: block.settings.icon
+            case trust_icon
+              when 'check', 'check_circle'
+                assign trust_icon_asset = 'icon-checkmark.svg'
+              when 'truck', 'local_shipping'
+                assign trust_icon_asset = 'icon-truck.svg'
+              when 'lock'
+                assign trust_icon_asset = 'icon-lock.svg'
+              when 'heart', 'favorite'
+                assign trust_icon_asset = 'icon-heart.svg'
+              when 'credit_score'
+                assign trust_icon_asset = 'icon-credit-card.svg'
+              when 'inventory_2'
+                assign trust_icon_asset = 'icon-box.svg'
+              when 'shield_lock'
+                assign trust_icon_asset = 'icon-shield-lock.svg'
+              when 'flight'
+                assign trust_icon_asset = 'icon-plane.svg'
+              else
+                assign trust_icon_asset = blank
+            endcase
+          -%}
+          {%- if trust_icon_asset != blank -%}
+            <span class="macorner-trust__icon macorner-trust__icon--svg" aria-hidden="true">
+              {{- trust_icon_asset | inline_asset_content -}}
+            </span>
+          {%- else -%}
+            {%- render 'material-icon', icon: block.settings.icon, custom_icon: block.settings.custom_icon, class: 'macorner-trust__icon' -%}
+          {%- endif -%}
           <strong>{{ block.settings.heading | escape }}</strong>
           <p>{{ block.settings.text | escape }}</p>
         </div>

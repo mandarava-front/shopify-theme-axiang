@@ -1,5 +1,9 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-rating.css' | asset_url | stylesheet_tag }}
+{{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
+{{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
+{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 {{ 'cuszoo-home.css' | asset_url | stylesheet_tag }}
@@ -12,6 +16,13 @@
   if section.settings.image == blank and section.settings.asset_image != blank
     assign campaign_image_aspect = 1
   endif
+  assign asset_image_small = blank
+  case section.settings.asset_image
+    when 'cuszoo-tabs-pet-lovers.webp'
+      assign asset_image_small = 'cuszoo-tabs-pet-lovers-400.webp'
+    when 'cuszoo-tabs-couple-anniversary.webp'
+      assign asset_image_small = 'cuszoo-tabs-couple-anniversary-400.webp'
+  endcase
 -%}
 
 {%- if section.settings.quick_add == 'standard' -%}
@@ -95,6 +106,10 @@
           }}
         {%- elsif section.settings.asset_image != blank -%}
           <img
+            {% if asset_image_small != blank %}
+              srcset="{{ asset_image_small | asset_url }} 400w, {{ section.settings.asset_image | asset_url }} 800w"
+              sizes="(min-width: 750px) 42vw, 100vw"
+            {% endif %}
             src="{{ section.settings.asset_image | asset_url }}"
             alt="{{ section.settings.title | escape }}"
             width="800"
@@ -180,6 +195,7 @@
         data-desktop-rows="{{ section.settings.desktop_rows }}"
         data-mobile-layout="{{ section.settings.mobile_layout | replace: 'grid_2', 'fixed' }}"
         data-mobile-rows="{{ section.settings.mobile_rows }}"
+        data-products-loaded="{% if forloop.first %}true{% else %}false{% endif %}"
         style="--desktop-product-columns: {{ section.settings.columns_desktop }}; --desktop-product-rows: {{ section.settings.desktop_rows }}; --mobile-product-rows: {{ section.settings.mobile_rows }};"
         {% unless forloop.first %}hidden{% endunless %}
       >
@@ -191,39 +207,48 @@
             aria-label="{{ block.settings.label | default: tab_collection.title | escape }}"
             data-cuszoo-tabs-track
           >
-            {%- if tab_collection.products.size > 0 -%}
-              {%- for product in tab_collection.products limit: product_limit -%}
-                <li
-                  id="Slide-{{ section.id }}-{{ tab_index }}-{{ forloop.index }}"
-                  class="grid__item"
-                >
-                  {% render 'card-product',
-                    card_product: product,
-                    media_aspect_ratio: section.settings.image_ratio,
-                    image_shape: 'default',
-                    lazy_load: true,
-                    show_secondary_image: section.settings.show_secondary_image,
-                    show_vendor: section.settings.show_vendor,
-                    show_rating: section.settings.show_rating,
-                    section_id: block.id,
-                    quick_add: section.settings.quick_add,
-                    product_view_context: 'collection'
-                  %}
-                </li>
-              {%- endfor -%}
-            {%- else -%}
-              {%- for i in (1..products_to_display) -%}
-                <li
-                  id="Slide-{{ section.id }}-{{ tab_index }}-{{ forloop.index }}"
-                  class="grid__item"
-                >
-                  {%- assign placeholder_index = forloop.index0 | modulo: 4 | plus: 1 -%}
-                  {%- assign placeholder_image = 'product-apparel-' | append: placeholder_index -%}
-                  {% render 'card-product', media_aspect_ratio: section.settings.image_ratio, placeholder_image: placeholder_image %}
-                </li>
-              {%- endfor -%}
+            {%- if forloop.first -%}
+              {%- if tab_collection.products.size > 0 -%}
+                {%- for product in tab_collection.products limit: product_limit -%}
+                  <li
+                    id="Slide-{{ section.id }}-{{ tab_index }}-{{ forloop.index }}"
+                    class="grid__item"
+                  >
+                    {% render 'card-product',
+                      card_product: product,
+                      media_aspect_ratio: section.settings.image_ratio,
+                      image_shape: 'default',
+                      lazy_load: true,
+                      show_secondary_image: section.settings.show_secondary_image,
+                      show_vendor: section.settings.show_vendor,
+                      show_rating: section.settings.show_rating,
+                      skip_styles: true,
+                      section_id: block.id,
+                      quick_add: section.settings.quick_add,
+                      product_view_context: 'collection'
+                    %}
+                  </li>
+                {%- endfor -%}
+              {%- else -%}
+                {%- for i in (1..products_to_display) -%}
+                  <li
+                    id="Slide-{{ section.id }}-{{ tab_index }}-{{ forloop.index }}"
+                    class="grid__item"
+                  >
+                    {%- assign placeholder_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                    {%- assign placeholder_image = 'product-apparel-' | append: placeholder_index -%}
+                    {% render 'card-product',
+                      media_aspect_ratio: section.settings.image_ratio,
+                      placeholder_image: placeholder_image,
+                      skip_styles: true
+                    %}
+                  </li>
+                {%- endfor -%}
+              {%- endif -%}
             {%- endif -%}
           </ul>
+
+          <p class="cuszoo-tabs__load-status" data-cuszoo-tabs-status hidden aria-live="polite"></p>
 
           {%- if show_tab_slider -%}
             <div class="cuszoo-tabs__slider-controls" hidden>
