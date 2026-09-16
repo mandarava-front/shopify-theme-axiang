@@ -13,15 +13,15 @@
   assign desktop_product_capacity = section.settings.columns_desktop | times: section.settings.desktop_rows
   assign mobile_product_capacity = 2 | times: section.settings.mobile_rows
   assign campaign_image_aspect = section.settings.image.aspect_ratio | default: 1.6
-  if section.settings.image == blank and section.settings.asset_image != blank
+  if section.settings.image == blank and section.settings.image != blank
     assign campaign_image_aspect = 1
   endif
-  assign asset_image_small = blank
-  case section.settings.asset_image
+  assign image_small = blank
+  case section.settings.image
     when 'cuszoo-tabs-pet-lovers.webp'
-      assign asset_image_small = 'cuszoo-tabs-pet-lovers-400.webp'
+      assign image_small = 'cuszoo-tabs-pet-lovers-400.webp'
     when 'cuszoo-tabs-couple-anniversary.webp'
-      assign asset_image_small = 'cuszoo-tabs-couple-anniversary-400.webp'
+      assign image_small = 'cuszoo-tabs-couple-anniversary-400.webp'
   endcase
 -%}
 
@@ -104,13 +104,13 @@
               loading: 'lazy',
               alt: section.settings.title
           }}
-        {%- elsif section.settings.asset_image != blank -%}
+        {%- elsif section.settings.image != blank -%}
           <img
-            {% if asset_image_small != blank %}
-              srcset="{{ asset_image_small | asset_url }} 400w, {{ section.settings.asset_image | asset_url }} 800w"
+            {% if image_small != blank %}
+              srcset="{{ image_small | asset_url }} 400w, {{ section.settings.image | asset_url }} 800w"
               sizes="(min-width: 750px) 42vw, 100vw"
             {% endif %}
-            src="{{ section.settings.asset_image | asset_url }}"
+            src="{{ section.settings.image | asset_url }}"
             alt="{{ section.settings.title | escape }}"
             width="800"
             height="800"
@@ -277,8 +277,6 @@
   "disabled_on": { "groups": ["header", "footer"] },
   "settings": [
     { "type": "image_picker", "id": "image", "label": "活动图片（推荐 1200 × 1200px）" },
-    { "type": "text", "id": "asset_image", "label": "主题图片文件名（assets 内，可选）" },
-    { "type": "url", "id": "external_image_url", "label": "外部活动图片链接" },
     {
       "type": "select",
       "id": "campaign_image_fit",

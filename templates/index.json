@@ -2,9 +2,8 @@
  * ------------------------------------------------------------
  * IMPORTANT: The contents of this file are auto-generated.
  *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
+ * This file may be updated by the Shopify admin theme editor.
+ * Any manual edits will be lost.
  * ------------------------------------------------------------
  */
 {
@@ -15,8 +14,8 @@
         "slide-1": {
           "type": "slide",
           "settings": {
-            "asset_desktop_image": "cuszoo-home-hero-desktop.webp",
-            "asset_mobile_image": "cuszoo-home-hero-mobile.webp",
+            "asset_desktop_image": "",
+            "asset_mobile_image": "",
             "external_desktop_image_url": "",
             "external_mobile_image_url": "",
             "image_alt": "Personalized pet gifts",
@@ -47,7 +46,7 @@
         "occasion-1": {
           "type": "link",
           "settings": {
-            "asset_image": "occasion-birthday-gifts.webp",
+            "asset_image": "",
             "external_image_url": "",
             "collection": "birthday",
             "title": "Birthday Gifts",
@@ -58,7 +57,7 @@
         "occasion-2": {
           "type": "link",
           "settings": {
-            "asset_image": "occasion-memorial-gifts.webp",
+            "asset_image": "",
             "external_image_url": "",
             "collection": "memorial-for-loved-ones",
             "title": "Memorial Gifts",
@@ -69,7 +68,7 @@
         "occasion-3": {
           "type": "link",
           "settings": {
-            "asset_image": "occasion-gifts-for-mom.webp",
+            "asset_image": "",
             "external_image_url": "",
             "collection": "moms",
             "title": "Gifts for Mom",
@@ -80,7 +79,7 @@
         "occasion-4": {
           "type": "link",
           "settings": {
-            "asset_image": "occasion-gifts-for-dad.webp",
+            "asset_image": "",
             "external_image_url": "",
             "collection": "dads",
             "title": "Gifts for Dad",
@@ -91,7 +90,7 @@
         "occasion-5": {
           "type": "link",
           "settings": {
-            "asset_image": "occasion-gifts-for-grandparents.webp",
+            "asset_image": "",
             "external_image_url": "",
             "collection": "grandparents",
             "title": "Gifts for Grandparents",
@@ -102,7 +101,7 @@
         "occasion-6": {
           "type": "link",
           "settings": {
-            "asset_image": "occasion-gifts-for-couples.webp",
+            "asset_image": "",
             "external_image_url": "",
             "collection": "couples",
             "title": "Gifts for Couples",
@@ -113,7 +112,7 @@
         "occasion-7": {
           "type": "link",
           "settings": {
-            "asset_image": "occasion-pet-lovers.webp",
+            "asset_image": "",
             "external_image_url": "",
             "collection": "pets",
             "title": "Pet Lovers",
@@ -124,7 +123,7 @@
         "occasion-8": {
           "type": "link",
           "settings": {
-            "asset_image": "occasion-sports-lovers.webp",
+            "asset_image": "",
             "external_image_url": "",
             "collection": "sports",
             "title": "Sports Lovers",
@@ -135,7 +134,7 @@
         "occasion-9": {
           "type": "link",
           "settings": {
-            "asset_image": "occasion-gardening-lovers.webp",
+            "asset_image": "",
             "external_image_url": "",
             "collection": "gardening",
             "title": "Gardening Lovers",
@@ -146,7 +145,7 @@
         "occasion-10": {
           "type": "link",
           "settings": {
-            "asset_image": "occasion-book-lovers.webp",
+            "asset_image": "",
             "external_image_url": "",
             "collection": "reading",
             "title": "Book Lovers",
@@ -157,7 +156,7 @@
         "occasion-11": {
           "type": "link",
           "settings": {
-            "asset_image": "occasion-home-living.webp",
+            "asset_image": "",
             "external_image_url": "",
             "collection": "home-living",
             "title": "Home & Living",
@@ -168,7 +167,7 @@
         "occasion-12": {
           "type": "link",
           "settings": {
-            "asset_image": "occasion-gifts-for-her.webp",
+            "asset_image": "",
             "external_image_url": "",
             "collection": "her",
             "title": "Gifts for Her",
@@ -179,7 +178,7 @@
         "occasion-13": {
           "type": "link",
           "settings": {
-            "asset_image": "occasion-gifts-for-him.webp",
+            "asset_image": "",
             "external_image_url": "",
             "collection": "him",
             "title": "Gifts for Him",
@@ -190,7 +189,7 @@
         "occasion-14": {
           "type": "link",
           "settings": {
-            "asset_image": "occasion-apparel-accessories.webp",
+            "asset_image": "",
             "external_image_url": "",
             "collection": "apparel",
             "title": "Apparel & Accessories",
@@ -271,7 +270,7 @@
           "type": "link",
           "settings": {
             "asset_image": "",
-            "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/PetFaceBracelet-Gold.jpg?v=1773373153",
+            "external_image_url": "",
             "collection": "pets",
             "title": "For Pet Lovers",
             "link": "",
@@ -282,7 +281,7 @@
           "type": "link",
           "settings": {
             "asset_image": "",
-            "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/PCN1Gold.png?v=1773373155",
+            "external_image_url": "",
             "collection": "football",
             "title": "For Sport Lovers",
             "link": "",
@@ -293,7 +292,7 @@
           "type": "link",
           "settings": {
             "asset_image": "",
-            "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/g_f46e95c8-f7fa-4551-83a4-35b2369d2d95.jpg?v=1773373158",
+            "external_image_url": "",
             "collection": "moms",
             "title": "For Mom",
             "link": "",
@@ -304,7 +303,7 @@
           "type": "link",
           "settings": {
             "asset_image": "",
-            "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/Edited13_e6d9616b-644b-4b2f-bd29-de41f068b003.jpg?v=1773373159",
+            "external_image_url": "",
             "collection": "dads",
             "title": "For Dad",
             "link": "",
@@ -315,7 +314,7 @@
           "type": "link",
           "settings": {
             "asset_image": "",
-            "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/PersonalizedPawprintNecklace-Gold_de2b11da-508d-4cb9-a6fb-59c5d2d679e7.jpg?v=1773373160",
+            "external_image_url": "",
             "collection": "her",
             "title": "For Her",
             "link": "",
@@ -326,7 +325,7 @@
           "type": "link",
           "settings": {
             "asset_image": "",
-            "external_image_url": "https://cdn.shopify.com/s/files/1/0769/8874/3879/files/StackablePetBandRing-Gold_39019b53-30a8-4f17-b914-061b0b8b0ff6.jpg?v=1773373157",
+            "external_image_url": "",
             "collection": "him",
             "title": "For Him",
             "link": "",
@@ -434,8 +433,6 @@
         "collection_tab_79dkUt"
       ],
       "settings": {
-        "asset_image": "cuszoo-tabs-pet-lovers.webp",
-        "external_image_url": "",
         "campaign_image_fit": "cover",
         "campaign_image_position": "left",
         "title": "Pet Lovers",
@@ -462,7 +459,8 @@
         "quick_add": "none",
         "color_scheme": "scheme-1",
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "image": ""
       }
     },
     "tabbed_collections_AM3NFT": {
@@ -508,9 +506,7 @@
         "collection_tab_MWrdRx"
       ],
       "settings": {
-        "image": "shopify://shop_images/ChatGPT_Image_Sep_7_2026_05_30_02_AM.webp",
-        "asset_image": "",
-        "external_image_url": "",
+        "image": "",
         "campaign_image_fit": "cover",
         "campaign_image_position": "right",
         "title": "Sport Time",
@@ -583,8 +579,6 @@
         "collection_tab_jnb3ED"
       ],
       "settings": {
-        "asset_image": "cuszoo-tabs-couple-anniversary.webp",
-        "external_image_url": "",
         "campaign_image_fit": "cover",
         "campaign_image_position": "left",
         "title": "Couple Anniversary",
@@ -611,7 +605,8 @@
         "quick_add": "none",
         "color_scheme": "scheme-1",
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "image": ""
       }
     },
     "personalization_steps": {
@@ -620,7 +615,7 @@
         "step-1": {
           "type": "step",
           "settings": {
-            "asset_image": "cuszoo-personalization-1.webp",
+            "asset_image": "",
             "image_alt": "Choose a photo you love",
             "text": "Shop for your favorite product."
           }
@@ -628,7 +623,7 @@
         "step-2": {
           "type": "step",
           "settings": {
-            "asset_image": "cuszoo-personalization-2.webp",
+            "asset_image": "",
             "image_alt": "Turn your photo into a design",
             "text": "Share your photos & custom requests."
           }
@@ -636,7 +631,7 @@
         "step-3": {
           "type": "step",
           "settings": {
-            "asset_image": "cuszoo-personalization-3.webp",
+            "asset_image": "",
             "image_alt": "Make a personalized keepsake",
             "text": "Your unique item is carefully produced."
           }
@@ -644,7 +639,7 @@
         "step-4": {
           "type": "step",
           "settings": {
-            "asset_image": "cuszoo-personalization-4.webp",
+            "asset_image": "",
             "image_alt": "Ship a personalized gift",
             "text": "Delivered your home."
           }
