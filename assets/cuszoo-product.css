@@ -783,6 +783,9 @@ product-recommendations.related-products:not(:has(.grid)) {
     border-radius: 0;
     border-right: 0;
     margin-left: -1.5rem;
+    /* .grid--1-col .grid__item caps max-width at 100%, which would keep the
+       wrapper at the content width while the negative margin shifts it left. */
+    max-width: none;
     padding: 0;
     width: calc(100% + 3rem);
   }
@@ -791,6 +794,19 @@ product-recommendations.related-products:not(:has(.grid)) {
     margin-bottom: 1.6rem;
     margin-left: 0;
     width: 100%;
+  }
+
+  /* component-slider.css loads later with an equal-specificity
+     `.slider.slider--mobile { scroll-padding-left: 1.5rem }`. Left in place,
+     it snaps every swiped slide 1.5rem right and exposes the previous one. */
+  [data-template='product'] .product__media-list.slider--mobile {
+    scroll-padding-left: 0;
+  }
+
+  /* The base peek slider indents the first slide by 1.5rem, which pushes the
+     first media (and Customily's preview canvas over it) off center. */
+  [data-template='product'] .product__media-list .product__media-item:first-of-type {
+    margin-left: 0;
   }
 
   [data-template='product'] .product__media-wrapper slider-component:not(.thumbnail-slider--no-slide) {

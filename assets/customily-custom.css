@@ -9,3 +9,7 @@
   font-weight: 600;
   text-transform: capitalize;
 }
+
+html.customily-canvas-away .cl-canvas-container {
+  display: none !important;
+}
