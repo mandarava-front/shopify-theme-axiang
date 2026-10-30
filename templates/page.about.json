@@ -15,6 +15,7 @@
         "hero": {
           "type": "hero",
           "settings": {
+            "image": "shopify://shop_images/cuszoo-about-hero-process.webp",
             "image_alt": "A personalized embroidered gift being made",
             "eyebrow": "ABOUT CUSZOO",
             "heading": "Made Personal. Kept Forever.",
@@ -29,9 +30,13 @@
             "eyebrow": "OUR STORY",
             "heading": "Small Details. Big Meaning.",
             "text": "<p>The best gifts start with something real: a favorite photo, a meaningful name, or a moment you never want to lose.</p><p><br/>At Cuszoo, we turn those details into personal keepsakes for celebrating, remembering, and staying connected.</p>",
+            "image_1": "shopify://shop_images/cuszoo-about-story-main.webp",
             "image_1_alt": "Customer holding personalized gifts",
+            "image_2": "shopify://shop_images/cuszoo-about-story-small-1.webp",
             "image_2_alt": "Customer wearing a personalized shirt",
+            "image_3": "shopify://shop_images/cuszoo-about-story-small-2.webp",
             "image_3_alt": "Customer wearing a personalized hat",
+            "image_4": "shopify://shop_images/cuszoo-about-story-small-3.webp",
             "image_4_alt": "Customer carrying a personalized pet bag"
           }
         },
@@ -75,7 +80,7 @@
         "connection_pet": {
           "type": "connection",
           "settings": {
-            "image": "shopify://shop_images/pet_banner.jpg",
+            "image": "shopify://shop_images/cuszoo-about-connection-memories.webp",
             "use_memory_fallback": false,
             "image_alt": "A personalized gift celebrating a beloved pet",
             "heading": "For the Pets We Love",
@@ -87,7 +92,7 @@
         "connection_family": {
           "type": "connection",
           "settings": {
-            "image": "shopify://shop_images/beach_banner.jpg",
+            "image": "shopify://shop_images/family_moment_no_border_524x713_88642898-2053-465c-a7d5-70a15b340682.webp",
             "use_memory_fallback": false,
             "image_alt": "A personalized keepsake created for family",
             "heading": "For Family Moments",
@@ -99,7 +104,7 @@
         "connection_love": {
           "type": "connection",
           "settings": {
-            "image": "shopify://shop_images/valetines_banner.jpg",
+            "image": "shopify://shop_images/for_lover_no_border_524x713_46c6aaf2-bc03-4360-a6e1-1e61d1658bef.webp",
             "use_memory_fallback": false,
             "image_alt": "A personalized gift for love and shared milestones",
             "heading": "For Love & Milestones",
@@ -111,6 +116,7 @@
         "connection_memory": {
           "type": "connection",
           "settings": {
+            "image": "shopify://shop_images/for_memories_no_border_524x713_a94b4421-e3f7-4a4f-8c75-f2202517e836.webp",
             "use_memory_fallback": true,
             "image_alt": "A customer sharing a joyful moment with his dog",
             "heading": "For Memories That Stay",
@@ -153,6 +159,7 @@
         "final": {
           "type": "final",
           "settings": {
+            "image": "shopify://shop_images/cuszoo-about-final-process.webp",
             "image_alt": "",
             "heading": "",
             "text": "",

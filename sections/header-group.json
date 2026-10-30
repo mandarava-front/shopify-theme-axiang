@@ -17,15 +17,15 @@
         "announcement_NwbGcY": {
           "type": "announcement",
           "settings": {
-            "text": "BUY 2 GET 10% OFF, BUY 3 GET 15% OFF",
+            "text": "🎃BUY 2 GET 10% OFF, BUY 3 GET 15% OFF🎃",
             "link": ""
           }
         },
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Free Shipping on Orders Over $70",
-            "link": "/policies/shipping-policy"
+            "text": "🦇Free Shipping on Orders Over $70🦇",
+            "link": ""
           }
         }
       },

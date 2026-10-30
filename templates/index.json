@@ -2,8 +2,9 @@
  * ------------------------------------------------------------
  * IMPORTANT: The contents of this file are auto-generated.
  *
- * This file may be updated by the Shopify admin theme editor.
- * Any manual edits will be lost.
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
 {
@@ -14,11 +15,9 @@
         "slide-1": {
           "type": "slide",
           "settings": {
-            "asset_desktop_image": "",
-            "asset_mobile_image": "",
-            "external_desktop_image_url": "",
-            "external_mobile_image_url": "",
-            "image_alt": "Personalized pet gifts",
+            "desktop_image": "shopify://shop_images/Happy_Halloween_Family_Night.webp",
+            "mobile_image": "shopify://shop_images/Happy_Halloween_Trick-or-Treat_Night.webp",
+            "image_alt": "Personalized Halloween Gift",
             "overlay_color": "#003f85",
             "desktop_overlay_opacity": 0,
             "mobile_overlay_opacity": 0,
@@ -26,7 +25,7 @@
             "heading": "",
             "text": "",
             "button_label": "",
-            "button_link": "shopify://collections/all"
+            "button_link": "shopify://collections/halloween"
           }
         }
       },
@@ -46,8 +45,7 @@
         "occasion-1": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
+            "image": "shopify://shop_images/occasion-birthday-gifts-400.webp",
             "collection": "birthday",
             "title": "Birthday Gifts",
             "link": "",
@@ -57,8 +55,7 @@
         "occasion-2": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
+            "image": "shopify://shop_images/occasion-memorial-gifts-400.webp",
             "collection": "memorial-for-loved-ones",
             "title": "Memorial Gifts",
             "link": "",
@@ -68,8 +65,7 @@
         "occasion-3": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
+            "image": "shopify://shop_images/occasion-gifts-for-mom-400.webp",
             "collection": "moms",
             "title": "Gifts for Mom",
             "link": "",
@@ -79,8 +75,7 @@
         "occasion-4": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
+            "image": "shopify://shop_images/occasion-gifts-for-dad-400.webp",
             "collection": "dads",
             "title": "Gifts for Dad",
             "link": "",
@@ -90,8 +85,7 @@
         "occasion-5": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
+            "image": "shopify://shop_images/occasion-gifts-for-grandparents-400.webp",
             "collection": "grandparents",
             "title": "Gifts for Grandparents",
             "link": "",
@@ -101,8 +95,7 @@
         "occasion-6": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
+            "image": "shopify://shop_images/occasion-gifts-for-her-400.webp",
             "collection": "couples",
             "title": "Gifts for Couples",
             "link": "",
@@ -112,8 +105,7 @@
         "occasion-7": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
+            "image": "shopify://shop_images/occasion-pet-lovers-400.webp",
             "collection": "pets",
             "title": "Pet Lovers",
             "link": "",
@@ -123,8 +115,7 @@
         "occasion-8": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
+            "image": "shopify://shop_images/occasion-sports-lovers-400.webp",
             "collection": "sports",
             "title": "Sports Lovers",
             "link": "",
@@ -134,8 +125,7 @@
         "occasion-9": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
+            "image": "shopify://shop_images/occasion-gardening-lovers-400.webp",
             "collection": "gardening",
             "title": "Gardening Lovers",
             "link": "",
@@ -145,8 +135,7 @@
         "occasion-10": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
+            "image": "shopify://shop_images/occasion-book-lovers-400.webp",
             "collection": "reading",
             "title": "Book Lovers",
             "link": "",
@@ -156,8 +145,7 @@
         "occasion-11": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
+            "image": "shopify://shop_images/occasion-home-living-400.webp",
             "collection": "home-living",
             "title": "Home & Living",
             "link": "",
@@ -167,8 +155,7 @@
         "occasion-12": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
+            "image": "shopify://shop_images/occasion-gifts-for-couples-400.webp",
             "collection": "her",
             "title": "Gifts for Her",
             "link": "",
@@ -178,8 +165,7 @@
         "occasion-13": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
+            "image": "shopify://shop_images/occasion-gifts-for-him-400.webp",
             "collection": "him",
             "title": "Gifts for Him",
             "link": "",
@@ -189,8 +175,7 @@
         "occasion-14": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
+            "image": "shopify://shop_images/occasion-apparel-accessories-400.webp",
             "collection": "apparel",
             "title": "Apparel & Accessories",
             "link": "",
@@ -238,7 +223,7 @@
       "settings": {
         "collection": "facebook-hot-sellers",
         "products_to_show": 10,
-        "title": "Trending Now",
+        "title": "👻Trending Now",
         "heading_size": "h1",
         "heading_font": "geist_n4",
         "heading_alignment": "left",
@@ -269,8 +254,6 @@
         "recipient-1": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
             "collection": "pets",
             "title": "For Pet Lovers",
             "link": "",
@@ -280,8 +263,6 @@
         "recipient-2": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
             "collection": "football",
             "title": "For Sport Lovers",
             "link": "",
@@ -291,8 +272,6 @@
         "recipient-3": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
             "collection": "moms",
             "title": "For Mom",
             "link": "",
@@ -302,8 +281,6 @@
         "recipient-4": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
             "collection": "dads",
             "title": "For Dad",
             "link": "",
@@ -313,8 +290,6 @@
         "recipient-5": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
             "collection": "her",
             "title": "For Her",
             "link": "",
@@ -324,8 +299,6 @@
         "recipient-6": {
           "type": "link",
           "settings": {
-            "asset_image": "",
-            "external_image_url": "",
             "collection": "him",
             "title": "For Him",
             "link": "",
@@ -365,7 +338,7 @@
       "settings": {
         "collection": "new-in",
         "products_to_show": 4,
-        "title": "New In",
+        "title": "🕷️New In",
         "heading_size": "h1",
         "heading_font": "geist_n4",
         "heading_alignment": "left",
@@ -386,6 +359,225 @@
         "show_rating": true,
         "quick_add": "none",
         "mobile_layout": "grid_2",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "tabbed_collections_CxNBCq": {
+      "type": "tabbed-collections",
+      "blocks": {
+        "collection_tab_edFPGg": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Halloween",
+            "collection": "halloween",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_rqghxp": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Home & Living",
+            "collection": "halloween-home-living",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_yFXU69": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Apparel",
+            "collection": "halloween-apparel",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_jnb3ED": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Pet & Accessories",
+            "collection": "halloween-accessories",
+            "products_to_show": 6
+          }
+        }
+      },
+      "block_order": [
+        "collection_tab_edFPGg",
+        "collection_tab_rqghxp",
+        "collection_tab_yFXU69",
+        "collection_tab_jnb3ED"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/6a9438c8abb7c_51e8bc7f-7cd7-4b65-8e56-a50fc8fa31d2.webp",
+        "campaign_image_fit": "cover",
+        "campaign_image_position": "left",
+        "title": "🧛‍♀️Happy Halloween",
+        "subtitle": "Trick-or-Treat",
+        "heading_font": "quicksand_n7",
+        "description_font": "nunito_n4",
+        "heading_underline_color": "#fa7b17",
+        "heading_underline_thickness": 5,
+        "background": "#ffeeff",
+        "heading_size": "h1",
+        "see_all_label": "See all",
+        "tab_wrap_mode": "inside",
+        "tabs_per_row": 4,
+        "tabs_per_row_mobile": "2",
+        "columns_desktop": 4,
+        "desktop_rows": "1",
+        "desktop_layout": "slider",
+        "mobile_layout": "slider",
+        "mobile_rows": "1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "none",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "tabbed_collections_iKLbh8": {
+      "type": "tabbed-collections",
+      "blocks": {
+        "collection_tab_Ly9zXT": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Christmas",
+            "collection": "christmas",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_mgU7jN": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Acrylic Ornaments",
+            "collection": "acrylic-ornaments",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_pehxaq": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Wooden Ornaments",
+            "collection": "wooden-ornaments",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_Ahg4BA": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Tree Skirts",
+            "collection": "christmas-tree-skirts",
+            "products_to_show": 6
+          }
+        }
+      },
+      "block_order": [
+        "collection_tab_Ly9zXT",
+        "collection_tab_mgU7jN",
+        "collection_tab_pehxaq",
+        "collection_tab_Ahg4BA"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/image_1_b5e74eef-a361-47b1-81a0-fee30ca83b2e.webp",
+        "campaign_image_fit": "cover",
+        "campaign_image_position": "right",
+        "title": "Early Christmas🎄&nbsp;",
+        "subtitle": "Jingle Bells Gifts",
+        "heading_font": "quicksand_n7",
+        "description_font": "nunito_n4",
+        "heading_underline_color": "#fa7b17",
+        "heading_underline_thickness": 5,
+        "background": "#ffd2d2",
+        "heading_size": "h1",
+        "see_all_label": "See all",
+        "tab_wrap_mode": "inside",
+        "tabs_per_row": 4,
+        "tabs_per_row_mobile": "2",
+        "columns_desktop": 4,
+        "desktop_rows": "1",
+        "desktop_layout": "slider",
+        "mobile_layout": "slider",
+        "mobile_rows": "1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "none",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "tabbed_collections_AM3NFT": {
+      "type": "tabbed-collections",
+      "blocks": {
+        "collection_tab_geCYwm": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Football",
+            "collection": "football",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_KTqUhK": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Baseball",
+            "collection": "baseball",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_ced4wQ": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Golf",
+            "collection": "golf",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_MWrdRx": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Outdoor",
+            "collection": "outdoor-adventure",
+            "products_to_show": 6
+          }
+        }
+      },
+      "block_order": [
+        "collection_tab_geCYwm",
+        "collection_tab_KTqUhK",
+        "collection_tab_ced4wQ",
+        "collection_tab_MWrdRx"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_Sep_7_2026_05_30_02_AM_344632ae-5aa4-4d45-952b-a51b28ebb2bf.webp",
+        "campaign_image_fit": "cover",
+        "campaign_image_position": "left",
+        "title": "🏈Sport Time",
+        "subtitle": "Celebrate Your Sports‑loving Family",
+        "heading_font": "quicksand_n7",
+        "description_font": "nunito_n4",
+        "heading_underline_color": "#fa7b17",
+        "heading_underline_thickness": 5,
+        "background": "#ecfbff",
+        "heading_size": "h1",
+        "see_all_label": "See all",
+        "tab_wrap_mode": "inside",
+        "tabs_per_row": 4,
+        "tabs_per_row_mobile": "2",
+        "columns_desktop": 4,
+        "desktop_rows": "1",
+        "desktop_layout": "slider",
+        "mobile_layout": "slider",
+        "mobile_rows": "1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "none",
+        "color_scheme": "scheme-1",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -433,9 +625,10 @@
         "collection_tab_79dkUt"
       ],
       "settings": {
+        "image": "shopify://shop_images/cuszoo-tabs-pet-lovers.webp",
         "campaign_image_fit": "cover",
-        "campaign_image_position": "left",
-        "title": "Pet Lovers",
+        "campaign_image_position": "right",
+        "title": "🐱Pet Lovers",
         "subtitle": "Cherish Moments, Love Your Pet",
         "heading_font": "quicksand_n7",
         "description_font": "nunito_n4",
@@ -459,154 +652,7 @@
         "quick_add": "none",
         "color_scheme": "scheme-1",
         "padding_top": 0,
-        "padding_bottom": 0,
-        "image": ""
-      }
-    },
-    "tabbed_collections_AM3NFT": {
-      "type": "tabbed-collections",
-      "blocks": {
-        "collection_tab_geCYwm": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Football",
-            "collection": "football",
-            "products_to_show": 6
-          }
-        },
-        "collection_tab_KTqUhK": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Baseball",
-            "collection": "baseball",
-            "products_to_show": 6
-          }
-        },
-        "collection_tab_ced4wQ": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Golf",
-            "collection": "golf",
-            "products_to_show": 6
-          }
-        },
-        "collection_tab_MWrdRx": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Outdoor",
-            "collection": "outdoor-adventure",
-            "products_to_show": 6
-          }
-        }
-      },
-      "block_order": [
-        "collection_tab_geCYwm",
-        "collection_tab_KTqUhK",
-        "collection_tab_ced4wQ",
-        "collection_tab_MWrdRx"
-      ],
-      "settings": {
-        "image": "",
-        "campaign_image_fit": "cover",
-        "campaign_image_position": "right",
-        "title": "Sport Time",
-        "subtitle": "Celebrate Your Sports‑loving Family",
-        "heading_font": "quicksand_n7",
-        "description_font": "nunito_n4",
-        "heading_underline_color": "#fa7b17",
-        "heading_underline_thickness": 5,
-        "background": "#e2f9ff",
-        "heading_size": "h1",
-        "see_all_label": "See all",
-        "tab_wrap_mode": "inside",
-        "tabs_per_row": 4,
-        "tabs_per_row_mobile": "2",
-        "columns_desktop": 4,
-        "desktop_rows": "1",
-        "desktop_layout": "slider",
-        "mobile_layout": "slider",
-        "mobile_rows": "1",
-        "image_ratio": "square",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": true,
-        "quick_add": "none",
-        "color_scheme": "scheme-1",
-        "padding_top": 0,
         "padding_bottom": 0
-      }
-    },
-    "tabbed_collections_CxNBCq": {
-      "type": "tabbed-collections",
-      "blocks": {
-        "collection_tab_edFPGg": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Couples",
-            "collection": "couples",
-            "products_to_show": 6
-          }
-        },
-        "collection_tab_rqghxp": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Letter Lamp",
-            "collection": "letter-photo-lamp",
-            "products_to_show": 6
-          }
-        },
-        "collection_tab_yFXU69": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Anniversary",
-            "collection": "anniversary",
-            "products_to_show": 6
-          }
-        },
-        "collection_tab_jnb3ED": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Wedding",
-            "collection": "wedding",
-            "products_to_show": 6
-          }
-        }
-      },
-      "block_order": [
-        "collection_tab_edFPGg",
-        "collection_tab_rqghxp",
-        "collection_tab_yFXU69",
-        "collection_tab_jnb3ED"
-      ],
-      "settings": {
-        "campaign_image_fit": "cover",
-        "campaign_image_position": "left",
-        "title": "Couple Anniversary",
-        "subtitle": "Personalized Gifts for Every Milestone",
-        "heading_font": "quicksand_n7",
-        "description_font": "nunito_n4",
-        "heading_underline_color": "#fa7b17",
-        "heading_underline_thickness": 5,
-        "background": "#fce2e9",
-        "heading_size": "h1",
-        "see_all_label": "See all",
-        "tab_wrap_mode": "inside",
-        "tabs_per_row": 4,
-        "tabs_per_row_mobile": "2",
-        "columns_desktop": 4,
-        "desktop_rows": "1",
-        "desktop_layout": "slider",
-        "mobile_layout": "slider",
-        "mobile_rows": "1",
-        "image_ratio": "square",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": true,
-        "quick_add": "none",
-        "color_scheme": "scheme-1",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "image": ""
       }
     },
     "personalization_steps": {
@@ -615,7 +661,7 @@
         "step-1": {
           "type": "step",
           "settings": {
-            "asset_image": "",
+            "image": "shopify://shop_images/cuszoo-personalization-1-400.webp",
             "image_alt": "Choose a photo you love",
             "text": "Shop for your favorite product."
           }
@@ -623,7 +669,7 @@
         "step-2": {
           "type": "step",
           "settings": {
-            "asset_image": "",
+            "image": "shopify://shop_images/cuszoo-personalization-2-400.webp",
             "image_alt": "Turn your photo into a design",
             "text": "Share your photos & custom requests."
           }
@@ -631,7 +677,7 @@
         "step-3": {
           "type": "step",
           "settings": {
-            "asset_image": "",
+            "image": "shopify://shop_images/cuszoo-personalization-3-400.webp",
             "image_alt": "Make a personalized keepsake",
             "text": "Your unique item is carefully produced."
           }
@@ -639,7 +685,7 @@
         "step-4": {
           "type": "step",
           "settings": {
-            "asset_image": "",
+            "image": "shopify://shop_images/cuszoo-personalization-4-400.webp",
             "image_alt": "Ship a personalized gift",
             "text": "Delivered your home."
           }
@@ -816,9 +862,10 @@
     "featured_collection_Q4KNq7",
     "shop_by_recipient",
     "featured_collection_fJ49r9",
-    "campaign_tabs",
-    "tabbed_collections_AM3NFT",
     "tabbed_collections_CxNBCq",
+    "tabbed_collections_iKLbh8",
+    "tabbed_collections_AM3NFT",
+    "campaign_tabs",
     "personalization_steps",
     "social_proof_videos",
     "trust_badges"

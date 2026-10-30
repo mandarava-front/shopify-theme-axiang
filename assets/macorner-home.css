@@ -72,10 +72,18 @@
   );
 }
 
-.macorner-hero__content {
+.macorner-hero__link:empty {
+  display: block;
   position: absolute;
   inset: 0;
   z-index: 1;
+}
+
+.macorner-hero__content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -115,6 +123,7 @@
 
 .macorner-hero__button {
   order: 4;
+  pointer-events: auto;
   min-width: 19rem;
   min-height: 4.6rem;
   border-radius: 99rem;

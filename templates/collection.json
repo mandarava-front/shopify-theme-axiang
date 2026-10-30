@@ -17,8 +17,9 @@
         "breadcrumb_home_label": "Home",
         "show_collection_description": false,
         "show_collection_image": false,
+        "banner_alt": "",
         "title_size": 40,
-        "title_vertical_spacing": 16,
+        "title_vertical_spacing": 20,
         "color_scheme": "scheme-1"
       }
     },

@@ -28,12 +28,6 @@
             "menu": "footer-help-center"
           }
         },
-        "link_list_XELHhf": {
-          "type": "policy_links",
-          "settings": {
-            "heading": "Policies"
-          }
-        },
         "help": {
           "type": "link_list",
           "settings": {
@@ -61,8 +55,8 @@
         "contact_email": "support@cuszoo.com",
         "service_hours_label": "Customer service",
         "service_hours": "Monday-Friday, 9:30 AM-5:00 PM (EST)",
-        "operated_by": "NewRate LLC",
-        "business_address": "30 N Gould St, Ste N, Sheridan, WY 82801, United States",
+        "operated_by": "",
+        "business_address": "",
         "follow_label": "Follow us on",
         "show_brand_social": true,
         "facebook_url": "",
