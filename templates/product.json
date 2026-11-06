@@ -14,7 +14,12 @@
       "blocks": {
         "title": {
           "type": "title",
-          "settings": {}
+          "settings": {
+            "title_size_desktop": 22,
+            "title_size_mobile": 24,
+            "title_weight": "var(--font-heading-weight)",
+            "title_color": ""
+          }
         },
         "rating": {
           "type": "rating",
@@ -45,12 +50,12 @@
             "vd_title_size": 18,
             "vd_body_size": 15,
             "vd_radius": 10,
-            "vd_background": "#FAF8F5",
+            "vd_background": "#faf8f5",
             "vd_tier_background": "#ffffff",
-            "vd_border": "#0A2759",
+            "vd_border": "#0a2759",
             "vd_text": "#0a2759",
             "vd_muted_text": "#52657d",
-            "vd_accent": "#0A2759",
+            "vd_accent": "#0a2759",
             "vd_badge_text": "#ffffff"
           }
         },
@@ -73,7 +78,7 @@
           "type": "variant_picker",
           "settings": {
             "picker_type": "button",
-            "swatch_shape": "circle"
+            "swatch_shape": "none"
           }
         },
         "apparel_size": {
@@ -120,15 +125,15 @@
             "order_label": "Order placed",
             "ship_label": "Order ships",
             "delivery_label": "Delivered",
-            "background_color": "#FAF8F5",
-            "border_color": "#0A2759",
+            "background_color": "#faf8f5",
+            "border_color": "#0a2759",
             "summary_icon_color": "#0a2759",
             "summary_text_color": "#0a2759",
-            "line_color": "#0A2759",
-            "order_icon_color": "#0A2759",
-            "ship_icon_color": "#0A2759",
-            "delivery_icon_color": "#0A2759",
-            "icon_background_color": "#FAF8F5",
+            "line_color": "#0a2759",
+            "order_icon_color": "#0a2759",
+            "ship_icon_color": "#0a2759",
+            "delivery_icon_color": "#0a2759",
+            "icon_background_color": "#faf8f5",
             "date_color": "#0a2759",
             "label_color": "#637381"
           }
@@ -200,6 +205,7 @@
         "constrain_to_viewport": true,
         "media_fit": "contain",
         "gallery_layout": "thumbnail",
+        "thumbnail_position": "bottom",
         "mobile_thumbnails": "show",
         "media_position": "left",
         "image_zoom": "lightbox",
