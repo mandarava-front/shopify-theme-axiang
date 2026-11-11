@@ -118,8 +118,8 @@ main[data-template='product']
   }
 
   /* The platform gallery itself is a fixed 400px layer. Center that outer
-     layer in the expanded mobile media wrapper so the preview and thumbnails
-     move together. */
+     layer in the mobile media wrapper so the preview and thumbnails move
+     together. */
   [data-template='product'] #tee-gallery:has(.tee-gallery--platform-product) {
     width: min(100%, 400px) !important;
     max-width: 400px !important;
@@ -178,8 +178,14 @@ main[data-template='product']
 }
 
 @media only screen and (max-width: 749px) {
+  /* cuszoo-product.css bleeds the mobile media wrapper to the screen edges
+     with a negative margin. Teeinblue galleries keep the content inset, so
+     drop the bleed width together with the margin; resetting only the margin
+     pushes the wrapper 1.5rem past the right edge. */
   .teeinblue-enabled [data-template=product] .product__media-wrapper {
     margin-left: 0 !important;
+    width: 100%;
+    max-width: 100%;
   }
 }
 
