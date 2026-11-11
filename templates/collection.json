@@ -9,6 +9,16 @@
  */
 {
   "sections": {
+    "custom_liquid_hdUEHj": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<!-- ================= 圣诞飘雪 开始 ================= -->\n<div id=\"xmas-snowfall\" aria-hidden=\"true\"></div>\n\n<style>\n  #xmas-snowfall {\n    position: fixed;\n    inset: 0;\n    width: 100%;\n    height: 100%;\n    overflow: hidden;\n    pointer-events: none;   /* 雪花不挡点击 */\n    z-index: 9999;\n  }\n  #xmas-snowfall .flake {\n    position: absolute;\n    top: -10vh;\n    left: var(--x);\n    animation: xmas-fall var(--fall) linear infinite;\n    animation-delay: var(--delay);\n    will-change: transform;\n  }\n  #xmas-snowfall .flake i {\n    display: block;\n    width: var(--size);\n    height: var(--size);\n    border-radius: 50%;\n    background: rgba(var(--rgb), var(--opacity));\n    filter: blur(var(--blur));\n    animation: xmas-sway var(--sway) ease-in-out infinite alternate;\n    animation-delay: var(--sway-delay);\n    will-change: transform;\n  }\n  @keyframes xmas-fall {\n    0%   { transform: translate3d(0, 0, 0); }\n    100% { transform: translate3d(var(--drift), 125vh, 0); }\n  }\n  @keyframes xmas-sway {\n    0%   { transform: translateX(calc(var(--sway-amp) * -1)) rotate(-8deg); }\n    100% { transform: translateX(var(--sway-amp)) rotate(8deg); }\n  }\n  @media (max-width: 749px) {\n    #xmas-snowfall .flake:nth-child(n+41) { display: none; }\n  }\n  @media (prefers-reduced-motion: reduce) {\n    #xmas-snowfall { display: none; }\n  }\n</style>\n\n<script>\n(function () {\n  /* ====== 可调参数（只改这里就行） ====== */\n  var CFG = {\n    countDesktop: 85,      // 电脑端雪花数量\n    countMobile: 40,       // 手机端雪花数量\n    minSize: 1,            // 最小雪花直径（px）\n    maxSize: 4,            // 最大雪花直径（px）\n    minDuration: 11,       // 下落最快几秒到底\n    maxDuration: 22,       // 下落最慢几秒到底\n    maxDrift: 45,          // 左右飘移幅度（px）\n    color: '255,255,255'   // 雪花颜色 RGB\n  };\n  /* ==================================== */\n\n  var R = function (a, b) { return Math.random() * (b - a) + a; };\n\n  function build() {\n    var box = document.getElementById('xmas-snowfall');\n    if (!box || box.dataset.ready === 'true') return;\n    box.dataset.ready = 'true';\n\n    var n = window.innerWidth <= 749 ? CFG.countMobile : CFG.countDesktop;\n    var frag = document.createDocumentFragment();\n\n    for (var i = 0; i < n; i++) {\n      var flake = document.createElement('span');\n      var dot = document.createElement('i');\n      flake.className = 'flake';\n\n      flake.style.setProperty('--x', R(0, 100).toFixed(2) + 'vw');\n      flake.style.setProperty('--fall', R(CFG.minDuration, CFG.maxDuration).toFixed(2) + 's');\n      flake.style.setProperty('--delay', R(-CFG.maxDuration, 0).toFixed(2) + 's');\n      flake.style.setProperty('--drift', R(-CFG.maxDrift, CFG.maxDrift).toFixed(0) + 'px');\n\n      dot.style.setProperty('--size', R(CFG.minSize, CFG.maxSize).toFixed(1) + 'px');\n      dot.style.setProperty('--opacity', R(0.45, 0.95).toFixed(2));\n      dot.style.setProperty('--blur', R(0, 0.7).toFixed(1) + 'px');\n      dot.style.setProperty('--rgb', CFG.color);\n      dot.style.setProperty('--sway', R(3, 7).toFixed(2) + 's');\n      dot.style.setProperty('--sway-delay', R(-7, 0).toFixed(2) + 's');\n      dot.style.setProperty('--sway-amp', R(4, 12).toFixed(0) + 'px');\n\n      flake.appendChild(dot);\n      frag.appendChild(flake);\n    }\n    box.appendChild(frag);\n  }\n\n  if (document.readyState === 'loading') {\n    document.addEventListener('DOMContentLoaded', build);\n  } else {\n    build();\n  }\n\n  /* 主题编辑器里切换区块时自动重建，不会重复叠加 */\n  document.addEventListener('shopify:section:load', function () {\n    var box = document.getElementById('xmas-snowfall');\n    if (!box) return;\n    box.innerHTML = '';\n    box.dataset.ready = 'false';\n    build();\n  });\n})();\n</script>\n<!-- ================= 圣诞飘雪 结束 ================= -->",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "main-collection-banner": {
       "type": "main-collection-banner",
       "custom_css": [],
@@ -49,6 +59,7 @@
     }
   },
   "order": [
+    "custom_liquid_hdUEHj",
     "main-collection-banner",
     "main-product-grid"
   ]

@@ -15,9 +15,9 @@
         "slide-1": {
           "type": "slide",
           "settings": {
-            "desktop_image": "shopify://shop_images/Happy_Halloween_Family_Night.webp",
-            "mobile_image": "shopify://shop_images/Happy_Halloween_Trick-or-Treat_Night.webp",
-            "image_alt": "Personalized Halloween Gift",
+            "desktop_image": "shopify://shop_images/Christmas_desktop.webp",
+            "mobile_image": "shopify://shop_images/Christmas_mobile.webp",
+            "image_alt": "Personalized Christmas Gift",
             "overlay_color": "#003f85",
             "desktop_overlay_opacity": 0,
             "mobile_overlay_opacity": 0,
@@ -25,7 +25,7 @@
             "heading": "",
             "text": "",
             "button_label": "",
-            "button_link": "shopify://collections/halloween"
+            "button_link": "shopify://collections/christmas"
           }
         }
       },
@@ -363,75 +363,12 @@
         "padding_bottom": 0
       }
     },
-    "tabbed_collections_CxNBCq": {
-      "type": "tabbed-collections",
-      "blocks": {
-        "collection_tab_edFPGg": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Halloween",
-            "collection": "halloween",
-            "products_to_show": 6
-          }
-        },
-        "collection_tab_rqghxp": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Home & Living",
-            "collection": "halloween-home-living",
-            "products_to_show": 6
-          }
-        },
-        "collection_tab_yFXU69": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Apparel",
-            "collection": "halloween-apparel",
-            "products_to_show": 6
-          }
-        },
-        "collection_tab_jnb3ED": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Pet & Accessories",
-            "collection": "halloween-accessories",
-            "products_to_show": 6
-          }
-        }
-      },
-      "block_order": [
-        "collection_tab_edFPGg",
-        "collection_tab_rqghxp",
-        "collection_tab_yFXU69",
-        "collection_tab_jnb3ED"
-      ],
+    "custom_liquid_ww6x4R": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
       "settings": {
-        "image": "shopify://shop_images/6a9438c8abb7c_51e8bc7f-7cd7-4b65-8e56-a50fc8fa31d2.webp",
-        "campaign_image_fit": "cover",
-        "campaign_image_position": "left",
-        "title": "🧛‍♀️Happy Halloween",
-        "subtitle": "Trick-or-Treat",
-        "heading_font": "quicksand_n7",
-        "description_font": "nunito_n4",
-        "heading_underline_color": "#fa7b17",
-        "heading_underline_thickness": 5,
-        "background": "#ffeeff",
-        "heading_size": "h1",
-        "see_all_label": "See all",
-        "tab_wrap_mode": "inside",
-        "tabs_per_row": 4,
-        "tabs_per_row_mobile": "2",
-        "columns_desktop": 4,
-        "desktop_rows": "1",
-        "desktop_layout": "slider",
-        "mobile_layout": "slider",
-        "mobile_rows": "1",
-        "image_ratio": "square",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": true,
-        "quick_add": "none",
-        "color_scheme": "scheme-1",
+        "custom_liquid": "<!-- ================= 圣诞飘雪 开始 ================= -->\n<div id=\"xmas-snowfall\" aria-hidden=\"true\"></div>\n\n<style>\n  #xmas-snowfall {\n    position: fixed;\n    inset: 0;\n    width: 100%;\n    height: 100%;\n    overflow: hidden;\n    pointer-events: none;   /* 雪花不挡点击 */\n    z-index: 9999;\n  }\n  #xmas-snowfall .flake {\n    position: absolute;\n    top: -10vh;\n    left: var(--x);\n    animation: xmas-fall var(--fall) linear infinite;\n    animation-delay: var(--delay);\n    will-change: transform;\n  }\n  #xmas-snowfall .flake i {\n    display: block;\n    width: var(--size);\n    height: var(--size);\n    border-radius: 50%;\n    background: rgba(var(--rgb), var(--opacity));\n    filter: blur(var(--blur));\n    animation: xmas-sway var(--sway) ease-in-out infinite alternate;\n    animation-delay: var(--sway-delay);\n    will-change: transform;\n  }\n  @keyframes xmas-fall {\n    0%   { transform: translate3d(0, 0, 0); }\n    100% { transform: translate3d(var(--drift), 125vh, 0); }\n  }\n  @keyframes xmas-sway {\n    0%   { transform: translateX(calc(var(--sway-amp) * -1)) rotate(-8deg); }\n    100% { transform: translateX(var(--sway-amp)) rotate(8deg); }\n  }\n  @media (max-width: 749px) {\n    #xmas-snowfall .flake:nth-child(n+41) { display: none; }\n  }\n  @media (prefers-reduced-motion: reduce) {\n    #xmas-snowfall { display: none; }\n  }\n</style>\n\n<script>\n(function () {\n  /* ====== 可调参数（只改这里就行） ====== */\n  var CFG = {\n    countDesktop: 85,      // 电脑端雪花数量\n    countMobile: 40,       // 手机端雪花数量\n    minSize: 1,            // 最小雪花直径（px）\n    maxSize: 4,            // 最大雪花直径（px）\n    minDuration: 11,       // 下落最快几秒到底\n    maxDuration: 22,       // 下落最慢几秒到底\n    maxDrift: 45,          // 左右飘移幅度（px）\n    color: '255,255,255'   // 雪花颜色 RGB\n  };\n  /* ==================================== */\n\n  var R = function (a, b) { return Math.random() * (b - a) + a; };\n\n  function build() {\n    var box = document.getElementById('xmas-snowfall');\n    if (!box || box.dataset.ready === 'true') return;\n    box.dataset.ready = 'true';\n\n    var n = window.innerWidth <= 749 ? CFG.countMobile : CFG.countDesktop;\n    var frag = document.createDocumentFragment();\n\n    for (var i = 0; i < n; i++) {\n      var flake = document.createElement('span');\n      var dot = document.createElement('i');\n      flake.className = 'flake';\n\n      flake.style.setProperty('--x', R(0, 100).toFixed(2) + 'vw');\n      flake.style.setProperty('--fall', R(CFG.minDuration, CFG.maxDuration).toFixed(2) + 's');\n      flake.style.setProperty('--delay', R(-CFG.maxDuration, 0).toFixed(2) + 's');\n      flake.style.setProperty('--drift', R(-CFG.maxDrift, CFG.maxDrift).toFixed(0) + 'px');\n\n      dot.style.setProperty('--size', R(CFG.minSize, CFG.maxSize).toFixed(1) + 'px');\n      dot.style.setProperty('--opacity', R(0.45, 0.95).toFixed(2));\n      dot.style.setProperty('--blur', R(0, 0.7).toFixed(1) + 'px');\n      dot.style.setProperty('--rgb', CFG.color);\n      dot.style.setProperty('--sway', R(3, 7).toFixed(2) + 's');\n      dot.style.setProperty('--sway-delay', R(-7, 0).toFixed(2) + 's');\n      dot.style.setProperty('--sway-amp', R(4, 12).toFixed(0) + 'px');\n\n      flake.appendChild(dot);\n      frag.appendChild(flake);\n    }\n    box.appendChild(frag);\n  }\n\n  if (document.readyState === 'loading') {\n    document.addEventListener('DOMContentLoaded', build);\n  } else {\n    build();\n  }\n\n  /* 主题编辑器里切换区块时自动重建，不会重复叠加 */\n  document.addEventListener('shopify:section:load', function () {\n    var box = document.getElementById('xmas-snowfall');\n    if (!box) return;\n    box.innerHTML = '';\n    box.dataset.ready = 'false';\n    build();\n  });\n})();\n</script>\n<!-- ================= 圣诞飘雪 结束 ================= -->",
+        "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -481,7 +418,7 @@
       "settings": {
         "image": "shopify://shop_images/image_1_b5e74eef-a361-47b1-81a0-fee30ca83b2e.webp",
         "campaign_image_fit": "cover",
-        "campaign_image_position": "right",
+        "campaign_image_position": "left",
         "title": "Early Christmas🎄&nbsp;",
         "subtitle": "Jingle Bells Gifts",
         "heading_font": "quicksand_n7",
@@ -489,79 +426,6 @@
         "heading_underline_color": "#fa7b17",
         "heading_underline_thickness": 5,
         "background": "#ffd2d2",
-        "heading_size": "h1",
-        "see_all_label": "See all",
-        "tab_wrap_mode": "inside",
-        "tabs_per_row": 4,
-        "tabs_per_row_mobile": "2",
-        "columns_desktop": 4,
-        "desktop_rows": "1",
-        "desktop_layout": "slider",
-        "mobile_layout": "slider",
-        "mobile_rows": "1",
-        "image_ratio": "square",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": true,
-        "quick_add": "none",
-        "color_scheme": "scheme-1",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "tabbed_collections_AM3NFT": {
-      "type": "tabbed-collections",
-      "blocks": {
-        "collection_tab_geCYwm": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Football",
-            "collection": "football",
-            "products_to_show": 6
-          }
-        },
-        "collection_tab_KTqUhK": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Baseball",
-            "collection": "baseball",
-            "products_to_show": 6
-          }
-        },
-        "collection_tab_ced4wQ": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Golf",
-            "collection": "golf",
-            "products_to_show": 6
-          }
-        },
-        "collection_tab_MWrdRx": {
-          "type": "collection_tab",
-          "settings": {
-            "label": "Outdoor",
-            "collection": "outdoor-adventure",
-            "products_to_show": 6
-          }
-        }
-      },
-      "block_order": [
-        "collection_tab_geCYwm",
-        "collection_tab_KTqUhK",
-        "collection_tab_ced4wQ",
-        "collection_tab_MWrdRx"
-      ],
-      "settings": {
-        "image": "shopify://shop_images/ChatGPT_Image_Sep_7_2026_05_30_02_AM_344632ae-5aa4-4d45-952b-a51b28ebb2bf.webp",
-        "campaign_image_fit": "cover",
-        "campaign_image_position": "left",
-        "title": "🏈Sport Time",
-        "subtitle": "Celebrate Your Sports‑loving Family",
-        "heading_font": "quicksand_n7",
-        "description_font": "nunito_n4",
-        "heading_underline_color": "#fa7b17",
-        "heading_underline_thickness": 5,
-        "background": "#ecfbff",
         "heading_size": "h1",
         "see_all_label": "See all",
         "tab_wrap_mode": "inside",
@@ -635,6 +499,152 @@
         "heading_underline_color": "#fa7b17",
         "heading_underline_thickness": 5,
         "background": "#fff3e3",
+        "heading_size": "h1",
+        "see_all_label": "See all",
+        "tab_wrap_mode": "inside",
+        "tabs_per_row": 4,
+        "tabs_per_row_mobile": "2",
+        "columns_desktop": 4,
+        "desktop_rows": "1",
+        "desktop_layout": "slider",
+        "mobile_layout": "slider",
+        "mobile_rows": "1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "none",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "tabbed_collections_AM3NFT": {
+      "type": "tabbed-collections",
+      "blocks": {
+        "collection_tab_geCYwm": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Football",
+            "collection": "football",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_KTqUhK": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Baseball",
+            "collection": "baseball",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_ced4wQ": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Golf",
+            "collection": "golf",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_MWrdRx": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Outdoor",
+            "collection": "outdoor-adventure",
+            "products_to_show": 6
+          }
+        }
+      },
+      "block_order": [
+        "collection_tab_geCYwm",
+        "collection_tab_KTqUhK",
+        "collection_tab_ced4wQ",
+        "collection_tab_MWrdRx"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_Sep_7_2026_05_30_02_AM_344632ae-5aa4-4d45-952b-a51b28ebb2bf.webp",
+        "campaign_image_fit": "cover",
+        "campaign_image_position": "left",
+        "title": "Sport Time 🏈&nbsp;",
+        "subtitle": "Celebrate Your Sports‑loving Family",
+        "heading_font": "quicksand_n7",
+        "description_font": "nunito_n4",
+        "heading_underline_color": "#fa7b17",
+        "heading_underline_thickness": 5,
+        "background": "#ecfbff",
+        "heading_size": "h1",
+        "see_all_label": "See all",
+        "tab_wrap_mode": "inside",
+        "tabs_per_row": 4,
+        "tabs_per_row_mobile": "2",
+        "columns_desktop": 4,
+        "desktop_rows": "1",
+        "desktop_layout": "slider",
+        "mobile_layout": "slider",
+        "mobile_rows": "1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "none",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "tabbed_collections_CxNBCq": {
+      "type": "tabbed-collections",
+      "blocks": {
+        "collection_tab_edFPGg": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Halloween",
+            "collection": "halloween",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_rqghxp": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Home & Living",
+            "collection": "halloween-home-living",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_yFXU69": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Apparel",
+            "collection": "halloween-apparel",
+            "products_to_show": 6
+          }
+        },
+        "collection_tab_jnb3ED": {
+          "type": "collection_tab",
+          "settings": {
+            "label": "Pet & Accessories",
+            "collection": "halloween-accessories",
+            "products_to_show": 6
+          }
+        }
+      },
+      "block_order": [
+        "collection_tab_edFPGg",
+        "collection_tab_rqghxp",
+        "collection_tab_yFXU69",
+        "collection_tab_jnb3ED"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/6a9438c8abb7c_51e8bc7f-7cd7-4b65-8e56-a50fc8fa31d2.webp",
+        "campaign_image_fit": "cover",
+        "campaign_image_position": "right",
+        "title": "🧛‍♀️Happy Halloween",
+        "subtitle": "Trick-or-Treat",
+        "heading_font": "quicksand_n7",
+        "description_font": "nunito_n4",
+        "heading_underline_color": "#fa7b17",
+        "heading_underline_thickness": 5,
+        "background": "#ffeeff",
         "heading_size": "h1",
         "see_all_label": "See all",
         "tab_wrap_mode": "inside",
@@ -862,10 +872,11 @@
     "featured_collection_Q4KNq7",
     "shop_by_recipient",
     "featured_collection_fJ49r9",
-    "tabbed_collections_CxNBCq",
+    "custom_liquid_ww6x4R",
     "tabbed_collections_iKLbh8",
-    "tabbed_collections_AM3NFT",
     "campaign_tabs",
+    "tabbed_collections_AM3NFT",
+    "tabbed_collections_CxNBCq",
     "personalization_steps",
     "social_proof_videos",
     "trust_badges"
